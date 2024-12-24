@@ -1,0 +1,46 @@
+---
+title: "Spotify Song Scraper"
+publishedAt: "2024-11-10"
+summary: "Basically I got quite vexed with the ads and the missing features (shuffle & loop) and overall terrible experience (ai shuffle) offered by spotify free plan. So I made a Quick-Fix to migrate to my own Song Player. (Sonder)"
+images:
+  - "/images/projects/scraper/scraper1.png"
+  - "/images/projects/scraper/scraper2.png"
+  - "/images/projects/scraper/scraper3.png"
+  - "/images/projects/scraper/scraper4.png"
+team:
+  - name: "Suvan GS"
+    role: "Student Developer"
+    avatar: "/images/avatar.png"
+    linkedIn: "https://www.linkedin.com/in/suvan-gowri-shanker-596943261/"
+---
+
+## Overview
+
+This Project allows you to quickly download all the songs from your Spotify Playlist and save them to your local machine.
+It would require you to first sign up for the [Spotify Developer API](https://developer.spotify.com) and get your own `Client ID` and `Client Secret` to use this project.
+Designed to Support `Sonder` Music Player.
+
+## Prerequisites
+
+- Python 3.10+
+- ffmpeg 7.1 onwards
+- Required packages listed in `requirements.txt`
+
+## Project Structure
+
+- `main.py` - Main application entry point
+- `install.ps1` - Windows installation script
+- `install.sh` - Linux/Mac installation script
+
+- `downloads/` - Directory containing downloaded sound files
+- `temp/` - Directory for temporary files like playlist CSVs
+
+
+
+## Installation
+
+1. Clone this repository `git@github.com:greeenboi/spotify_song_scraper.git`
+2. To run:
+    - Windows: `install.ps1`
+    - Linux/Mac: `chmod +x install.sh && ./install.sh`
+3. Run the application using `python main.py`

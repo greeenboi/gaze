@@ -1,0 +1,101 @@
+{
+    "person": {
+        "role": "Developer"
+    },
+    "newsletter": {
+        "title": "Subscribe to {firstName}'s Newsletter",
+        "description": "I occasionally write about Software, technology, and share thoughts on Novels.",
+        "button": "Sign up"
+    },
+    "home": {
+        "label": "Home",
+        "title": "{name}'s Portfolio",
+        "description": "Portfolio website showcasing my work as a {role}",
+        "headline": "Design engineer and builder",
+        "subline": "I'm Suvan, a Student at SRMIST, where I create wild Applications . After hours, I build my own OSC Projects."
+    },
+    "about": {
+        "label": "About",
+        "title": "About me",
+        "description": "Meet {name}, {role} from Bangalore, India.",
+        "intro": {
+            "title": "Introduction",
+            "description": "Suvan is a Bangalore-based Student Developer with a passion for implementing complex challenges just for the fun of it. His work spans across Applications, Games, and the convergence of design and technology."
+        },
+        "work": {
+            "title": "Work Experience",
+            "experiences": {
+
+                "Fuelemy":{
+                    "timeframe": "OCT 2024 - Present",
+                    "role": "Lead Software Engineer",
+                    "achievements": "Implemented a Distributed, Cached API system integrating a custom Rate Limiter, Cors & CSRF, Logger(Debug) and Middleware using Hono, PG (NeonDB), Drizzle. Hosting it as a Bun runtime on Sevalla inside a distributed Docker instance. Wrote a custom JWT Authentication system with an User-Invite Schema in Postgres. Created a Unique and User-Friendly Landing Page and Dashboard using Refine + Vite.Added Ola Maps and Razorpay with i18n to allow users to book trips"
+                },
+                "SRM DEI": {
+                    "timeframe": "SEP 2024 - Present",
+                    "role": "Full Stack Developer Intern",
+                    "achievements": "Designed and Developed the UI for srmdei.com with NEXTJS, Tailwindcss and Chakra UI.;Designed a backend and CDN service for srmdei.com."
+                },
+                "Samsung Prism": {
+                    "timeframe": "JAN 2024 - JUN 2024",
+                    "role": "R&D Project Intern",
+                    "achievements": "Worked On Character Consistency in Image Generation Created a GPT2 assisted SDXL 1.5 model, Controlnet, LoRA mask, prompt Enchancing with gpt-2, Consistency pipeline. Allowing for Consistent generation upto 80%"
+                },
+                "JASSURE": {
+                    "timeframe": "APR 2024 - JUL 2024",
+                    "role": "Full Stack Developer Intern",
+                    "achievements": "Worked On Developing pages for the JADE platform using Next13 and ChakraUI;Utilised AWS codecommit and CI/CD to deploy to our Hosting Platform"
+                }
+            }
+        },
+        "studies": {
+            "title": "Studies",
+            "institutions": {
+                "SRM Institute of Science and Technology": {
+                    "description": "Studying Computer Science and Engineering"
+                }
+            }
+        },
+        "technical": {
+            "title": "Technical skills",
+            "skills": {
+                "Ruby On Rails": {
+                    "description": "Certified Ruby On Rails Developer. Can Create Full Stack Apps with ROR and Postgres."
+                },
+                "Tauri": {
+                    "description": "Can Create Desktop and Mobile Applications using Rust."
+                },
+                "Docker & Kubernetes": {
+                    "description": "Took a seminar for Docker"
+                },
+                "React Native": {
+                    "description": "Have Created several Full Stack Applications"
+                },
+                "Nextjs": {
+                    "description": "Building next gen apps with Next.js + Refine + Supabase."
+                },
+                "RedHat Linux": {
+                    "description": "Certified System Administrator"
+                }
+            }
+        }
+    },
+    "blog": {
+        "label": "Blog",
+        "title": "Writing about design and tech...",
+        "description": "Read what {name} has been up to recently"
+    },
+    "work": {
+        "label": "Work",
+        "title": "My projects",
+        "description": "Notable projects by {name}"
+    },
+    "gallery": {
+        "label": "Gallery",
+        "title": "My photo gallery",
+        "description": "A photo collection by {name}"
+    },
+    "projectCard": {
+        "label": "Read Case Study"
+    }
+}

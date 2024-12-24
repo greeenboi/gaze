@@ -1,0 +1,52 @@
+---
+title: "Building Kanflow, an Enterprise-Grade, Task Management Software. All in one place, even your data."
+publishedAt: "2024-12-22"
+summary: "Kanflow offers a unique, offline only approach to storing and managing your data to provide the absolute fastest speeds and no chance of data leaks. "
+images:
+  - "/images/projects/kanflow/kanflow1.png"
+  - "/images/projects/kanflow/kanflow2.png"
+  - "/images/projects/kanflow/kanflow3.png"
+team:
+  - name: "Suvan GS"
+    role: "Student Developer"
+    avatar: "/images/avatar.png"
+    linkedIn: "https://www.linkedin.com/in/suvan-gowri-shanker-596943261/"
+---
+
+## Overview
+
+Kanflow offers a unique, offline only approach to storing and managing your data to provide the absolute fastest speeds and no chance of data leaks. 
+
+## Key Features
+
+- Delectably custom themes
+- Anonymous Login as a guest user
+- Multiple Users in a single device
+- Intuitive Keybinds and Shortcuts
+- Notifications and Reminders (Coming Soon!)
+- Completely customizable boards and tasks.
+- and more..
+
+## Technologies Used
+
+- **Frontend**: [Next.js](https://nextjs.org/) 14
+- **Desktop Framework**: [Tauri](https://tauri.studio/) 2.0
+- **Styling**: [Tailwind CSS](https://tailwindcss.com/)
+- **UI Components**: [Shadcn UI](https://shadcn.com/) & [Magic UI](https://magicui.design/)
+- **State Management**: [Tauri Store Plugin](https://tauri.app/plugin/store/)
+- **Database**: [SQLite](https://www.sqlite.org/) (via Tauri SQL Plugin)
+
+## Challenges and Learnings
+
+One key challenge was implementing the offline only database that can be embedded within the app. 
+We had to ensure that the data was stored securely and that the app could handle large amounts of data without slowing down.
+We first went with the built in tauri's postgres plugin but it was not stable during builds. 
+So we then switched to pglite by ElectricSql. Unfortunatly I was unable to get the storage permissions to work on windows since it is a transient db. 
+So I had to switch to sqlite3 which was a bit more stable and had better support for cross platform. And I had to setup a very complicated migration and schema to get Auth, Anon Auth and User state management to work perfectly.
+
+## Installation
+
+Installing Kanflow is very simple:
+1) Visit the [Github Releases](https://github.com/greeenboi/kanflow2.0/releases/tag/v0.2.0)
+2) Download the .msi Installer in your preffered language (English,French,Portuguese)
+3) Have fun!!
