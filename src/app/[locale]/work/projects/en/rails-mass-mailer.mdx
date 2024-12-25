@@ -32,66 +32,65 @@ RubyMassMailer is a Rails API-only application designed to provide a flexible pl
 
 1. Clone the repository:
 
-  <CodeBlock
-    className="my-24"
-
-    codeInstances={[
-      {
-        code: `
-            git clone https://github.com/greeenboi/RubyMassMailer.git
-            cd RubyMassMailer
-        `,
-        label: 'Clone the repository',
-        language: 'bash'
-
-      }
-    ]}
-    copyButton
-  />
+<CodeBlock
+  className="my-24"
+  compact
+  codeInstances={[
+    {
+      code: `git clone https://github.com/greeenboi/RubyMassMailer.git
+cd RubyMassMailer`,
+      label: 'Clone the repository',
+      language: 'bash'
+    }
+  ]}
+  copyButton
+/>
 
 2. Install the dependencies:
 
-    <CodeBlock
-      className="my-24"
-      codeInstances={[
-        {
-          code: `
-            bundle install
-          `,
-          label: 'Install dependencies',
-          language: 'bash'
-        }
-      ]}
-      copyButton
-    />
+<CodeBlock
+  className="my-24"
+  compact
+  codeInstances={[
+    {
+      code: `bundle install`,
+      label: 'Install dependencies',
+      language: 'bash'
+    }
+  ]}
+  copyButton
+/>
 
-3. Create and Fill the Enviroment file `.env.example` -> `.env`
+3. Create and Fill the Enviroment file <InlineCode>.env.example</InlineCode> -> <InlineCode>.env</InlineCode>
 
 4. Start the server:
 
-    <CodeBlock
-      className="my-24"
-      codeInstances={[
-        {
-          code: `
-            rails s
-          `,
-          label: 'Start the server',
-          language: 'bash'
-        }
-
-      ]}
-      copyButton
-    />
+<CodeBlock
+  className="my-24"
+  compact
+  codeInstances={[
+    {
+      code: `rails s`,
+      label: 'Start the server',
+      language: 'bash'
+    }
+  ]}
+  copyButton
+/>
 
 ## Configuration
 
-Within `./config/initializers/mailjet` adjust the api `v3.1` or `v3.0` depending on whether you want to send batch mails or not (check your mailjet config)
+Within <InlineCode>./config/initializers/mailjet</InlineCode> adjust the api `v3.1` or `v3.0` depending on whether you want to send batch mails or not (check your mailjet config)
 
 ## Mailer Config
-Configure the mailer settings in config/environments/production.rb:
-```ruby
-config.action_mailer.delivery_method = :smtp
+Configure the mailer settings in <InlineCode>config/environments/production.rb</InlineCode>:
+
+<CodeBlock
+  className="my-24"
+  compact
+  codeInstances={[
+    {
+      code: `config.action_mailer.delivery_method = :smtp
 config.action_mailer.smtp_settings = {
   address: ENV['SMTP_ADDRESS'],
   port: ENV['SMTP_PORT'],
@@ -99,25 +98,7 @@ config.action_mailer.smtp_settings = {
   password: ENV['SMTP_PASSWORD'],
   authentication: 'plain',
   enable_starttls_auto: true
-}
-```
-
-<CodeBlock
-  className="my-24"
-  compact
-  codeInstances={[
-    {
-      code:`
-        config.action_mailer.delivery_method = :smtp
-        config.action_mailer.smtp_settings = {
-          address: ENV['SMTP_ADDRESS'],
-          port: ENV['SMTP_PORT'],
-          user_name: ENV['SMTP_USER_NAME'],
-          password: ENV['SMTP_PASSWORD'],
-          authentication: 'plain',
-          enable_starttls_auto: true
-        }
-      `
+}`,
       label: 'Rails',
       language: 'ruby'
     }
@@ -128,7 +109,7 @@ config.action_mailer.smtp_settings = {
 ## Usage
 
 Sending Emails
-To send an email, make a `POST` request to the `/api/v1/emails` endpoint.
+To send an email, make a <InlineCode>POST</InlineCode> request to the <InlineCode>/api/v1/emails</InlineCode> endpoint.
 
 > Sample JS script
 
@@ -161,10 +142,10 @@ async function sendTestEmail() {
       formData.append('email[attachments][]', attachment, path.basename(ATTACHMENT_PATH));
     }
     // ...existing code...
-  } catch (error) {
-    console.error(error);
-  }
-}`,
+    } catch (error) {
+      console.error(error);
+    }
+  }`,
       label: 'Node.js',
       language: 'js'
     }
