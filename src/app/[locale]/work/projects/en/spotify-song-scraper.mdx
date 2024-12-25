@@ -18,29 +18,62 @@ team:
 
 This Project allows you to quickly download all the songs from your Spotify Playlist and save them to your local machine.
 It would require you to first sign up for the [Spotify Developer API](https://developer.spotify.com) and get your own `Client ID` and `Client Secret` to use this project.
-Designed to Support `Sonder` Music Player.
+Designed to Support <InlineCode>Sonder Music Player</InlineCode>.
 
 ## Prerequisites
 
 - Python 3.10+
 - ffmpeg 7.1 onwards
-- Required packages listed in `requirements.txt`
-
-## Project Structure
-
-- `main.py` - Main application entry point
-- `install.ps1` - Windows installation script
-- `install.sh` - Linux/Mac installation script
-
-- `downloads/` - Directory containing downloaded sound files
-- `temp/` - Directory for temporary files like playlist CSVs
-
+- Required packages listed in <InlineCode>requirements.txt</InlineCode>
 
 
 ## Installation
 
-1. Clone this repository `git@github.com:greeenboi/spotify_song_scraper.git`
+1. Clone this repository <CodeBlock className="my-24" compact codeInstances={[ { code: `git@github.com:greeenboi/spotify_song_scraper.git`, label: 'Clone the repository', language: 'bash' }]} copyButton />
+
 2. To run:
-    - Windows: `install.ps1`
-    - Linux/Mac: `chmod +x install.sh && ./install.sh`
-3. Run the application using `python main.py`
+
+    - Windows:
+
+      <CodeBlock
+        className="my-24"
+        compact
+        codeInstances={[
+          {
+            code: `install.ps1`,
+            label: 'install on windows',
+            language: 'bash'
+          }
+        ]}
+        copyButton
+      />
+
+    - Linux/Mac:
+
+      <CodeBlock
+        className="my-24"
+        compact
+        codeInstances={[
+          {
+            code: `chmod +x install.sh && ./install.sh`,
+            label: 'Install on Linux/Mac',
+            language: 'bash'
+          }
+        ]}
+        copyButton
+      />
+
+3. Run the application using 
+
+    <CodeBlock
+      className="my-24"
+      compact
+      codeInstances={[
+        {
+          code: `python main.py`,
+          label: 'run the program',
+          language: 'bash'
+        }
+      ]}
+      copyButton
+    />
