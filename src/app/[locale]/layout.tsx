@@ -21,6 +21,7 @@ import { renderContent } from '@/app/resources';
 import { Background, Flex } from '@/once-ui/components';
 
 import { SpeedInsights } from "@vercel/speed-insights/next";
+import { Analytics } from "@vercel/analytics/react";
 
 export async function generateMetadata({
   params: { locale },
@@ -147,6 +148,7 @@ export default async function RootLayout({
             <Flex justifyContent="center" fillWidth minHeight="0">
               <RouteGuard>
                 {children}
+                <Analytics />
                 <SpeedInsights />
               </RouteGuard>
             </Flex>

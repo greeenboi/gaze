@@ -43,7 +43,7 @@ const effects = {
 
 const style = {
   theme: 'dark', // dark | light
-  neutral: 'slate', // sand | gray | slate
+  neutral: 'gray', // sand | gray | slate
   brand: 'red', // blue | indigo | violet | magenta | pink | red | orange | yellow | moss | green | emerald | aqua | cyan
   accent: 'moss', // blue | indigo | violet | magenta | pink | red | orange | yellow | moss | green | emerald | aqua | cyan
   solid: 'contrast', // color | contrast
