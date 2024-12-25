@@ -11,7 +11,7 @@ import {
 } from '@/once-ui/components';
 import { baseURL, renderContent } from '@/app/resources';
 import { routing } from '@/i18n/routing';
-import { unstable_setRequestLocale } from 'next-intl/server';
+import { setRequestLocale } from 'next-intl/server';
 import { useTranslations } from 'next-intl';
 import { formatDate } from '@/app/utils/formatDate';
 import ScrollToHash from '@/components/ScrollToHash';
@@ -105,7 +105,7 @@ export function generateMetadata({ params: { slug, locale } }: WorkParams) {
 }
 
 export default function Project({ params }: WorkParams) {
-  unstable_setRequestLocale(params.locale);
+  setRequestLocale(params.locale);
   const post = getPosts([
     'src',
     'app',
@@ -139,6 +139,7 @@ export default function Project({ params }: WorkParams) {
       <script
         type="application/ld+json"
         suppressHydrationWarning
+        // biome-ignore lint/security/noDangerouslySetInnerHtml: <explanation>
         dangerouslySetInnerHTML={{
           __html: JSON.stringify({
             '@context': 'https://schema.org',

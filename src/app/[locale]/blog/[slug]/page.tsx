@@ -5,7 +5,7 @@ import { getPosts } from '@/app/utils/utils';
 import { Avatar, Button, Flex, Heading, Text } from '@/once-ui/components';
 
 import { baseURL, renderContent } from '@/app/resources';
-import { unstable_setRequestLocale } from 'next-intl/server';
+import { setRequestLocale } from 'next-intl/server';
 import { routing } from '@/i18n/routing';
 import { useTranslations } from 'next-intl';
 import { formatDate } from '@/app/utils/formatDate';
@@ -86,7 +86,7 @@ export function generateMetadata({ params: { slug, locale } }: BlogParams) {
 }
 
 export default function Blog({ params }: BlogParams) {
-  unstable_setRequestLocale(params.locale);
+  setRequestLocale(params.locale);
   const post = getPosts([
     'src',
     'app',
@@ -108,6 +108,7 @@ export default function Blog({ params }: BlogParams) {
       <script
         type="application/ld+json"
         suppressHydrationWarning
+        // biome-ignore lint/security/noDangerouslySetInnerHtml: <explanation>
         dangerouslySetInnerHTML={{
           __html: JSON.stringify({
             '@context': 'https://schema.org',

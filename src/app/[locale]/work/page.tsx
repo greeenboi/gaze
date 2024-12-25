@@ -2,7 +2,7 @@ import { getPosts } from '@/app/utils/utils';
 import { Flex } from '@/once-ui/components';
 import { Projects } from '@/components/work/Projects';
 import { baseURL, renderContent } from '@/app/resources';
-import { getTranslations, unstable_setRequestLocale } from 'next-intl/server';
+import { getTranslations, setRequestLocale } from 'next-intl/server';
 import { useTranslations } from 'next-intl';
 
 export async function generateMetadata({
@@ -42,7 +42,7 @@ export async function generateMetadata({
 export default function Work({
   params: { locale },
 }: { params: { locale: string } }) {
-  unstable_setRequestLocale(locale);
+  setRequestLocale(locale);
   const allProjects = getPosts([
     'src',
     'app',
@@ -60,6 +60,7 @@ export default function Work({
       <script
         type="application/ld+json"
         suppressHydrationWarning
+        // biome-ignore lint/security/noDangerouslySetInnerHtml: <explanation>
         dangerouslySetInnerHTML={{
           __html: JSON.stringify({
             '@context': 'https://schema.org',

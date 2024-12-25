@@ -13,7 +13,7 @@ import { NextIntlClientProvider } from 'next-intl';
 import {
   getMessages,
   getTranslations,
-  unstable_setRequestLocale,
+  setRequestLocale,
 } from 'next-intl/server';
 
 import { routing } from '@/i18n/routing';
@@ -32,7 +32,7 @@ export async function generateMetadata({
     description: home.description,
     openGraph: {
       title: `${person.firstName}'s Portfolio`,
-      description: 'Portfolio website showcasing my work.',
+      description: 'Portfolio website showcasing my projects.',
       url: baseURL,
       siteName: `${person.firstName}'s Portfolio`,
       locale: 'en_US',
@@ -90,7 +90,7 @@ export default async function RootLayout({
   children,
   params: { locale },
 }: RootLayoutProps) {
-  unstable_setRequestLocale(locale);
+  setRequestLocale(locale);
   const messages = await getMessages();
   return (
     <NextIntlClientProvider messages={messages}>
@@ -123,12 +123,16 @@ export default async function RootLayout({
           direction="column"
         >
           <Background
+            // biome-ignore lint/suspicious/noExplicitAny: <explanation>
             mask={effects.mask as any}
+            // biome-ignore lint/suspicious/noExplicitAny: <explanation>
             gradient={effects.gradient as any}
+            // biome-ignore lint/suspicious/noExplicitAny: <explanation>
             dots={effects.dots as any}
+            // biome-ignore lint/suspicious/noExplicitAny: <explanation>
             lines={effects.lines as any}
           />
-          <Flex fillWidth minHeight="16"></Flex>
+          <Flex fillWidth minHeight="16" />
           <Header />
           <Flex
             zIndex={0}
