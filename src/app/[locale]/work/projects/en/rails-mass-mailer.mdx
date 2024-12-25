@@ -23,38 +23,72 @@ RubyMassMailer is a Rails API-only application designed to provide a flexible pl
 
 ## Getting Started
 
-### Prerequisites
+## Prerequisites
 
 - Ruby 3.0
 - Rails 6.0 or higher
 
-### Installation
+## Installation
 
 1. Clone the repository:
 
-    ```bash
-    git clone https://github.com/greeenboi/RubyMassMailer.git
-    cd RubyMassMailer
-    ```
+  <CodeBlock
+    className="my-24"
+
+    codeInstances={[
+      {
+        code: `
+            git clone https://github.com/greeenboi/RubyMassMailer.git
+            cd RubyMassMailer
+        `,
+        label: 'Clone the repository',
+        language: 'bash'
+
+      }
+    ]}
+    copyButton
+  />
 
 2. Install the dependencies:
 
-    ```bash
-    bundle install
-    ```
+    <CodeBlock
+      className="my-24"
+      codeInstances={[
+        {
+          code: `
+            bundle install
+          `,
+          label: 'Install dependencies',
+          language: 'bash'
+        }
+      ]}
+      copyButton
+    />
+
 3. Create and Fill the Enviroment file `.env.example` -> `.env`
 
 4. Start the server:
 
-    ```bash
-    rails s
-    ```
+    <CodeBlock
+      className="my-24"
+      codeInstances={[
+        {
+          code: `
+            rails s
+          `,
+          label: 'Start the server',
+          language: 'bash'
+        }
 
-### Configuration
+      ]}
+      copyButton
+    />
+
+## Configuration
 
 Within `./config/initializers/mailjet` adjust the api `v3.1` or `v3.0` depending on whether you want to send batch mails or not (check your mailjet config)
 
-### Mailer Config
+## Mailer Config
 Configure the mailer settings in config/environments/production.rb:
 ```ruby
 config.action_mailer.delivery_method = :smtp
@@ -68,21 +102,49 @@ config.action_mailer.smtp_settings = {
 }
 ```
 
-### Usage
+<CodeBlock
+  className="my-24"
+  compact
+  codeInstances={[
+    {
+      code:`
+        config.action_mailer.delivery_method = :smtp
+        config.action_mailer.smtp_settings = {
+          address: ENV['SMTP_ADDRESS'],
+          port: ENV['SMTP_PORT'],
+          user_name: ENV['SMTP_USER_NAME'],
+          password: ENV['SMTP_PASSWORD'],
+          authentication: 'plain',
+          enable_starttls_auto: true
+        }
+      `
+      label: 'Rails',
+      language: 'ruby'
+    }
+  ]}
+  copyButton
+/>
+
+## Usage
+
 Sending Emails
-To send an email, make a POST request to the /api/v1/emails endpoint.
+To send an email, make a `POST` request to the `/api/v1/emails` endpoint.
 
 > Sample JS script
 
-```js
-const fs = require('fs');
+<CodeBlock
+  className="my-24"
+  compact
+  codeInstances={[
+    {
+      code: `const fs = require('fs');
 const path = require('path');
 const axios = require('axios');
 const FormData = require('form-data');
 
 const API_URL = 'http://localhost:3000/api/v1/emails'; 
-const RECIPIENT_EMAIL = 'coolman@email.com'; // Replace with your test recipient email
-const ATTACHMENT_PATH = './yummy.jpg'; // Replace with the path to a test attachment file
+const RECIPIENT_EMAIL = 'coolman@email.com';
+const ATTACHMENT_PATH = './yummy.jpg';
 
 async function sendTestEmail() {
   try {
@@ -98,19 +160,14 @@ async function sendTestEmail() {
       const attachment = fs.createReadStream(ATTACHMENT_PATH);
       formData.append('email[attachments][]', attachment, path.basename(ATTACHMENT_PATH));
     }
-
-    const response = await axios.post(API_URL, formData, {
-      headers: {
-        ...formData.getHeaders(),
-      },
-    });
-
-    console.log('Response Status:', response.status);
-    console.log('Response Data:', response.data);
+    // ...existing code...
   } catch (error) {
-    console.error('Error sending email:', error.response ? error.response.data : error.message);
+    console.error(error);
   }
-}
-
-sendTestEmail();
-```
+}`,
+      label: 'Node.js',
+      language: 'js'
+    }
+  ]}
+  copyButton
+/>
