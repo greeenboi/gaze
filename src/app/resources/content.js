@@ -55,8 +55,8 @@ const home = {
   headline: <>Student And Developer</>,
   subline: (
     <>
-      I'm Suvan, a Student at <InlineCode>SRMIST</InlineCode>, where I create
-      wild <br /> Applications . After hours, I build my own OSC Projects.
+      I'm Suvan, a Student at <InlineCode>SRMIST</InlineCode>, Where I create
+      noteworthy<br /> Applications . After hours, I build my own Projects that push the limits of speed and size.
     </>
   ),
 };
@@ -64,7 +64,7 @@ const home = {
 const about = {
   label: 'About',
   title: 'About me',
-  description: `Meet ${person.name}, ${person.role} from Bangalore, India.`,
+  description: `I am ${person.name}, ${person.role} from Bangalore, India.`,
   tableOfContent: {
     display: true,
     subItems: false,
@@ -81,8 +81,8 @@ const about = {
     title: 'Introduction',
     description: (
       <>
-        Suvan is a Bangalore-based Student Developer with a passion for
-        implementing complex challenges just for the fun of it. His work spans
+        I am a Bangalore-based Student Developer with a passion for
+        implementing complex challenges just for the fun of it. My work spans
         across Applications, Games, and the convergence of design and
         technology.
       </>
@@ -95,7 +95,7 @@ const about = {
       {
         company: 'Fuelemy',
         timeframe: 'OCT 2024 - Present',
-        role: 'Lead Software Engineer',
+        role: 'Project Lead & Full Stack Developer',
         achievements: [
           <>
             Implemented a Distributed, Cached API system integrating a custom
@@ -111,33 +111,34 @@ const about = {
             in Postgres.{' '}
           </>,
           <>
-            Created a Unique and User-Friendly Landing Page and Dashboard using
-            Refine + Vite.
+            Built a Frontend Monorepo with refine + vite framework for quick and reliable dashboards. Implemented
+            Internationalization for 5 languages, GQL for data fetching from backend.
           </>,
           <>
-            Added Ola Maps and Razorpay with i18n to allow users to book trips.
+            Worked with Ola Maps API to create a custom logic for booking fleets of trucks and display optimal routes also facilitated
+            payments between the driver and booking owner with razorpay.
           </>,
         ],
         images: [
-          // optional: leave the array empty if you don't want to display images
-          {
-            src: '/images/projects/project-01/cover-01.jpg',
-            alt: 'Once UI Project',
-            width: 16,
-            height: 9,
-          },
+          // // optional: leave the array empty if you don't want to display images
+          // {
+          //   src: '/images/projects/project-01/cover-01.jpg',
+          //   alt: 'Once UI Project',
+          //   width: 16,
+          //   height: 9,
+          // },
         ],
       },
       {
         company: 'SRM DEI',
-        timeframe: 'SEP 2024 - Present',
+        timeframe: 'AUG 2024 - Present',
         role: 'Full Stack Developer Intern',
         achievements: [
           <>
-            Designed and Developed the UI for srmdei.com with NEXTJS,
-            Tailwindcss and Chakra UI.
+            Designed and Developed the UI for srmdei.com with NEXTJS, Shadcn, Gsap, Framer Motion, supabase, redis.
           </>,
-          <>Designed a backend and CDN service for srmdei.com.</>,
+          <>Designed a custom CDN and a CMS with sanity</>,
+          <>Maintained and developed the website ciap.srmdei.com and iedc.srmdei.com.</>
         ],
         images: [],
       },
@@ -200,37 +201,105 @@ const about = {
       {
         title: 'Tauri',
         description: (
-          <>Can Create Desktop and Mobile Applications using Rust.</>
+          <>Desktop and Mobile Applications using Rust.</>
         ),
         // optional: leave the array empty if you don't want to display images
-        images: [],
+        images: [
+          {
+            src: '/images/projects/kanflow/kanflow-banner.png',
+            alt: 'Kanflow',
+            width: 16,
+            height: 9,
+          },
+          {
+            src: '/images/projects/glassy-notes/notes1.png',
+            alt: 'Glassy Notes',
+            width: 16,
+            height: 9,
+          },
+          {
+            src: '/images/projects/sonder/sonder1.png',
+            alt: 'Sonder',
+            width: 16,
+            height: 9,
+          },
+          {
+            src: '/images/projects/vscodex/vscodex1.png',
+            alt: 'VSCodex',
+            width: 16,
+            height: 9,
+          },
+        ],
+      },
+      {
+        title: 'PostgreSQL',
+        description: (
+          <>Work with Postgres16 and high-lvl ORMs like Drizzle & Sequelize.</>
+        ),
+        images: []
       },
       {
         title: 'Docker & Kubernetes',
         description: <>Took a seminar for Docker</>,
         // optional: leave the array empty if you don't want to display images
-        images: [],
+        images: [
+          {
+            src: '/images/blog/seminar/docker1.png',
+            alt: 'DockerForGeeks',
+            width: 16,
+            height: 9,
+          },
+        ],
+      },
+      {
+        title: 'Rust',
+        description: (
+          <>Can Create CLI, Web, Desktop and Mobile Applications with Rust.</>
+        ),
+        images:[],
       },
       {
         title: 'React Native',
         description: <>Have Created several Full Stack Applications</>,
         // optional: leave the array empty if you don't want to display images
-        images: [],
+        images: [
+          {
+            src: '/images/projects/passtime/passtime.png',
+            alt: 'passtime',
+            width: 16,
+            height: 9,
+          },
+          {
+            src: '/images/projects/clarity/clarity.png',
+            alt: 'clarity',
+            width: 16,
+            height: 9,
+          },
+        ],
       },
       {
         title: 'Next.js',
         description: (
-          <>Building next gen apps with Next.js + Refine + Supabase.</>
+          <>Building Enterprise-grade, SEO optimized apps with Next15.</>
         ),
         // optional: leave the array empty if you don't want to display images
         images: [
-          // {
-          //     src: '/images/projects/project-01/cover-04.jpg',
-          //     alt: 'Project image',
-          //     width: 16,
-          //     height: 9
-          // },
+          {
+              src: '/images/projects/videx/videx.png',
+              alt: 'Videx',
+              width: 16,
+              height: 9
+          },
         ],
+      },
+      {
+        title: 'Python',
+        description: (
+          <>
+            Can create CLI, Web and Desktop Applications with Python.{ ' ' }
+            Have also worked with Ml applications using Pytorch and huggingface.
+          </>
+        ),
       },
       {
         title: 'RedHat Linux',
@@ -293,6 +362,12 @@ const gallery = {
       alt: 'image',
       orientation: 'horizontal',
     },
+    {
+      src: '/images/gallery/suvan07.png',
+      alt: 'image',
+      orientation: 'vertical',
+    },
+    
   ],
 };
 

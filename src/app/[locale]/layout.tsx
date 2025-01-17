@@ -6,7 +6,10 @@ import classNames from 'classnames';
 import { Footer, Header, RouteGuard } from '@/components';
 import { baseURL, effects, style } from '@/app/resources';
 
-import { Inter } from 'next/font/google';
+import { Arimo } from 'next/font/google';
+import { Raleway } from 'next/font/google';
+import { Space_Grotesk } from 'next/font/google';
+
 import { Source_Code_Pro } from 'next/font/google';
 
 import { NextIntlClientProvider } from 'next-intl';
@@ -55,22 +58,30 @@ export async function generateMetadata({
   };
 }
 
-const primary = Inter({
-  variable: '--font-primary',
-  subsets: ['latin'],
-  display: 'swap',
+const primary = Arimo({
+    variable: '--font-primary',
+    subsets: ['latin'],
+    display: 'swap'
 });
+
+const secondary = Raleway({
+    variable: '--font-secondary',
+    subsets: ['latin'],
+    display: 'swap'
+});
+
+const tertiary = Space_Grotesk({
+    variable: '--font-tertiary',
+    subsets: ['latin'],
+    display: 'swap'
+});
+
 
 type FontConfig = {
   variable: string;
 };
 
-/*
-	Replace with code for secondary and tertiary fonts
-	from https://once-ui.com/customize
-*/
-const secondary: FontConfig | undefined = undefined;
-const tertiary: FontConfig | undefined = undefined;
+
 /*
  */
 

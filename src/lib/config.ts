@@ -21,7 +21,7 @@ const config: {
     // sanity_dataset: process.env.NEXT_PUBLIC_SANITY_DATASET,
   },
   production: {
-    baseUrl: 'https://www.suvangs.me',
+    baseUrl: 'https://www.suvangs.tech',
     // apiUrl: '',
     // mailApiUrl: process.env.NEXT_PUBLIC_MAIL_API_URL,
     // sanity_token: process.env.NEXT_PUBLIC_SANITY_TOKEN,
