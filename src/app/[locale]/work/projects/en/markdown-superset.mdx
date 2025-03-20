@@ -27,8 +27,8 @@ MarkLeft is a powerful and flexible tool designed to extend the capabilities of 
 
 ## Prerequisites
 
-- Ruby >~ 3.2.4
-- Bundler =2.6.3
+- <InlineCode>Ruby >~ 3.2.4</InlineCode>
+- <InlineCode>Bundler =2.6.3</InlineCode>
 
 ## Installation
 
@@ -36,47 +36,102 @@ To install MarkLeft, clone the repository and navigate to the project directory:
 
 #### Gem
 
-```sh
-gem install markleft
-```
+<CodeBlock
+  className="my-24"
+  compact
+  codeInstances={[
+    {
+      code: `gem install markleft`,
+      label: 'Download the gem',
+      language: 'bash'
+    }
+  ]}
+  copyButton
+/>
 
 #### Repository
 
-```sh
-git clone git@github.com:greeenboi/markdown-superset-compiler.git
-cd markdown-superset-compiler
-```
+<CodeBlock
+  className="my-24"
+  compact
+  codeInstances={[
+    {
+      code: `git clone git@github.com:greeenboi/markdown-superset-compiler.git`,
+      label: 'Clone the Repo',
+      language: 'bash'
+    }
+  ]}
+  copyButton
+/>
 
 ## Running the Converter
 
 #### Using Gem
 
-```shell
-markleft
-```
+<CodeBlock
+  className="my-24"
+  compact
+  codeInstances={[
+    {
+      code: `markleft`,
+      label: 'Use the Tui',
+      language: 'bash'
+    }
+  ]}
+  copyButton
+/>
 
 0r 
 
-```shell
-markleft --file <filename>
-```
+<CodeBlock
+  className="my-24"
+  compact
+  codeInstances={[
+    {
+      code: `markleft --file <filename>`,
+      label: 'Use Non Verbose Cli',
+      language: 'bash'
+    }
+  ]}
+  copyButton
+/>
 
 #### Using `markleft-main.rb`
 
 The `markleft-main.rb` file is a simple script that reads a Markdown file, tokenizes it, parses it, and generates HTML output.
 
-1. Run the script:
-   ```sh
-   ruby lib/markleft.rb
-   ```
+1. Run the Script
+   <CodeBlock
+      className="my-24"
+      compact
+      codeInstances={[
+        {
+          code: `ruby lib/markleft.rb`,
+          label: 'Run the Script',
+          language: 'bash'
+        }
+      ]}
+      copyButton
+    />
+   
    
 2. Follow the prompts to select a Markdown file and process it.
 
 ## Example
 
-Given a sample Markdown file `sample.md`:
+Given a sample Markdown file <InlineCode>sample.md</InlineCode>:
 
-```markdown
-This is a sample *Markdown* file
-**bold** yippee!
-```
+<CodeBlock
+  className="my-24"
+  compact
+  codeInstances={[
+    {
+      code: `
+      This is a sample *Markdown* file
+**bold** yippee!`,
+      label: 'Run the Script',
+      language: 'markdown'
+    }
+  ]}
+  copyButton
+/>
