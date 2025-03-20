@@ -43,13 +43,13 @@ const effects = {
 
 const style = {
   theme: 'dark', // dark | light
-  brand: 'green', // blue | indigo | violet | magenta | pink | red | orange | yellow | moss | green | emerald | aqua | cyan
-  accent: 'aqua', // blue | indigo | violet | magenta | pink | red | orange | yellow | moss | green | emerald | aqua | cyan
+  brand: 'indigo', // blue | indigo | violet | magenta | pink | red | orange | yellow | moss | green | emerald | aqua | cyan
+  accent: 'violet', // blue | indigo | violet | magenta | pink | red | orange | yellow | moss | green | emerald | aqua | cyan
   neutral: 'slate', // sand | gray | slate
-  border: 'rounded', // rounded | playful | conservative
-  solid: 'color', // color | contrast
+  border: 'conservative', // rounded | playful | conservative
+  solid: 'contrast', // color | contrast
   solidStyle: 'flat', // flat | plastic
-  surface: 'filled', // filled | translucent
+  surface: 'translucent', // filled | translucent
   transition: 'all', // all | micro | macro
 };
 

@@ -94,7 +94,7 @@ const about = {
     experiences: [
       {
         company: 'Fuelemy',
-        timeframe: 'OCT 2024 - Present',
+        timeframe: 'OCT 2024 - FEB 2025',
         role: 'Project Lead & Full Stack Developer',
         achievements: [
           <>
@@ -140,7 +140,14 @@ const about = {
           <>Designed a custom CDN and a CMS with sanity</>,
           <>Maintained and developed the website ciap.srmdei.com and iedc.srmdei.com.</>
         ],
-        images: [],
+        images: [
+          {
+            src: '/images/gallery/srmdei.png',
+            alt: 'SrmDEI',
+            width: 16,
+            height: 9,
+          },
+        ],
       },
       {
         company: 'Samsung Prism',

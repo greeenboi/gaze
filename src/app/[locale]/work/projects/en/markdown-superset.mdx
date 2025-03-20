@@ -1,0 +1,100 @@
+---
+title: "Building a Compiler for Markdown"
+publishedAt: "2025-02-12"
+summary: "Compiler build on ruby to compile gh-flavor and more markdown to html for the web to render"
+images:
+  - "/images/projects/markdown-superset/markleft1.png"
+team:
+  - name: "Suvan GS"
+    role: "Student Developer"
+    avatar: "/images/avatar.png"
+    linkedIn: "https://www.linkedin.com/in/suvan-gowri-shanker-596943261/"
+---
+
+## Overview
+
+🌟 Picture this: You, sitting at your desk, staring at that plain old notepad, feeling like something's missing. You want more, something magical, something that just gets you excited to work and make notes on. That's where Glassy Notes steps in, your personal productivity genie! 🪄✨
+
+## Features
+
+- Create Notes quickly and easily with Glassy Notes
+- Save your notes to your local machine as a <InlineCode>.html</InlineCode> file
+- Rich text Editor with format options like blockquote and code blocks and paragraph formatting
+- Smart Syntax Highlighting for Code Blocks
+- Create Notes with Markdown-like Syntax
+- Word and Character Count
+- Intelligent Editor allows for shortcuts like <InlineCode>:) -> 🙂</InlineCode>
+- Typography for highlighting incorrect spellings and grammar
+
+## Try it out
+
+Refer to the [Release page](https://tauri-update-server-kappa.vercel.app/) to download the latest version of Glassy Notes for your OS.## Overview
+
+MarkLeft is a powerful and flexible tool designed to extend the capabilities of traditional Markdown-to-HTML compilers. It introduces additional syntax and features to enhance the expressiveness and functionality of Markdown documents.
+
+> [!TIP]
+> MarkLeft is a work in progress and is currently under development. Please check back for updates and new features.
+> You are still free to use it and contribute to it.
+
+
+## Features
+
+- **Superfast**: MarkLeft is designed to be fast and efficient, processing Markdown files quickly and generating HTML output in an instant.
+- **Extensible**: MarkLeft is highly extensible, allowing users to define custom syntax and features to suit their needs.
+- **Customizable**: MarkLeft provides a range of options and settings to customize the output, including themes, styles, and more.(coming soon)
+
+## Prerequisites
+
+- Ruby >~ 3.2.4
+- Bundler =2.6.3
+
+## Installation
+
+To install MarkLeft, clone the repository and navigate to the project directory:
+
+#### Gem
+
+```sh
+gem install markleft
+```
+
+#### Repository
+
+```sh
+git clone git@github.com:greeenboi/markdown-superset-compiler.git
+cd markdown-superset-compiler
+```
+
+## Running the Converter
+
+#### Using Gem
+
+```shell
+markleft
+```
+
+0r 
+
+```shell
+markleft --file <filename>
+```
+
+#### Using `markleft-main.rb`
+
+The `markleft-main.rb` file is a simple script that reads a Markdown file, tokenizes it, parses it, and generates HTML output.
+
+1. Run the script:
+   ```sh
+   ruby lib/markleft.rb
+   ```
+   
+2. Follow the prompts to select a Markdown file and process it.
+
+## Example
+
+Given a sample Markdown file `sample.md`:
+
+```markdown
+This is a sample *Markdown* file
+**bold** yippee!
+```
