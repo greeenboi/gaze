@@ -56,7 +56,9 @@ const home = {
   subline: (
     <>
       I'm Suvan, a Student at <InlineCode>SRMIST</InlineCode>, Where I create
-      noteworthy<br /> Applications . After hours, I build my own Projects that push the limits of speed and size.
+      noteworthy
+      <br /> Applications . After hours, I build my own Projects that push the
+      limits of speed and size.
     </>
   ),
 };
@@ -81,10 +83,9 @@ const about = {
     title: 'Introduction',
     description: (
       <>
-        I am a Bangalore-based Student Developer with a passion for
-        implementing complex challenges just for the fun of it. My work spans
-        across Applications, Games, and the convergence of design and
-        technology.
+        I am a Bangalore-based Student Developer with a passion for implementing
+        complex challenges just for the fun of it. My work spans across
+        Applications, Games, and the convergence of design and technology.
       </>
     ),
   },
@@ -111,12 +112,14 @@ const about = {
             in Postgres.{' '}
           </>,
           <>
-            Built a Frontend Monorepo with refine + vite framework for quick and reliable dashboards. Implemented
-            Internationalization for 5 languages, GQL for data fetching from backend.
+            Built a Frontend Monorepo with refine + vite framework for quick and
+            reliable dashboards. Implemented Internationalization for 5
+            languages, GQL for data fetching from backend.
           </>,
           <>
-            Worked with Ola Maps API to create a custom logic for booking fleets of trucks and display optimal routes also facilitated
-            payments between the driver and booking owner with razorpay.
+            Worked with Ola Maps API to create a custom logic for booking fleets
+            of trucks and display optimal routes also facilitated payments
+            between the driver and booking owner with razorpay.
           </>,
         ],
         images: [
@@ -135,10 +138,14 @@ const about = {
         role: 'Full Stack Developer Intern',
         achievements: [
           <>
-            Designed and Developed the UI for srmdei.com with NEXTJS, Shadcn, Gsap, Framer Motion, supabase, redis.
+            Designed and Developed the UI for srmdei.com with NEXTJS, Shadcn,
+            Gsap, Framer Motion, supabase, redis.
           </>,
           <>Designed a custom CDN and a CMS with sanity</>,
-          <>Maintained and developed the website ciap.srmdei.com and iedc.srmdei.com.</>
+          <>
+            Maintained and developed the website ciap.srmdei.com and
+            iedc.srmdei.com.
+          </>,
         ],
         images: [
           {
@@ -207,9 +214,7 @@ const about = {
       },
       {
         title: 'Tauri',
-        description: (
-          <>Desktop and Mobile Applications using Rust.</>
-        ),
+        description: <>Desktop and Mobile Applications using Rust.</>,
         // optional: leave the array empty if you don't want to display images
         images: [
           {
@@ -243,7 +248,7 @@ const about = {
         description: (
           <>Work with Postgres16 and high-lvl ORMs like Drizzle & Sequelize.</>
         ),
-        images: []
+        images: [],
       },
       {
         title: 'Docker & Kubernetes',
@@ -263,7 +268,7 @@ const about = {
         description: (
           <>Can Create CLI, Web, Desktop and Mobile Applications with Rust.</>
         ),
-        images:[],
+        images: [],
       },
       {
         title: 'React Native',
@@ -292,10 +297,10 @@ const about = {
         // optional: leave the array empty if you don't want to display images
         images: [
           {
-              src: '/images/projects/videx/videx.png',
-              alt: 'Videx',
-              width: 16,
-              height: 9
+            src: '/images/projects/videx/videx.png',
+            alt: 'Videx',
+            width: 16,
+            height: 9,
           },
         ],
       },
@@ -303,8 +308,8 @@ const about = {
         title: 'Python',
         description: (
           <>
-            Can create CLI, Web and Desktop Applications with Python.{ ' ' }
-            Have also worked with Ml applications using Pytorch and huggingface.
+            Can create CLI, Web and Desktop Applications with Python. Have also
+            worked with Ml applications using Pytorch and huggingface.
           </>
         ),
       },
@@ -374,7 +379,6 @@ const gallery = {
       alt: 'image',
       orientation: 'vertical',
     },
-    
   ],
 };
 

@@ -23,8 +23,8 @@ import { routing } from '@/i18n/routing';
 import { renderContent } from '@/app/resources';
 import { Background, Flex } from '@/once-ui/components';
 
-import { SpeedInsights } from "@vercel/speed-insights/next";
-import { Analytics } from "@vercel/analytics/react";
+import { SpeedInsights } from '@vercel/speed-insights/next';
+import { Analytics } from '@vercel/analytics/react';
 
 export async function generateMetadata({
   params: { locale },
@@ -59,28 +59,26 @@ export async function generateMetadata({
 }
 
 const primary = Arimo({
-    variable: '--font-primary',
-    subsets: ['latin'],
-    display: 'swap'
+  variable: '--font-primary',
+  subsets: ['latin'],
+  display: 'swap',
 });
 
 const secondary = Raleway({
-    variable: '--font-secondary',
-    subsets: ['latin'],
-    display: 'swap'
+  variable: '--font-secondary',
+  subsets: ['latin'],
+  display: 'swap',
 });
 
 const tertiary = Space_Grotesk({
-    variable: '--font-tertiary',
-    subsets: ['latin'],
-    display: 'swap'
+  variable: '--font-tertiary',
+  subsets: ['latin'],
+  display: 'swap',
 });
-
 
 type FontConfig = {
   variable: string;
 };
-
 
 /*
  */
