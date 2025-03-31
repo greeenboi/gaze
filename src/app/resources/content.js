@@ -379,6 +379,16 @@ const gallery = {
       alt: 'image',
       orientation: 'vertical',
     },
+    {
+      src: '/images/gallery/suvan08.webp',
+      alt: 'image',
+      orientation: 'vertical',
+    },
+    {
+      src: '/images/gallery/suvan09.webp',
+      alt: 'image',
+      orientation: 'vertical',
+    }
   ],
 };
 
