@@ -46,9 +46,9 @@ const style = {
   brand: 'indigo', // blue | indigo | violet | magenta | pink | red | orange | yellow | moss | green | emerald | aqua | cyan
   accent: 'violet', // blue | indigo | violet | magenta | pink | red | orange | yellow | moss | green | emerald | aqua | cyan
   neutral: 'slate', // sand | gray | slate
-  border: 'conservative', // rounded | playful | conservative
+  border: 'playful', // rounded | playful | conservative
   solid: 'contrast', // color | contrast
-  solidStyle: 'flat', // flat | plastic
+  solidStyle: 'plastic', // flat | plastic
   surface: 'translucent', // filled | translucent
   transition: 'all', // all | micro | macro
 };
