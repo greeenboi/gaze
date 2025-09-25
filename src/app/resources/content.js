@@ -36,15 +36,25 @@ const social = [
     icon: 'linkedin',
     link: 'https://www.linkedin.com/in/suvan-gowri-shanker-596943261/',
   },
-  // {
-  //     name: 'X',
-  //     icon: 'x',
-  //     link: '',
-  // },
+  {
+    name: 'HF',
+    icon: 'huggingface',
+    link: 'https://huggingface.co/greenarcade',
+  },
+  {
+    name: 'Gems',
+    icon: 'ruby',
+    link: 'https://rubygems.org/profiles/greeenboi',
+  },
+  {
+    name: 'NPM',
+    icon: 'npm',
+    link: 'https://www.npmjs.com/~greeenboi',
+  },
   {
     name: 'Email',
     icon: 'email',
-    link: 'mailto:contact@suvangs.tech',
+    link: 'mailto:suvan.gowrishanker.204@gmail.com',
   },
 ];
 
@@ -94,6 +104,55 @@ const about = {
     title: 'Work Experience',
     experiences: [
       {
+        company: 'Ease In AI',
+        timeframe: 'SEP 2025 - PRESENT',
+        role: 'Founding Engineer Intern',
+        achievements: [
+          <>
+            Working with React Native to build a cross-platform mobile app
+            that plans your day.{' '}
+          </>,
+        ],
+        images: [
+          // // optional: leave the array empty if you don't want to display images
+          // {
+          //   src: '/images/projects/project-01/cover-01.jpg',
+          //   alt: 'Once UI Project',
+          //   width: 16,
+          //   height: 9,
+          // },
+        ],
+      },
+      {
+        company: 'Errgo',
+        timeframe: 'JUN 2025 - OCT 2025',
+        role: 'Full Stack Developer',
+        achievements: [
+          <>
+            Worked with Express, Prisma and Postgres. Migrated from Firebase. Developed APIs with Swagger and Zod for docs and validation. Wrote Unit tests with Jest.{' '}
+          </>,
+          <>
+            Worked with React, Storybook, Codemirror and Socket.io to develop a real-time coding interface like CodeSandbox.{' '}
+          </>,
+          <>
+            Wrote a custom JWT Authentication system with an User-Invite Schema
+            in Postgres.{' '}
+          </>,
+          <>
+            Built a reliable s3 file upload and management system with GCP and added scalability with Redis caching.
+          </>,
+        ],
+        images: [
+          // // optional: leave the array empty if you don't want to display images
+          // {
+          //   src: '/images/projects/project-01/cover-01.jpg',
+          //   alt: 'Once UI Project',
+          //   width: 16,
+          //   height: 9,
+          // },
+        ],
+      },
+      {
         company: 'Fuelemy',
         timeframe: 'OCT 2024 - FEB 2025',
         role: 'Project Lead & Full Stack Developer',
@@ -134,7 +193,7 @@ const about = {
       },
       {
         company: 'SRM DEI',
-        timeframe: 'AUG 2024 - Present',
+        timeframe: 'AUG 2024 - MAR 2025',
         role: 'Full Stack Developer Intern',
         achievements: [
           <>
@@ -246,8 +305,13 @@ const about = {
       {
         title: 'PostgreSQL',
         description: (
-          <>Work with Postgres16 and high-lvl ORMs like Drizzle & Sequelize.</>
+          <>Postgres16, scale and shard databases, can work with clickhouse for designing observabilty monitoring systems.</>
         ),
+        images: [],
+      },
+      {
+        title: 'Sqlite3',
+        description: (<>Can create and manage Sqlite3 databases.</>),
         images: [],
       },
       {
@@ -266,7 +330,7 @@ const about = {
       {
         title: 'Rust',
         description: (
-          <>Can Create CLI, Web, Desktop and Mobile Applications with Rust.</>
+          <>Can Create CLI, Web, Desktop and Mobile Applications with Rust. Built a cross platform binary to visualise system utilisation in realtime.</>
         ),
         images: [],
       },
@@ -288,6 +352,14 @@ const about = {
             height: 9,
           },
         ],
+        videos: [
+          {
+            src: 'https://youtu.be/2Y4Ov-cDdjA',
+            alt: 'Daily Planner Demo',
+            width: 16,
+            height: 9,
+          },
+        ],
       },
       {
         title: 'Next.js',
@@ -302,16 +374,96 @@ const about = {
             width: 16,
             height: 9,
           },
+          {
+            src: '/images/projects/foundersclub/fc-home.png',
+            alt: 'fc',
+            width: 16,
+            height: 9,
+          },
+          {
+            src: '/images/projects/frog-clicker/click.png',
+            alt: 'frog clicker',
+            width: 16,
+            height: 9,
+          },
+        ],
+      },
+      {
+        title: 'JavaScript/TypeScript',
+        description: (
+          <>
+            Have worked with several frameworks and libraries like React, Vue,
+            Solid, Node, Bun, Deno etc. Built several projects with vanilla
+            JS/TS, built several npm packages, Built games with phaserjs.
+          </>
+        ),
+        // optional: leave the array empty if you don't want to display images
+        images: [
+          {
+            src: '/images/projects/void-noir/home.png',
+            alt: 'Noirsql',
+            width: 16,
+            height: 9,
+          },
+        ],
+        videos: [
+          {
+            src: 'https://youtu.be/VmS2AYQSZto',
+            alt: 'just a walkthrough',
+            width: 16,
+            height: 9,
+          },
+        ],
+      },
+      {
+        title: 'C++',
+        description: (
+          <> Mostly DSA, Competitive Programming and GPU Shaders with Cpp. </>
+        ),
+        images: [
+          {
+            src: '/images/projects/opengl/triangle.jpg',
+            alt: 'opengl triangle',
+            width: 16,
+            height: 9,
+          },
+        ],
+      },
+      {
+        title: 'Ruby',
+        description: (
+          <> Mostly DSA, Competitive Programming, CLI tools and Game Development. </>
+        ),
+        images: [
+          {
+            src: '/images/projects/unnamed-rpg/game.png',
+            alt: 'unnamed rpg',
+            width: 16,
+            height: 9,
+          },
         ],
       },
       {
         title: 'Python',
-        description: (
+        description: ([
           <>
-            Can create CLI, Web and Desktop Applications with Python. Have also
-            worked with Ml applications using Pytorch and huggingface.
-          </>
-        ),
+            Can create CLI, Web and Desktop Applications with Python. 
+          </>,
+          <>
+            Have also worked with Agentic frameworks like Agno and crewai. Created multi-agentic systems with AutoGPT and Langchain.
+          </>,
+          <>
+            Trained and reworked several Custom models with Wav2Vec2, Whisper, GPT-2 and Flux-dev.
+          </>,
+        ]),
+        videos: [
+          {
+            src: 'https://youtu.be/TEqbZ7Ai7AA?si=3Lu4djO0MF_x_Ozm',
+            alt: 'Willow Sales Agent',
+            width: 16,
+            height: 9,
+          }
+        ]
       },
       {
         title: 'RedHat Linux',
