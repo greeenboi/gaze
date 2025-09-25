@@ -25,6 +25,7 @@ import { Background, Flex } from '@/once-ui/components';
 
 import { SpeedInsights } from '@vercel/speed-insights/next';
 import { Analytics } from '@vercel/analytics/react';
+import { LayoutProvider } from '@once-ui-system/core';
 
 export async function generateMetadata({
   params: { locale },
@@ -106,65 +107,67 @@ export default async function RootLayout({
   const messages = await getMessages();
   return (
     <NextIntlClientProvider messages={messages}>
-      <Flex
-        as="html"
-        lang="en"
-        background="page"
-        data-neutral={style.neutral}
-        data-brand={style.brand}
-        data-accent={style.accent}
-        data-solid={style.solid}
-        data-solid-style={style.solidStyle}
-        data-theme={style.theme}
-        data-border={style.border}
-        data-surface={style.surface}
-        data-transition={style.transition}
-        className={classNames(
-          primary.variable,
-          secondary ? secondary.variable : '',
-          tertiary ? tertiary.variable : '',
-          code.variable
-        )}
-      >
+      <LayoutProvider>
         <Flex
-          style={{ minHeight: '100vh' }}
-          as="body"
-          fillWidth
-          margin="0"
-          padding="0"
-          direction="column"
+          as="html"
+          lang="en"
+          background="page"
+          data-neutral={style.neutral}
+          data-brand={style.brand}
+          data-accent={style.accent}
+          data-solid={style.solid}
+          data-solid-style={style.solidStyle}
+          data-theme={style.theme}
+          data-border={style.border}
+          data-surface={style.surface}
+          data-transition={style.transition}
+          className={classNames(
+            primary.variable,
+            secondary ? secondary.variable : '',
+            tertiary ? tertiary.variable : '',
+            code.variable
+          )}
         >
-          <Background
-            // biome-ignore lint/suspicious/noExplicitAny: <explanation>
-            mask={effects.mask as any}
-            // biome-ignore lint/suspicious/noExplicitAny: <explanation>
-            gradient={effects.gradient as any}
-            // biome-ignore lint/suspicious/noExplicitAny: <explanation>
-            dots={effects.dots as any}
-            // biome-ignore lint/suspicious/noExplicitAny: <explanation>
-            lines={effects.lines as any}
-          />
-          <Flex fillWidth minHeight="16" />
-          <Header />
           <Flex
-            zIndex={0}
+            style={{ minHeight: '100vh' }}
+            as="body"
             fillWidth
-            paddingY="l"
-            paddingX="l"
-            justifyContent="center"
-            flex={1}
+            margin="0"
+            padding="0"
+            direction="column"
           >
-            <Flex justifyContent="center" fillWidth minHeight="0">
-              <RouteGuard>
-                {children}
-                <Analytics />
-                <SpeedInsights />
-              </RouteGuard>
+            <Background
+              // biome-ignore lint/suspicious/noExplicitAny: <explanation>
+              mask={effects.mask as any}
+              // biome-ignore lint/suspicious/noExplicitAny: <explanation>
+              gradient={effects.gradient as any}
+              // biome-ignore lint/suspicious/noExplicitAny: <explanation>
+              dots={effects.dots as any}
+              // biome-ignore lint/suspicious/noExplicitAny: <explanation>
+              lines={effects.lines as any}
+            />
+            <Flex fillWidth minHeight="16" />
+            <Header />
+            <Flex
+              zIndex={0}
+              fillWidth
+              paddingY="l"
+              paddingX="l"
+              justifyContent="center"
+              flex={1}
+            >
+              <Flex justifyContent="center" fillWidth minHeight="0">
+                <RouteGuard>
+                  {children}
+                  <Analytics />
+                  <SpeedInsights />
+                </RouteGuard>
+              </Flex>
             </Flex>
+            <Footer />
           </Flex>
-          <Footer />
         </Flex>
-      </Flex>
+      </LayoutProvider>
     </NextIntlClientProvider>
   );
 }

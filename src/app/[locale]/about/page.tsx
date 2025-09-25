@@ -9,11 +9,13 @@ import {
   Tag,
   Text,
 } from '@/once-ui/components';
+import { Media } from "@once-ui-system/core"
 import { baseURL, renderContent } from '@/app/resources';
 import TableOfContents from '@/components/about/TableOfContents';
 import styles from '@/components/about/about.module.scss';
 import { getTranslations, setRequestLocale } from 'next-intl/server';
 import { useTranslations } from 'next-intl';
+import OnceMedia from '@/components/media';
 
 export async function generateMetadata({
   params: { locale },
@@ -272,8 +274,8 @@ export default function About({
                       {experience.role}
                     </Text>
                     <Flex as="ul" direction="column" gap="16">
-                      {/* biome-ignore lint/suspicious/noExplicitAny: <explanation> */}
                       {experience.achievements.map(
+                        // biome-ignore lint/suspicious/noExplicitAny: <explanation>
                         (achievement: string, index: any) => (
                           <Text
                             as="li"
@@ -387,6 +389,13 @@ export default function About({
                               src={image.src}
                             />
                           </Flex>
+                        ))}
+                      </Flex>
+                    )}
+                    {skill.videos && skill.videos.length > 0 && (
+                      <Flex fillWidth paddingTop="m" gap="12" wrap>
+                        {skill.videos.map((video, index) => (
+                          <OnceMedia key={index} video={video} />
                         ))}
                       </Flex>
                     )}
