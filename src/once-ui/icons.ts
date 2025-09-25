@@ -1,5 +1,4 @@
 import type { IconType } from 'react-icons';
-
 import {
   HiChevronUp,
   HiChevronDown,
@@ -30,8 +29,14 @@ import {
 } from 'react-icons/pi';
 
 import { FaDiscord, FaGithub, FaLinkedin, FaXTwitter } from 'react-icons/fa6';
+import { LogosRubygems, GgNpm, LogosHuggingFaceIcon } from './customIcons';
+
+
 
 export const iconLibrary: Record<string, IconType> = {
+  ruby: LogosRubygems,
+  npm: GgNpm,
+  huggingface: LogosHuggingFaceIcon,
   chevronUp: HiChevronUp,
   chevronDown: HiChevronDown,
   chevronRight: HiChevronRight,
