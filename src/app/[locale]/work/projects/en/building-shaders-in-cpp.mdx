@@ -1,0 +1,115 @@
+---
+title: "Building Shaders in C++"
+publishedAt: "2025-05-29"
+summary: "A deep dive into the world of shaders and graphics programming using Opengl."
+images:
+  - "/images/projects/opengl/triangle.jpg"
+team:
+  - name: "Suvan GS"
+    role: "Student Developer"
+    avatar: "/images/avatar.png"
+    linkedIn: "https://www.linkedin.com/in/suvan-gowri-shanker-596943261/"
+---
+
+# GPU Shaders Demo
+
+A demonstration project for learning and experimenting with GPU shaders using OpenGL. This project provides simple examples to understand how to implement and use shaders in graphics programming.
+
+## Overview
+
+This project showcases various shader implementations using OpenGL, GLEW, and GLFW. Each example demonstrates different aspects of shader programming, starting with basic concepts like rendering a simple triangle.
+
+## Prerequisites
+
+To build and run this project, you'll need:
+
+- C++17 compatible compiler
+- CMake (minimum 3.10)
+- OpenGL (3.3+)
+- GLEW (OpenGL Extension Wrangler Library)
+- GLFW3 (Graphics Library Framework)
+
+### Installing dependencies
+
+#### Ubuntu/Debian:
+```bash
+sudo apt-get install cmake libglew-dev libglfw3-dev
+```
+
+#### macOS:
+```bash
+brew install cmake glew glfw
+```
+
+#### Windows:
+It's recommended to use vcpkg or similar package managers:
+```bash
+vcpkg install glew glfw3
+```
+
+## Building the Project
+
+1. Clone the repository:
+```bash
+git clone https://github.com/greeenboi/gpu-shaders-demo.git
+cd gpu-shaders-demo
+```
+
+2. Create and navigate to build directory:
+```bash
+mkdir -p build
+cd build
+```
+
+3. Generate build files with CMake:
+```bash
+cmake ..
+```
+
+4. Build the project:
+```bash
+make
+```
+
+## Running Examples
+
+The project includes several examples, each demonstrating different shader techniques:
+
+### Triangle Example
+A simple example showing a colored triangle rendered with basic vertex and fragment shaders.
+
+To run this example:
+```bash
+./triangle
+```
+
+This example demonstrates:
+- Setting up an OpenGL context with GLFW
+- Compiling and linking vertex and fragment shaders
+- Creating and using vertex buffer objects (VBO) and vertex array objects (VAO)
+- Drawing a basic shape with a solid color
+
+## Project Structure
+
+```
+gpu-shaders-demo/
+├── CMakeLists.txt       # Project configuration and build settings
+├── examples/            # Contains individual example programs
+│   └── triangle.cpp     # Basic triangle rendering example
+├── shaders/             # GLSL shader files (copied to build directory at compile time)
+└── src/                 # Main source code
+    └── main.cpp         # Simple menu program listing available examples
+```
+
+## Controls
+
+- Press `ESC` to close any example window
+- Window can be resized, and the viewport will adjust accordingly
+
+## Adding New Examples
+
+To add a new example:
+
+1. Create a new .cpp file in the `examples/` directory
+2. Add the example to `CMakeLists.txt` using the `add_example()` function
+3. If needed, add any shader files to the `shaders/` directory
