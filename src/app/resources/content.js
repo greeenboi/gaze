@@ -458,7 +458,7 @@ const about = {
         ]),
         videos: [
           {
-            src: 'https://youtu.be/TEqbZ7Ai7AA?si=3Lu4djO0MF_x_Ozm',
+            src: 'https://youtu.be/RhT47xcUVUQ',
             alt: 'Willow Sales Agent',
             width: 16,
             height: 9,
