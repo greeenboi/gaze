@@ -1,0 +1,122 @@
+---
+title: "Daily Planner App"
+publishedAt: "2025-07-08"
+summary: "A simple daily planner with a tasks list. cool onboarding tho. WIP"
+images:
+  - "/images/projects/daily-planner/intro.png"
+  - "/images/projects/daily-planner/onboard.png"
+  - "/images/projects/daily-planner/gutter.png"
+  - "/images/projects/daily-planner/tasks.png"
+imageType: "video"
+team:
+  - name: "Suvan GS"
+    role: "Student Developer"
+    avatar: "/images/avatar.png"
+    linkedIn: "https://www.linkedin.com/in/suvangs"
+---
+<Media
+  src="https://youtu.be/2Y4Ov-cDdjA"
+  aspectRatio="16/9"
+  radius="xl"
+/>
+
+---
+
+<p>
+  <a href="https://itunes.apple.com/app/apple-store/id982107779">
+    <img alt="Supports Expo iOS" longdesc="Supports Expo iOS" src="https://img.shields.io/badge/iOS-4630EB.svg?style=flat-square&logo=APPLE&labelColor=999999&logoColor=fff" />
+  </a>
+  <a href="https://play.google.com/store/apps/details?id=host.exp.exponent&referrer=blankexample">
+    <img alt="Supports Expo Android" longdesc="Supports Expo Android" src="https://img.shields.io/badge/Android-4630EB.svg?style=flat-square&logo=ANDROID&labelColor=A4C639&logoColor=fff" />
+  </a>
+  <a href="https://docs.expo.dev/workflow/web/">
+    <img alt="Supports Expo Web" longdesc="Supports Expo Web" src="https://img.shields.io/badge/web-4630EB.svg?style=flat-square&logo=GOOGLE-CHROME&labelColor=4285F4&logoColor=fff" />
+  </a>
+</p>
+
+# Daily Planner
+
+## Introduction
+Daily Planner is an Expo (React Native) application that lets a signed-in user create, view and manage scheduled tasks with time ranges, optional reminders, repetition rules and tagging. Authentication is handled through Better Auth with a Prisma-backed data store. The same codebase serves API routes (for auth and tasks) and the mobile/web client. Local SQLite (via Prisma) is used in development; a LibSQL/Turso database can be enabled in production through environment variables.
+
+## Features
+- User authentication (email and password) via Better Auth
+- Session handling using secure tokens or cookies (API routes)
+- Create, read and update tasks with start and end timestamps
+- Support for all‑day tasks and status (pending, in progress, completed, canceled)
+- Task priority levels and optional color labeling
+- Reminders with configurable minute offsets and delivery method placeholder fields
+- Basic recurrence support through repeat rules (frequency, interval, until, count)
+- Tagging system (user‑scoped tags) and participant relationships
+- Simple tasks API (fetch by date, create, update) under <InlineCode>app/api/tasks</InlineCode>
+- React Native UI components styled with NativeWind and Gluestack UI
+- Environment‑driven selection between local SQLite and LibSQL adapter
+
+> NOTE
+>
+> Current master branch may have breaking changes detach to commit <InlineCode>9ec40a5a5ea77994056dc451c0533baec95e249e</InlineCode> when working / using the app
+
+## TODO
+
+The current app structure acts as a monorepo to bundle the server into a web compoenent outside of expo's android/ios build. The problem is that prisma depends on <InlineCode>node:fs</InlineCode> runtime which is not currently supported in [EAS hosting](https://docs.expo.dev/eas/hosting/reference/worker-runtime/#nodejs-compatibility), As a result I have to refactor the whole thing to a cloud build which does not depend on <InlineCode>node:fs</InlineCode>. I have tried uploading the <InlineCode>dist</InlineCode> to netlify, hosting on vercel, and even switching to turso + libsql for an entire overhaul on the system. All current implementations just point to use a different backend schema that does not depend on prisma.
+So i will have to do:
+
+<Checkbox
+  label="Remove prisma implementation"
+/>
+<Checkbox
+  label="check expo-sqlite feasability for better-auth"
+/>
+<Checkbox
+  label="Refactor backend to make calls to server (hono-ts) if expo-sqlite does not work out"
+/>
+<Checkbox
+  label="Refactor logic to work on only cloud / only local build based on option 2"
+/>
+
+## 🚀 How to use
+
+<CodeBlock
+  className="my-24"
+  codeInstances={[
+    {
+      code: `npx prisma generate`,
+      label: 'Generate Prisma Client',
+      language: 'bash'
+    },
+    {
+      code: `npx expo start`,
+      label: 'Start the server',
+      language: 'bash'
+    }    
+  ]}
+  copyButton
+/>
+
+
+For a production deployment set the following (example for Turso / LibSQL):
+
+```
+TURSO_DATABASE_URL=... # only on the server host
+TURSO_AUTH_TOKEN=...   # only on the server host
+EXPO_PUBLIC_AUTH_BASE_URL=https://your-production-domain
+```
+
+Then run migrations against the remote database:
+
+<CodeBlock
+  className="my-24"
+  compact
+  codeInstances={[
+    {
+      code: `npx prisma migrate deploy`,
+      label: 'Download the gem',
+      language: 'bash'
+    }
+  ]}
+  copyButton
+/>
+
+The mobile client will talk to the deployed API at <InlineCode>EXPO_PUBLIC_AUTH_BASE_URL/api/auth</InlineCode> and <InlineCode>.../api/tasks</InlineCode>.
+
+
