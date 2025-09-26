@@ -34,7 +34,7 @@ const social = [
   {
     name: 'LinkedIn',
     icon: 'linkedin',
-    link: 'https://www.linkedin.com/in/suvan-gowri-shanker-596943261/',
+    link: 'https://www.linkedin.com/in/suvangs',
   },
   {
     name: 'HF',
