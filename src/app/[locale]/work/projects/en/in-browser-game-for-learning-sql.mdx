@@ -1,0 +1,39 @@
+---
+title: "In-Browser Game for Learning SQL"
+publishedAt: "2025-04-2"
+summary: "An interactive in-browser game designed to teach SQL concepts through a noir detective thriller game."
+images:
+  - "images/projects/void-noir/hall.png"
+  - "images/projects/void-noir/home.png"
+  - "images/projects/void-noir/psql-term.png"
+team:
+  - name: "Suvan GS"
+    role: "Student Developer"
+    avatar: "/images/avatar.png"
+    linkedIn: "https://www.linkedin.com/in/suvangs"
+---
+
+## Overview
+
+NoirSQL is an interactive visual novel style game that teaches SQL concepts through a detective thriller narrative. Players assume the role of a detective in a noir-inspired city, solving mysteries by writing SQL queries to gather clues and progress through the story.
+The game is designed to be engaging and educational, providing a hands-on approach to learning SQL in a real sql database.
+
+## Whats under the hood?
+
+Its built on [LittleJs](https://killedbyapixel.github.io/LittleJS/docs) a lightweight JavaScript game engine.
+It uses [PostgreSQL](https://www.postgresql.org/) from [PgLite](https://pglite.dev), an ephermeral in-browser SQL database.
+It also uses Prismjs for syntax highlighting and the UI is built with HTML/CSS.
+
+> Why html/CSS for UI?
+> LittleJs provides a simple way to render 2D graphics and handle user input, and since I wanted to go with an extremely lightweight approach, I decided to use HTML/CSS for the UI. This allows for easy styling and layout of the game's interface, while still leveraging the capabilities of LittleJs for rendering the game world and handling user interactions.
+
+## Prerequisites
+
+- A modern web browser (Chrome, Firefox, Edge, etc.)
+
+That's it! No installation required.
+
+## How to Play
+
+You can play the game directly in your web browser by visiting the following link:
+[Play NoirSQL](https://noir-sql-175lz.kinsta.page/)
