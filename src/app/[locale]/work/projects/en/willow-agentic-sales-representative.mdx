@@ -1,0 +1,108 @@
+---
+title: "Willow Agentic Sales Representative"
+publishedAt: "2025-07-10"
+summary: "A Roguelite rpg game project built with Ruby and gosu."
+team:
+  - name: "Suvan GS"
+    role: "Student Developer"
+    avatar: "/images/avatar.png"
+    linkedIn: "https://www.linkedin.com/in/suvangs"
+---
+
+<Media
+  src="https://youtu.be/RhT47xcUVUQ"
+  aspectRatio="16/9"
+  radius="xl"
+/>
+
+---
+
+# AI Voice Agent - Quick Start Guide
+
+## 🚀 Quick Start
+
+### Option 1: One-Click Install & Run (Windows)
+Double-click <InlineCode>install_and_run.bat</InlineCode> to automatically install dependencies and start the server.
+
+### Option 2: Manual Installation
+
+<CodeBlock
+  className="my-24"
+  codeInstances={[
+    {
+      code: `pip install fastapi uvicorn groq python-dotenv aiofiles pydantic requests libsql-experimental==0.0.54`,
+      label: 'Install dependencies',
+      language: 'bash'
+    },
+    {
+      code: `python main.py`,
+      label: 'Start the server',
+      language: 'bash'
+    }
+  ]}
+  copyButton
+/>
+
+## 🌐 Access the Application
+
+Once running, the AI voice agent will be available at:
+- **Backend API**: http://localhost:8000
+- **Frontend UI**: http://localhost:8000 (React app served by FastAPI)
+- **API Documentation**: http://localhost:8000/docs
+
+## 🔑 Environment Variables
+
+The following environment variables are already configured in <InlineCode>.env</InlineCode>:
+- <InlineCode>GROQ_API_KEY</InlineCode> : For Groq AI STT/TTS services
+- <InlineCode>TURSO_DATABASE_URL</InlineCode> : Cloud database URL
+- <InlineCode>TURSO_AUTH_TOKEN</InlineCode> : Database authentication token
+
+## 📱 How to Use
+
+1. **Start a session**: Open http://localhost:8000 in your browser
+2. **Voice interaction**: Click the microphone button to speak
+3. **Text interaction**: Type messages in the chat interface
+4. **Lead qualification**: The AI will ask for:
+   - Company name
+   - Domain/Industry
+   - Problem statement
+   - Budget information
+5. **Media display**: Images/videos will appear based on conversation context
+6. **Session management**: All interactions are saved to the cloud database
+
+## 🔧 API Endpoints
+
+- <InlineCode>POST /api/chat/text</InlineCode> - Text-based conversation
+- <InlineCode>POST /api/chat/audio</InlineCode> - Audio-based conversation (STT/TTS)
+- <InlineCode>GET /api/sessions</InlineCode> - List all sessions
+- <InlineCode>GET /api/session/session_id/summary</InlineCode> - Get session summary
+- <InlineCode>POST /api/session/session_id/start</InlineCode> - Start a new session
+- <InlineCode>POST /api/session/session_id/close</InlineCode> - Close a session
+
+## 🎯 Features
+
+✅ **Real-time voice interaction** with Groq AI Whisper (STT) and PlayAI (TTS)  
+✅ **Lead qualification workflow** with structured data collection  
+✅ **Dynamic media display** based on conversation context  
+✅ **Session persistence** with Turso cloud database  
+✅ **Comprehensive logging** of all interactions  
+✅ **React frontend** with shadcn UI components  
+✅ **FastAPI backend** with automatic API documentation  
+✅ **Multi-session support** with unique session IDs  
+
+## 🛠️ Technology Stack
+
+- **Frontend**: React + Vite + shadcn UI
+- **Backend**: FastAPI + Python
+- **Database**: Turso (libSQL) - Cloud database
+- **AI Services**: Groq AI (Whisper STT + PlayAI TTS)
+- **Audio Processing**: Web Audio API + aiofiles
+
+## 📊 Database Schema
+
+The application uses three main tables:
+- <InlineCode>sessions</InlineCode> - Session information and lead data
+- <InlineCode>chat_history</InlineCode> - All conversation messages
+- <InlineCode>media_interactions</InlineCode> - Logged media display events
+
+All data is automatically synchronized with the cloud database for persistence and analytics.
