@@ -148,6 +148,40 @@ const components = {
   h6: createHeading(6) as any,
   img: createImage as any,
   a: CustomLink as any,
+  blockquote: (({ children }: TextProps) => (
+    <blockquote
+      style={{
+        marginTop: 'var(--static-space-12)',
+        marginBottom: 'var(--static-space-12)',
+        padding: '12px 16px',
+        borderLeft: '4px solid rgba(0,0,0,0.08)',
+        background: 'rgba(0,0,0,0.02)',
+        borderRadius: '6px',
+      }}
+    >
+      <Text
+        variant="body-default-m"
+        onBackground="neutral-medium"
+        style={{ margin: 0, fontStyle: 'italic' }}
+      >
+        {children}
+      </Text>
+    </blockquote>
+  )) as any,
+  hr: ((props: React.HTMLAttributes<HTMLHRElement>) => (
+    <hr
+      style={{
+        marginTop: 'var(--static-space-12)',
+        marginBottom: 'var(--static-space-12)',
+        border: 'none',
+        borderRadius: '2px',
+        height: '2px',
+        width: '100%',
+        background: 'rgb(255,255,255)',
+      }}
+      {...props}
+    />
+  )) as any,
   Table,
   CodeBlock,
   InlineCode,
