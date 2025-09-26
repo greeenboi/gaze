@@ -151,6 +151,7 @@ export default function Project({ params }: WorkParams) {
             image: post.metadata.image
               ? `https://${baseURL}${post.metadata.image}`
               : `https://${baseURL}/og?title=${post.metadata.title}`,
+            imageType: post.metadata.imageType,
             url: `https://${baseURL}/${params.locale}/work/${post.slug}`,
             author: {
               '@type': 'Person',
@@ -172,7 +173,13 @@ export default function Project({ params }: WorkParams) {
       </Flex>
       {post.metadata.images.length > 0 && (
         <SmartImage
-          aspectRatio="16 / 9"
+          aspectRatio={
+        post.metadata.imageType
+          ? post.metadata.imageType === 'video'
+            ? '16 / 9'
+            : '3 / 4'
+          : '16 / 9'
+          }
           radius="m"
           alt="image"
           src={post.metadata.images[0]}

@@ -8,7 +8,7 @@ import { HeadingLink } from '@/components';
 
 import type { TextProps } from '@/once-ui/interfaces';
 import type { SmartImageProps } from '@/once-ui/components/SmartImage';
-import { Media } from '@once-ui-system/core';
+import { Checkbox, Media } from '@once-ui-system/core';
 
 type TableProps = {
   data: {
@@ -184,6 +184,7 @@ const components = {
     />
   )) as any,
   Media: Media,
+  Checkbox: Checkbox,
   Table,
   CodeBlock,
   InlineCode,
