@@ -2,7 +2,7 @@ import ScrollToHash from '@/components/ScrollToHash';
 import { notFound } from 'next/navigation';
 import { CustomMDX } from '@/components/mdx';
 import { getPosts } from '@/app/utils/utils';
-import { Avatar, Button, Flex, Heading, Text } from '@/once-ui/components';
+import { Avatar, Button, Flex, Heading, SmartImage, Text } from '@/once-ui/components';
 
 import { baseURL, renderContent } from '@/app/resources';
 import { setRequestLocale } from 'next-intl/server';
@@ -137,6 +137,20 @@ export default function Blog({ params }: BlogParams) {
         Posts
       </Button>
       <Heading variant="display-strong-s">{post.metadata.title}</Heading>
+      {post.metadata.image && (
+        <SmartImage
+          priority
+          sizes='640px'
+          style={{
+            cursor: 'pointer',
+            border: '1px solid var(--neutral-alpha-weak)',
+          }}
+          radius="m"
+          src={post.metadata.image}
+          alt={`Thumbnail of ${post.metadata.title}`}
+          aspectRatio="16 / 9"
+        />
+        )}
       <Flex gap="12" alignItems="center">
         {person.avatar && <Avatar size="s" src={person.avatar} />}
         <Text variant="body-default-s" onBackground="neutral-weak">

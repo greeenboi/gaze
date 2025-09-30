@@ -47,7 +47,7 @@ export default function Post({ post, thumbnail }: PostProps) {
               }}
               radius="m"
               src={post.metadata.image}
-              alt={'Thumbnail of ' + post.metadata.title}
+              alt={`Thumbnail of ${post.metadata.title}`}
               aspectRatio="16 / 9"
             />
           </Flex>
@@ -67,6 +67,9 @@ export default function Post({ post, thumbnail }: PostProps) {
           </Text>
           {post.metadata.tag && (
             <Tag className="mt-8" label={post.metadata.tag} variant="neutral" />
+          )}
+          {post.metadata.summary && (
+            <Text size='s' variant="label-default-s">{post.metadata.summary}</Text>
           )}
         </Flex>
       </Flex>
