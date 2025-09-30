@@ -20,7 +20,7 @@ team:
 
 ---
 
-# just-a-walkthrough
+# Just a Walkthrough 
 
 
 <p>
@@ -52,39 +52,56 @@ team:
 - Spotlight highlight & darkened backdrop (3 panel overlay + focus ring)
 - Accessible keyboard navigation (Esc / Enter / ← →) + focus trap
 - Auto scroll + responsive reposition on scroll/resize/mutations
-- Step hooks (`beforeStep` / `afterStep`) & lifecycle callbacks
+- Step hooks (<InlineCode>beforeStep</InlineCode> / <InlineCode>afterStep</InlineCode>) & lifecycle callbacks
 - Chain multiple tours with persistence-aware skipping
 - LocalStorage progress persistence & resume support
 - Optional once‑per‑session logic via orchestrator helper
-- Custom tooltip renderer + theming (`default`, `tailwind`, `unstyled`)
+- Custom tooltip renderer + theming (<InlineCode>default</InlineCode>, <InlineCode>tailwind</InlineCode>, <InlineCode>unstyled</InlineCode>)
 - Works with any DOM (vanilla, React, shadcn, portals)
 - Tiny, tree‑shakeable (no external deps)
 
 ## Install
 
-```bash
-npm i just-a-walkthrough
-# or
-pnpm add just-a-walkthrough
-# or
-yarn add just-a-walkthrough
-```
+<CodeBlock
+  className="my-24"
+  compact
+	codeInstances={[
+		{
+			code: "npm i just-a-walkthrough",
+			language: "bash",
+			label: "NPM"
+		},
+    {
+      code: "pnpm add just-a-walkthrough",
+      language: "bash",
+      label: "PNPM"
+    },
+    {
+      code: "yarn add just-a-walkthrough",
+      language: "bash",
+      label: "YARN"
+    }
+	]}
+  copyButton
+/>
 
-## Quick Start (Vanilla)
+## Quick Start
 
-```ts
-import { startWalkthrough } from 'just-a-walkthrough';
+<CodeBlock
+  className="my-24"
+  codeInstances={[
+    {
+      code: `import { startWalkthrough } from 'just-a-walkthrough';
 
 startWalkthrough([
   { selector: '#hero-cta', title: 'Welcome', content: 'Click here to begin.' },
   { selector: '.nav-settings', title: 'Settings', content: 'Manage preferences.' }
-]);
-```
-
-## React Example
-
-```tsx
-import { useEffect } from 'react';
+]);`,
+      label: 'VanillaJS',
+      language: 'typescript'
+    },
+    {
+      code: `import { useEffect } from 'react';
 import { startWalkthrough } from 'just-a-walkthrough';
 
 export function Onboard() {
@@ -96,13 +113,23 @@ export function Onboard() {
     return () => inst.destroy();
   }, []);
   return null;
-}
-```
+}`,
+      label: 'React',
+      language: 'tsx'
+    },
 
-## Orchestrator (Route-based Tours)
+  ]}
+  copyButton
+/>
 
-```ts
-import { registerTours, startAutoMatches } from 'just-a-walkthrough';
+## Orchestrator
+
+<CodeBlock
+  className="my-24"
+  compact
+	codeInstances={[
+		{
+			code: `import { registerTours, startAutoMatches } from 'just-a-walkthrough';
 
 registerTours([
   { id: 'home-tour', match: '/home', steps: [ { selector: '#welcome', title: 'Hi!' } ] },
@@ -110,217 +137,70 @@ registerTours([
 ]);
 
 // Call on route change
-startAutoMatches({ pathname: window.location.pathname });
-```
+startAutoMatches({ pathname: window.location.pathname });`,
+			language: "tsx",
+			label: "Orchestrator"
+		},
+	]}
+  copyButton
+/>
 
 ## API Surface (Core)
 
-`startWalkthrough(steps, options)` – convenience wrapper returning a `Walkthrough` instance.
+<InlineCode>startWalkthrough(steps, options)</InlineCode> – convenience wrapper returning a <InlineCode>Walkthrough</InlineCode> instance.
 
-`Walkthrough` key methods:
+<InlineCode>Walkthrough</InlineCode> key methods:
 
-- `start(index?)` – begin tour (auto called by helper)
-- `next()/prev()`
-- `finish()` – mark completed & cleanup
-- `skip(reason?)`
-- `destroy()` – cleanup without marking completed
-
-Persistence options (when `persistProgress: true` & `tourId` set):
-
-- Saves `{ index, completed }` in `localStorage` under `__walkthrough:<tourId>`
-- Resumes if not completed and `resume !== false`
+- <InlineCode>start(index?)</InlineCode> – begin tour (auto called by helper)
+- <InlineCode>next()/prev()</InlineCode>
+- <InlineCode>finish()</InlineCode> – mark completed & cleanup
+- <InlineCode>skip(reason?)</InlineCode>
+- <InlineCode>destroy()</InlineCode> – cleanup without marking completed
 
 ## Theming
 
-Use `theme: 'tailwind'` to rely on your Tailwind stack (supply utility classes) or `unstyled` to supply all styling manually.
+Use <InlineCode>theme: 'tailwind'</InlineCode> to rely on your Tailwind stack (supply utility classes) or <InlineCode>unstyled</InlineCode> to supply all styling manually.
 
 ## Chain Multiple Tours
 
-```ts
+<CodeBlock
+  className="my-24"
+  compact
+	codeInstances={[
+		{
+			code: `
 import { WalkthroughChain } from 'just-a-walkthrough';
 new WalkthroughChain([
   { id: 'a', steps: [ { selector: '#x' } ] },
   { id: 'b', steps: [ { selector: '#y' } ], options: { persistProgress: true, tourId: 'b' } }
-]).start();
-```
+]).start();`,
+			language: "typescript",
+			label: "Chain"
+		},
+	]}
+  copyButton
+/>
+
 
 Completed persistent tours are skipped automatically.
 
-## React Integration (Provider & Hook)
-
-For React apps you can wrap your tree with the `WalkthroughProvider` to get easy access to `start` and `chain` helpers plus reactive state (current index, active flag):
-
-```tsx
-import { WalkthroughProvider, useWalkthrough } from 'just-a-walkthrough/react';
-
-function LaunchTourButton() {
-  const { start, active } = useWalkthrough();
-  return (
-    <button
-      disabled={active}
-      onClick={() => start([
-        { selector: '#logo', title: 'Logo' },
-        { selector: '#settings', title: 'Settings' },
-      ], { persistProgress: true, tourId: 'react-main' })}
-    >Start Tour</button>
-  );
-}
-
-export function App() {
-  return (
-    <WalkthroughProvider>
-      <LaunchTourButton />
-      {/* rest of app */}
-    </WalkthroughProvider>
-  );
-}
-```
-
-Auto start on mount:
-
-```tsx
-<WalkthroughProvider autoStart={{ steps, options }} />
-```
-
-## React Route Orchestrator Component
-
-If you want automatic starting of registered route-based tours when the location changes, use the `RouteOrchestrator` helper:
-
-```tsx
-import { RouteOrchestrator } from 'just-a-walkthrough/react';
-import { registerTours } from 'just-a-walkthrough';
-
-registerTours([
-  { id: 'home-tour', match: '/home', trigger: 'auto', steps: [ { selector: '#home-title', title: 'Home' } ] },
-  { id: 'profile-tour', match: /\/users\//, trigger: 'auto', steps: [ { selector: '#avatar', title: 'Avatar' } ], order: 10 },
-]);
-
-function Routes({ pathname }: { pathname: string }) {
-  return (
-    <>
-      <RouteOrchestrator pathname={pathname} chain onStartIds={ids => console.log('Started tours', ids)} />
-      {/* your routed UI */}
-    </>
-  );
-}
-```
-
-Lazy load a module containing tour registrations before matching:
-
-```tsx
-<RouteOrchestrator pathname={pathname} dynamicModule={() => import('./tours')} />
-```
-
-## Dev Panel (Development Only)
-
-The optional `WalkthroughDevPanel` gives you a floating inspector for tours: start them manually, run auto matches, chain matches, and reset persistence.
-
-```tsx
-import { WalkthroughDevPanel } from 'just-a-walkthrough/react';
-
-function Root() {
-  return (
-    <>
-      {/* app UI */}
-      {import.meta.env.DEV && <WalkthroughDevPanel chainMatches />}
-    </>
-  );
-}
-```
-
-Features:
-
-- Lists all registered tours with matcher summary.
-- Shows completion status (persistent tours).
-- Start / Reset per tour; Reset All.
-- Run Matches (or Chain Matches if `chainMatches` prop true).
-- Collapsible; collapsed state stored in `localStorage` (`__wt_devpanel_collapsed`).
-
-Do NOT ship this to production (reveals internal tour structure).
-
-## Debugging / Diagnostics
-
-Instrumentation is available but silent by default. To enable and inspect internal events you can use one of:
-
-1. Build-time env var (e.g. with Vite): `JUST_A_WALKTHROUGH_DEBUG=true`
-2. Runtime flag: `window.__JUST_A_WALKTHROUGH_DEBUG = true`
-3. API call: `enableDebug(true)`
-
-Events recorded include categories:
-`walkthrough` (start, step, resolved, missing, finish, skip), `orchestrator` (registration, match, chain), `react` (route effects, dynamic loads).
-
-```ts
-import { enableDebug, dumpWalkthroughDebug, printWalkthroughDebug } from 'just-a-walkthrough/debug';
-
-enableDebug(true);
-// run some tours ...
-
-// Safe summary only (counts + meta, no raw events)
-printWalkthroughDebug();
-
-// Full detail (explicit opt-in) with redaction example
-printWalkthroughDebug({
-  full: true,
-  redact: e => ({ ...e, data: undefined })
-});
-
-const snapshot = dumpWalkthroughDebug(); // programmatic access
-```
-
-Security: by default `printWalkthroughDebug()` prints only aggregate counts (avoids leaking selectors or user data). Pass `{ full: true }` consciously in trusted environments.
-
-HTML Content Sanitization: step `content` strings are sanitized by default (removes `<script>`, `<style>`, `<iframe>` etc., strips event handler attributes like `onclick`, and blocks unsafe URL schemes such as `javascript:`). This mitigates XSS if tour definitions incorporate user‑generated text. If you absolutely trust the source, set `allowUnsafeHTML: true` on an individual step to bypass the sanitizer—but prefer leaving it enabled.
-
-You can also access a console proxy `wtDebug` which is a no-op unless debug is enabled:
-
-```ts
-import { wtDebug } from 'just-a-walkthrough/debug';
-wtDebug.log('current tour id', currentId);
-```
-
 ## Advanced Usage Notes
 
-- Use `waitMs: 0` (or global `stepWaitMs: 0`) for elements that are guaranteed to be present to avoid unnecessary polling.
+- Use <InlineCode>waitMs: 0</InlineCode> (or global <InlineCode>stepWaitMs: 0</InlineCode>) for elements that are guaranteed to be present to avoid unnecessary polling.
 - Prefer chaining tours when you have progressive disclosure flows; persistent tours auto-skip if already completed, keeping chains idempotent.
 - When dynamically removing highlighted elements mid-step (e.g. route transitions), the MutationObserver repositions but if the element disappears the next navigation call will resolve again. Consider guarding with required steps if element is critical.
 
 ## Accessibility Notes
 
-- Focus ring container traps tab order (unless `disableFocusTrap: true`)
-- Live region announces step titles (`aria-live="polite"`)
-- Esc always available (when `keyboard: true`)
+- Focus ring container traps tab order (unless <InlineCode>disableFocusTrap: true</InlineCode>)
+- Live region announces step titles (<InlineCode>aria-live="polite"</InlineCode>)
+- Esc always available (when <InlineCode>keyboard: true</InlineCode>)
 
 ## Zero-Wait Configuration
 
-Specify `stepWaitMs: 0` and/or per-step `waitMs: 0` to disable polling for elements (single lookup). `stepPollIntervalMs` is clamped to a minimum of 1ms internally when waiting.
 
-## Changelog
+Specify <InlineCode>stepWaitMs: 0</InlineCode> and/or per-step <InlineCode>waitMs: 0</InlineCode> to disable polling for elements (single lookup). <InlineCode>stepPollIntervalMs</InlineCode> is clamped to a minimum of 1ms internally when waiting.
 
-This project maintains an automated changelog based on git commits and package.json versions. See [CHANGELOG.md](./CHANGELOG.md) for release history and [docs/CHANGELOG_GENERATION.md](./docs/CHANGELOG_GENERATION.md) for details on the generation process.
-
-## Development
-
-```bash
-npm i
-npm run dev      # playground
-npm test         # vitest (jsdom)
-npm run build    # library build + types
-npm run changelog # generate/update changelog based on commits
-```
-
-## Publishing (Maintainers)
-
-```bash
-npm run build && npm test
-npm version patch   # or minor / major
-npm run changelog   # update changelog with new version
-git push && git push --tags
-npm publish --access public
-```
-
-## License
-
-AGPL-3.0-only. For commercial / alternative licensing reach out.
 
 ---
 
