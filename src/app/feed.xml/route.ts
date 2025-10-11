@@ -57,6 +57,7 @@ export async function GET() {
     
     feed.addItem({
       title: post.metadata.title,
+      image: post.metadata.image ? `${siteUrl}${post.metadata.image}` : undefined,
       id: postUrl,
       link: postUrl,
       description: post.metadata.summary || '',
