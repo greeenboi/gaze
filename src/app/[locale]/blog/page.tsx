@@ -93,38 +93,6 @@ export default function Blog({
             RSS
           </Button>
         </Link>
-        <Link href="/atom.xml" target="_blank" rel="noopener noreferrer">
-          <Button
-            variant="secondary"
-            size="s"
-            prefixIcon="rss"
-          >
-            Atom
-          </Button>
-        </Link>
-        <Link href="/feed.json" target="_blank" rel="noopener noreferrer">
-          <Button
-            variant="secondary"
-            size="s"
-            prefixIcon="rss"
-          >
-            JSON
-          </Button>
-        </Link>
-        <Link 
-          href={`https://validator.w3.org/feed/check.cgi?url=${encodeURIComponent(`https://${baseURL}/feed.xml`)}`}
-          target="_blank" 
-          rel="noopener noreferrer"
-        >
-          <Image
-            src="/images/rss.png"
-            alt="Valid RSS"
-            title="Validate my RSS feed"
-            width={88}
-            height={31}
-            style={{ cursor: 'pointer' }}
-          />
-        </Link>
       </Flex>
       <Flex fillWidth flex={1} direction="column">
         <Posts range={[1, 3]} locale={locale} thumbnail />
