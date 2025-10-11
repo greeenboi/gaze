@@ -37,6 +37,13 @@ export async function generateMetadata({
     metadataBase: new URL(`https://${baseURL}/${locale}`),
     title: home.title,
     description: home.description,
+    alternates: {
+      types: {
+        'application/rss+xml': `${baseURL}/feed.xml`,
+        'application/atom+xml': `${baseURL}/atom.xml`,
+        'application/json': `${baseURL}/feed.json`,
+      },
+    },
     openGraph: {
       title: `${person.firstName}'s Portfolio`,
       description: 'Portfolio website showcasing my projects.',

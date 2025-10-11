@@ -30,6 +30,7 @@ import {
 
 import { FaDiscord, FaGithub, FaLinkedin, FaXTwitter } from 'react-icons/fa6';
 import { LogosRubygems, GgNpm, LogosHuggingFaceIcon } from './customIcons';
+import { FaRss } from 'react-icons/fa';
 
 
 
@@ -64,4 +65,5 @@ export const iconLibrary: Record<string, IconType> = {
   linkedin: FaLinkedin,
   x: FaXTwitter,
   clipboard: HiClipboard,
+  rss: FaRss,
 };
