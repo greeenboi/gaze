@@ -4,7 +4,6 @@ import '@/once-ui/tokens/index.scss';
 import '@once-ui-system/core/css/styles.css';
 import '@once-ui-system/core/css/tokens.css';
 
-
 import classNames from 'classnames';
 
 import { Footer, Header, RouteGuard } from '@/components';
@@ -177,18 +176,50 @@ export default async function RootLayout({
             </Flex>
             <Footer />
             <Flex maxHeight={3}>
-              <Fade zIndex="1" to="right" fillHeight width="64" position="absolute" left="0" top="0"/>
-              <AutoScroll paddingY="40" speed='slow'>
-                <Text style={{opacity:"0.15"}} variant='label-default-m'>Suvan GS</Text>
-                <Text style={{opacity:"0.15"}} variant='label-default-m'>greeenboi</Text>
-                <Text style={{opacity:"0.15"}} variant='label-default-m'>GreenArcade</Text>
-                <Text style={{opacity:"0.15"}} variant='label-default-m'>Suvan GS</Text>
-                <Text style={{opacity:"0.15"}} variant='label-default-m'>greeenboi</Text>
-                <Text style={{opacity:"0.15"}} variant='label-default-m'>GreenArcade</Text>
-                <Text style={{opacity:"0.15"}} variant='label-default-m'>Suvan GS</Text>
-                <Text style={{opacity:"0.15"}} variant='label-default-m'>greeenboi</Text>
+              <Fade
+                zIndex="1"
+                to="right"
+                fillHeight
+                width="64"
+                position="absolute"
+                left="0"
+                top="0"
+              />
+              <AutoScroll paddingY="40" speed="slow">
+                <Text style={{ opacity: '0.15' }} variant="label-default-m">
+                  Suvan GS
+                </Text>
+                <Text style={{ opacity: '0.15' }} variant="label-default-m">
+                  greeenboi
+                </Text>
+                <Text style={{ opacity: '0.15' }} variant="label-default-m">
+                  GreenArcade
+                </Text>
+                <Text style={{ opacity: '0.15' }} variant="label-default-m">
+                  Suvan GS
+                </Text>
+                <Text style={{ opacity: '0.15' }} variant="label-default-m">
+                  greeenboi
+                </Text>
+                <Text style={{ opacity: '0.15' }} variant="label-default-m">
+                  GreenArcade
+                </Text>
+                <Text style={{ opacity: '0.15' }} variant="label-default-m">
+                  Suvan GS
+                </Text>
+                <Text style={{ opacity: '0.15' }} variant="label-default-m">
+                  greeenboi
+                </Text>
               </AutoScroll>
-              <Fade zIndex="1" to="left" fillHeight width="64" position="absolute" right="0" top="0"/>
+              <Fade
+                zIndex="1"
+                to="left"
+                fillHeight
+                width="64"
+                position="absolute"
+                right="0"
+                top="0"
+              />
             </Flex>
           </Flex>
         </Flex>

@@ -2,7 +2,7 @@ import { MDXRemote, type MDXRemoteProps } from 'next-mdx-remote/rsc';
 import type React from 'react';
 import type { ReactNode } from 'react';
 
-import { InlineCode, SmartLink, Text  } from '@once-ui-system/core';
+import { InlineCode, SmartLink, Text } from '@once-ui-system/core';
 import { CodeBlock } from '@/once-ui/modules';
 import { HeadingLink } from '@/components';
 
@@ -11,12 +11,15 @@ import { Checkbox, Media, type SmartLinkProps } from '@once-ui-system/core';
 import { SmartImage } from '@/once-ui/components';
 import type { SmartImageProps } from '@/once-ui/components/SmartImage';
 
-
-const Mention = ({ name, href, ...rest }: { name: string, href: string, rest :SmartLinkProps}) => (
-    <SmartLink href={href} prefixIcon="link" suffixIcon="arrowRight" {...rest}>
-      @{name}
-    </SmartLink>
-  );
+const Mention = ({
+  name,
+  href,
+  ...rest
+}: { name: string; href: string; rest: SmartLinkProps }) => (
+  <SmartLink href={href} prefixIcon="link" suffixIcon="arrowRight" {...rest}>
+    @{name}
+  </SmartLink>
+);
 
 type TableProps = {
   data: {

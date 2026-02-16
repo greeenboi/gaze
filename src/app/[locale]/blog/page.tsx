@@ -86,11 +86,7 @@ export default function Blog({
       </Heading>
       <Flex fillWidth marginBottom="m" gap="s" alignItems="center" wrap>
         <Link href="/feed.xml" target="_blank" rel="noopener noreferrer">
-          <Button
-            variant="secondary"
-            size="s"
-            prefixIcon="rss"
-          >
+          <Button variant="secondary" size="s" prefixIcon="rss">
             RSS
           </Button>
         </Link>

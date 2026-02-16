@@ -1,5 +1,3 @@
-
-
 const createI18nContent = t => {
   const person = {
     firstName: 'Suvan',

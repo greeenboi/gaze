@@ -1,12 +1,6 @@
 import React from 'react';
 
-import {
-  Heading,
-  Text,
-  Button,
-  Avatar,
-  Arrow,
-} from '@once-ui-system/core';
+import { Heading, Text, Button, Avatar, Arrow } from '@once-ui-system/core';
 import { Projects } from '@/components/work/Projects';
 
 import { baseURL, routes, renderContent } from '@/app/resources';

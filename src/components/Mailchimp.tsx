@@ -1,13 +1,7 @@
 'use client';
 
 import { mailchimp } from '@/app/resources';
-import {
-  Button,
-  Heading,
-  Input,
-  Text,
-  Background,
-} from '@once-ui-system/core';
+import { Button, Heading, Input, Text, Background } from '@once-ui-system/core';
 import { useState } from 'react';
 import { useTranslations } from 'next-intl';
 import { Flex } from '@/once-ui/components';

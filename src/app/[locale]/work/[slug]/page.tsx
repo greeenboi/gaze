@@ -1,11 +1,7 @@
 import { notFound } from 'next/navigation';
 import { CustomMDX } from '@/components/mdx';
 import { getPosts } from '@/app/utils/utils';
-import {
-  Button,
-  Heading,
-  Text,
-} from '@once-ui-system/core';
+import { Button, Heading, Text } from '@once-ui-system/core';
 import { baseURL, renderContent } from '@/app/resources';
 import { routing } from '@/i18n/routing';
 import { setRequestLocale } from 'next-intl/server';
@@ -172,11 +168,11 @@ export default function Project({ params }: WorkParams) {
       {post.metadata.images.length > 0 && (
         <SmartImage
           aspectRatio={
-        post.metadata.imageType
-          ? post.metadata.imageType === 'video'
-            ? '16 / 9'
-            : '3 / 4'
-          : '16 / 9'
+            post.metadata.imageType
+              ? post.metadata.imageType === 'video'
+                ? '16 / 9'
+                : '3 / 4'
+              : '16 / 9'
           }
           radius="m"
           alt="image"

@@ -7,11 +7,9 @@ export async function GET() {
   const locales = routing.locales;
   const includeLocalePrefix = locales.length > 1;
   const defaultLocale = routing.defaultLocale;
-  
+
   // Ensure baseURL has the proper format
-  const siteUrl = baseURL?.startsWith('http') 
-    ? baseURL 
-    : `https://${baseURL}`;
+  const siteUrl = baseURL?.startsWith('http') ? baseURL : `https://${baseURL}`;
 
   // Create Feed instance
   const feed = new Feed({
@@ -54,10 +52,12 @@ export async function GET() {
   // Add each post to the feed
   for (const post of sortedPosts) {
     const postUrl = `${siteUrl}${includeLocalePrefix ? `/${post.locale}` : ''}/blog/${post.slug}`;
-    
+
     feed.addItem({
       title: post.metadata.title,
-      image: post.metadata.image ? `${siteUrl}${post.metadata.image}` : undefined,
+      image: post.metadata.image
+        ? `${siteUrl}${post.metadata.image}`
+        : undefined,
       id: postUrl,
       link: postUrl,
       description: post.metadata.summary || '',

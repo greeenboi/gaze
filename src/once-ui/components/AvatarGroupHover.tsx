@@ -5,7 +5,15 @@ import { forwardRef } from 'react';
 
 import { Avatar, type AvatarProps, Flex } from '.';
 import styles from './AvatarGroup.module.scss';
-import { Column, HoverCard, Icon, Row, SmartLink, Tag, Text } from '@once-ui-system/core';
+import {
+  Column,
+  HoverCard,
+  Icon,
+  Row,
+  SmartLink,
+  Tag,
+  Text,
+} from '@once-ui-system/core';
 
 interface AvatarGroupProps {
   avatars: AvatarProps[];
@@ -52,7 +60,14 @@ const AvatarGroupHover = forwardRef<HTMLDivElement, AvatarGroupProps>(
               />
             }
           >
-            <Column padding="20" gap="20" radius="l" maxWidth={24} background="page" border="neutral-alpha-weak">
+            <Column
+              padding="20"
+              gap="20"
+              radius="l"
+              maxWidth={24}
+              background="page"
+              border="neutral-alpha-weak"
+            >
               <Row gap="20" fillWidth vertical="center">
                 <Avatar
                   key={index}
@@ -77,16 +92,24 @@ const AvatarGroupHover = forwardRef<HTMLDivElement, AvatarGroupProps>(
                 {avatarProps.description}
               </Text>
               <SmartLink href={avatarProps.linkedin} fillWidth unstyled>
-                <Row fillWidth background="surface" border="surface" radius="l" padding="16" horizontal="between" vertical="center">
+                <Row
+                  fillWidth
+                  background="surface"
+                  border="surface"
+                  radius="l"
+                  padding="16"
+                  horizontal="between"
+                  vertical="center"
+                >
                   <Text>Check me out on Linkedin</Text>
                   <Icon name="link" />
                 </Row>
               </SmartLink>
-            <Row gap="8" wrap>
-              <Tag>Sofware Engineer</Tag>
-              <Tag>Student</Tag>
-              <Tag>Artist</Tag>
-            </Row>
+              <Row gap="8" wrap>
+                <Tag>Sofware Engineer</Tag>
+                <Tag>Student</Tag>
+                <Tag>Artist</Tag>
+              </Row>
             </Column>
           </HoverCard>
         ))}
@@ -105,7 +128,6 @@ const AvatarGroupHover = forwardRef<HTMLDivElement, AvatarGroupProps>(
     );
   }
 );
-
 
 AvatarGroupHover.displayName = 'AvatarGroup';
 

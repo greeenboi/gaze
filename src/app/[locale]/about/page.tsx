@@ -250,9 +250,7 @@ export default function About({
                   >
                     <Flex
                       fillWidth
-                      
                       justifyContent="space-between"
-                     
                       alignItems="flex-end"
                       marginBottom="4"
                     >

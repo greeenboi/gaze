@@ -1,6 +1,5 @@
-import { InlineCode } from "@/once-ui/components";
-import { Tag } from "@once-ui-system/core";
-
+import { InlineCode } from '@/once-ui/components';
+import { Tag } from '@once-ui-system/core';
 
 const person = {
   firstName: 'Suvan',
@@ -111,12 +110,15 @@ const about = {
         role: 'Founding Engineer',
         achievements: [
           <>
-            Engineered the flagship React Native application, developing custom Swift modules to bridge native performance
-gaps. Optimized the interface for iOS 16+ and the Liquid Glass design system, ensuring a high-performance, premium user
-experience that drove user retention and engagement{' '}
+            Engineered the flagship React Native application, developing custom
+            Swift modules to bridge native performance gaps. Optimized the
+            interface for iOS 16+ and the Liquid Glass design system, ensuring a
+            high-performance, premium user experience that drove user retention
+            and engagement{' '}
           </>,
           <>
-            Scaled the agent in Django, livekit, custom agents built with langchain and groq. Used mongodb as the main datastore.{' '}
+            Scaled the agent in Django, livekit, custom agents built with
+            langchain and groq. Used mongodb as the main datastore.{' '}
           </>,
         ],
         images: [
@@ -135,25 +137,34 @@ experience that drove user retention and engagement{' '}
         role: 'Full Stack Developer',
         achievements: [
           <>
-            Engineered a high-fidelity, browser-based IDE using React, CodeMirror, and Socket.io, enabling candidates to complete realworld technical assessments in a collaborative, real-time environment. <br/> This component served as the primary data source for
-AI-driven skill evaluation.{' '}
+            Engineered a high-fidelity, browser-based IDE using React,
+            CodeMirror, and Socket.io, enabling candidates to complete realworld
+            technical assessments in a collaborative, real-time environment.{' '}
+            <br /> This component served as the primary data source for
+            AI-driven skill evaluation.{' '}
           </>,
           <>
-            Architected and executed a critical data migration from Firebase to PostgreSQL, implementing a structured schema with
-Prisma to support complex relational queries for candidate-to-company matching and AI-driven performance analytics.{' '}
+            Architected and executed a critical data migration from Firebase to
+            PostgreSQL, implementing a structured schema with Prisma to support
+            complex relational queries for candidate-to-company matching and
+            AI-driven performance analytics.{' '}
           </>,
           <>
-            Spearheaded the end-to-end infrastructure migration from AWS to GCP, utilizing Cloud Run and Artifact Registry to
-optimize operational costs by 13% and improve platform latency. Built custom containers using NixOS and Docker.{' '}
-{' '}
+            Spearheaded the end-to-end infrastructure migration from AWS to GCP,
+            utilizing Cloud Run and Artifact Registry to optimize operational
+            costs by 13% and improve platform latency. Built custom containers
+            using NixOS and Docker.{' '}
           </>,
           <>
-            Scaled the backend ecosystem by designing type-safe RESTful APIs with Zod and Swagger, ensuring seamless integration
-between the candidate interface and the AI evaluation engine while maintaining 99%+ code reliability through Jest test suites.{' '}
+            Scaled the backend ecosystem by designing type-safe RESTful APIs
+            with Zod and Swagger, ensuring seamless integration between the
+            candidate interface and the AI evaluation engine while maintaining
+            99%+ code reliability through Jest test suites.{' '}
           </>,
           <>
-          Implemented real-time messaging architecture using Firebase Realtime Database, facilitating direct engagement between
-developers and hiring managers to accelerate the interview scheduling loop.{' '}
+            Implemented real-time messaging architecture using Firebase Realtime
+            Database, facilitating direct engagement between developers and
+            hiring managers to accelerate the interview scheduling loop.{' '}
           </>,
         ],
         images: [
@@ -172,18 +183,23 @@ developers and hiring managers to accelerate the interview scheduling loop.{' '}
         role: 'Project Lead & Full Stack Developer',
         achievements: [
           <>
-            Architected a high-concurrency fintech backend using Hono and Bun, optimized for low-latency transaction processing.
-Developed a custom JWT-based authentication and rate-limiting architecture to secure sensitive payment data and prevent
-unauthorized refueling requests, hosting the service on Sevalla via Docker to ensure elastic scaling during peak fleet operational
-hours.{' '}
+            Architected a high-concurrency fintech backend using Hono and Bun,
+            optimized for low-latency transaction processing. Developed a custom
+            JWT-based authentication and rate-limiting architecture to secure
+            sensitive payment data and prevent unauthorized refueling requests,
+            hosting the service on Sevalla via Docker to ensure elastic scaling
+            during peak fleet operational hours.{' '}
           </>,
           <>
-            Built a Frontend Monorepo with refine + vite framework for quick and reliable dashboards. Implemented Internationalization
-for 5 regional languages, for efficient, real-time data fetching of live fueling transactions{' '}
+            Built a Frontend Monorepo with refine + vite framework for quick and
+            reliable dashboards. Implemented Internationalization for 5 regional
+            languages, for efficient, real-time data fetching of live fueling
+            transactions{' '}
           </>,
           <>
-            Engineered the core logistics and payment engine by integrating Ola Maps API and Razorpay to automate fleet booking and
-fuel disbursements. {' '}
+            Engineered the core logistics and payment engine by integrating Ola
+            Maps API and Razorpay to automate fleet booking and fuel
+            disbursements.{' '}
           </>,
         ],
         images: [
@@ -310,13 +326,16 @@ fuel disbursements. {' '}
       {
         title: 'PostgreSQL',
         description: (
-          <>Postgres16, scale and shard databases, can work with clickhouse for designing observabilty monitoring systems.</>
+          <>
+            Postgres16, scale and shard databases, can work with clickhouse for
+            designing observabilty monitoring systems.
+          </>
         ),
         images: [],
       },
       {
         title: 'Sqlite3',
-        description: (<>Can create and manage Sqlite3 databases.</>),
+        description: <>Can create and manage Sqlite3 databases.</>,
         images: [],
       },
       {
@@ -335,7 +354,11 @@ fuel disbursements. {' '}
       {
         title: 'Rust',
         description: (
-          <>Can Create CLI, Web, Desktop and Mobile Applications with Rust. Built a cross platform binary to visualise system utilisation in realtime.</>
+          <>
+            Can Create CLI, Web, Desktop and Mobile Applications with Rust.
+            Built a cross platform binary to visualise system utilisation in
+            realtime.
+          </>
         ),
         images: [],
       },
@@ -437,7 +460,10 @@ fuel disbursements. {' '}
       {
         title: 'Ruby',
         description: (
-          <> Mostly DSA, Competitive Programming, CLI tools and Game Development. </>
+          <>
+            {' '}
+            Mostly DSA, Competitive Programming, CLI tools and Game Development.{' '}
+          </>
         ),
         images: [
           {
@@ -450,25 +476,25 @@ fuel disbursements. {' '}
       },
       {
         title: 'Python',
-        description: ([
+        description: [
+          <>Can create CLI, Web and Desktop Applications with Python.</>,
           <>
-            Can create CLI, Web and Desktop Applications with Python. 
+            Have also worked with Agentic frameworks like Agno and crewai.
+            Created multi-agentic systems with AutoGPT and Langchain.
           </>,
           <>
-            Have also worked with Agentic frameworks like Agno and crewai. Created multi-agentic systems with AutoGPT and Langchain.
+            Trained and reworked several Custom models with Wav2Vec2, Whisper,
+            GPT-2 and Flux-dev.
           </>,
-          <>
-            Trained and reworked several Custom models with Wav2Vec2, Whisper, GPT-2 and Flux-dev.
-          </>,
-        ]),
+        ],
         videos: [
           {
             src: 'https://youtu.be/RhT47xcUVUQ',
             alt: 'Willow Sales Agent',
             width: 16,
             height: 9,
-          }
-        ]
+          },
+        ],
       },
       {
         title: 'RedHat Linux',
@@ -545,7 +571,7 @@ const gallery = {
       src: '/images/gallery/suvan09.webp',
       alt: 'image',
       orientation: 'vertical',
-    }
+    },
   ],
 };
 

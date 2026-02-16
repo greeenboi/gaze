@@ -18,7 +18,13 @@ interface ProjectCardProps {
   title: string;
   content: string;
   description: string;
-  avatars: { src: string; name: string; description: string; role:string; linkedin: string }[];
+  avatars: {
+    src: string;
+    name: string;
+    description: string;
+    role: string;
+    linkedin: string;
+  }[];
 }
 
 export const ProjectCard: React.FC<ProjectCardProps> = ({

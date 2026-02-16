@@ -1,11 +1,6 @@
 'use client';
 
-import {
-  Heading,
-  SmartLink,
-  Tag,
-  Text,
-} from '@once-ui-system/core';
+import { Heading, SmartLink, Tag, Text } from '@once-ui-system/core';
 import styles from './Posts.module.scss';
 import { formatDate } from '@/app/utils/formatDate';
 import { Flex, SmartImage } from '@/once-ui/components';
@@ -68,7 +63,9 @@ export default function Post({ post, thumbnail }: PostProps) {
             <Tag className="mt-8" label={post.metadata.tag} variant="neutral" />
           )}
           {post.metadata.summary && (
-            <Text size='s' variant="label-default-s">{post.metadata.summary}</Text>
+            <Text size="s" variant="label-default-s">
+              {post.metadata.summary}
+            </Text>
           )}
         </Flex>
       </Flex>

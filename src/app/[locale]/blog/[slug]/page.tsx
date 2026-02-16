@@ -2,7 +2,15 @@ import ScrollToHash from '@/components/ScrollToHash';
 import { notFound } from 'next/navigation';
 import { CustomMDX } from '@/components/mdx';
 import { getPosts } from '@/app/utils/utils';
-import { Avatar, Button, Heading, HeadingNav, Media, Text, TiltFx } from '@once-ui-system/core';
+import {
+  Avatar,
+  Button,
+  Heading,
+  HeadingNav,
+  Media,
+  Text,
+  TiltFx,
+} from '@once-ui-system/core';
 
 import { baseURL, renderContent } from '@/app/resources';
 import { setRequestLocale } from 'next-intl/server';
@@ -105,25 +113,27 @@ export default function Blog({ params }: BlogParams) {
   const { person } = renderContent(t);
 
   return (
-    <Flex as="main" fillWidth direction='row' mobileDirection='column' gap="l" alignItems='start'>
-      <Flex as="div" direction='column' gap="m" alignItems='center'>
+    <Flex
+      as="main"
+      fillWidth
+      direction="row"
+      mobileDirection="column"
+      gap="l"
+      alignItems="start"
+    >
+      <Flex as="div" direction="column" gap="m" alignItems="center">
         <TiltFx intensity={4}>
-          <Flex direction='column'>
+          <Flex direction="column">
             <Media
               enlarge
               caption="I'm Building something cool!, Know more."
               maxHeight={10}
               radius="l"
               src="/images/carnelia.png"
-              />
+            />
           </Flex>
         </TiltFx>
-        <HeadingNav
-          width={22}
-          position="sticky"
-          top="64"
-          fitHeight
-        />
+        <HeadingNav width={22} position="sticky" top="64" fitHeight />
       </Flex>
       <Flex as="section" fillWidth maxWidth="xs" direction="column" gap="m">
         <script
@@ -161,7 +171,7 @@ export default function Blog({ params }: BlogParams) {
         {post.metadata.image && (
           <SmartImage
             priority
-            sizes='640px'
+            sizes="640px"
             style={{
               cursor: 'pointer',
               border: '1px solid var(--neutral-alpha-weak)',
@@ -171,7 +181,7 @@ export default function Blog({ params }: BlogParams) {
             alt={`Thumbnail of ${post.metadata.title}`}
             aspectRatio="16 / 9"
           />
-          )}
+        )}
         <Flex gap="12" alignItems="center">
           {person.avatar && <Avatar size="s" src={person.avatar} />}
           <Text variant="body-default-s" onBackground="neutral-weak">
