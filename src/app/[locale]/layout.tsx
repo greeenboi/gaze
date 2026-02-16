@@ -1,6 +1,10 @@
 import '@/once-ui/styles/index.scss';
 import '@/once-ui/tokens/index.scss';
 
+import '@once-ui-system/core/css/styles.css';
+import '@once-ui-system/core/css/tokens.css';
+
+
 import classNames from 'classnames';
 
 import { Footer, Header, RouteGuard } from '@/components';
@@ -21,11 +25,11 @@ import {
 
 import { routing } from '@/i18n/routing';
 import { renderContent } from '@/app/resources';
-import { Background, Flex } from '@/once-ui/components';
 
 import { SpeedInsights } from '@vercel/speed-insights/next';
 import { Analytics } from '@vercel/analytics/react';
 import { LayoutProvider } from '@once-ui-system/core';
+import { Background, Flex } from '@/once-ui/components';
 
 export async function generateMetadata({
   params: { locale },

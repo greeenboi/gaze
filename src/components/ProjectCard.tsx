@@ -1,16 +1,16 @@
 'use client';
 
 import {
-  AvatarGroup,
-  Flex,
+  Carousel,
   Heading,
   RevealFx,
-  SmartImage,
   SmartLink,
   Text,
-} from '@/once-ui/components';
+} from '@once-ui-system/core';
 import { useEffect, useState } from 'react';
 import { useTranslations } from 'next-intl';
+import { Flex } from '@/once-ui/components';
+import { AvatarGroupHover } from '@/once-ui/components/AvatarGroupHover';
 
 interface ProjectCardProps {
   href: string;
@@ -18,7 +18,7 @@ interface ProjectCardProps {
   title: string;
   content: string;
   description: string;
-  avatars: { src: string; linkedin: string }[];
+  avatars: { src: string; name: string; description: string; role:string; linkedin: string }[];
 }
 
 export const ProjectCard: React.FC<ProjectCardProps> = ({
@@ -29,8 +29,12 @@ export const ProjectCard: React.FC<ProjectCardProps> = ({
   description,
   avatars,
 }) => {
-  const [activeIndex, setActiveIndex] = useState(0);
   const [isTransitioning, setIsTransitioning] = useState(false);
+
+  const carouselItems = images.map((image, index) => ({
+    slide: image,
+    alt: `${title || 'Project'} image ${index + 1}`,
+  }));
 
   const t = useTranslations();
 
@@ -42,66 +46,33 @@ export const ProjectCard: React.FC<ProjectCardProps> = ({
     return () => clearTimeout(timer);
   }, []);
 
-  const handleImageClick = () => {
-    if (images.length > 1) {
-      setIsTransitioning(false);
-      const nextIndex = (activeIndex + 1) % images.length;
-      handleControlClick(nextIndex);
-    }
-  };
-
-  const handleControlClick = (index: number) => {
-    if (index !== activeIndex) {
-      setIsTransitioning(false);
-      setTimeout(() => {
-        setActiveIndex(index);
-        setIsTransitioning(true);
-      }, 630);
-    }
-  };
-
   return (
     <Flex fillWidth gap="m" direction="column">
-      {images[activeIndex] && (
-        <Flex onClick={handleImageClick}>
+      {carouselItems.length > 0 && (
+        <Flex fillWidth>
           <RevealFx
             style={{ width: '100%' }}
             delay={0.4}
             trigger={isTransitioning}
             speed="fast"
           >
-            <SmartImage
-              tabIndex={0}
-              radius="l"
-              alt={title}
-              aspectRatio="16 / 9"
-              src={images[activeIndex]}
+            <Carousel
               style={{
                 border: '1px solid var(--neutral-alpha-weak)',
-                cursor: 'pointer',
+                borderRadius: 'var(--radius-l)',
               }}
+              controls={false}
+              indicator={false}
+              aspectRatio="16 / 9"
+              play={{
+                auto: carouselItems.length > 1,
+                interval: 5000,
+                controls: true,
+                progress: true,
+              }}
+              items={carouselItems}
             />
           </RevealFx>
-        </Flex>
-      )}
-      {images.length > 1 && (
-        <Flex gap="4" paddingX="s" fillWidth justifyContent="center">
-          {images.map((_, index) => (
-            <Flex
-              key={index}
-              onClick={() => handleControlClick(index)}
-              style={{
-                background:
-                  activeIndex === index
-                    ? 'var(--neutral-on-background-strong)'
-                    : 'var(--neutral-alpha-medium)',
-                cursor: 'pointer',
-                transition: 'background 0.3s ease',
-              }}
-              fillWidth
-              height="2"
-            ></Flex>
-          ))}
         </Flex>
       )}
       <Flex
@@ -122,7 +93,7 @@ export const ProjectCard: React.FC<ProjectCardProps> = ({
         {(avatars?.length > 0 || description?.trim() || content?.trim()) && (
           <Flex flex={7} direction="column" gap="16">
             {avatars?.length > 0 && (
-              <AvatarGroup avatars={avatars} size="m" reverseOrder />
+              <AvatarGroupHover avatars={avatars} size="m" reverseOrder />
             )}
             {description?.trim() && (
               <Text

@@ -1,4 +1,5 @@
-import { InlineCode } from '@/once-ui/components';
+import { InlineCode } from "@/once-ui/components";
+
 
 const person = {
   firstName: 'Suvan',
@@ -7,7 +8,7 @@ const person = {
     return `${this.firstName} ${this.lastName}`;
   },
   role: 'Developer',
-  avatar: '/images/avatar.png',
+  avatar: '/images/avatar.jpeg',
   location: 'Asia/Kolkata', // Expecting the IANA time zone identifier, e.g., 'Europe/Vienna'
   languages: ['English'], // optional: Leave the array empty if you don't want to display languages
 };

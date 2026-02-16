@@ -1,6 +1,6 @@
 import { getPosts } from '@/app/utils/utils';
-import { Grid } from '@/once-ui/components';
 import Post from './Post';
+import { Grid } from '@/once-ui/components';
 
 interface PostsProps {
   range?: [number] | [number, number];

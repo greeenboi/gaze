@@ -3,7 +3,7 @@
 import { useParams } from 'next/navigation';
 import { useEffect, useState, useTransition } from 'react';
 
-import { Flex, ToggleButton } from '@/once-ui/components';
+import { ToggleButton } from '@once-ui-system/core';
 import styles from '@/components/Header.module.scss';
 
 import { routes, display } from '@/app/resources';
@@ -13,6 +13,7 @@ import { type Locale, usePathname, useRouter } from '@/i18n/routing';
 import { renderContent } from '@/app/resources';
 import { useTranslations } from 'next-intl';
 import { i18n } from '@/app/resources/config';
+import { Flex } from '@/once-ui/components';
 
 type TimeDisplayProps = {
   timeZone: string;
@@ -75,7 +76,7 @@ export const Header = () => {
         fillWidth
         minHeight="80"
         justifyContent="center"
-      ></Flex>
+      />
       <Flex
         style={{ height: 'fit-content' }}
         className={styles.position}
@@ -106,7 +107,6 @@ export const Header = () => {
             <Flex gap="4" textVariant="body-default-s">
               {routes['/'] && (
                 <ToggleButton
-                  prefixIcon="home"
                   href={`/${params?.locale}`}
                   selected={pathname === '/'}
                 >
@@ -117,7 +117,6 @@ export const Header = () => {
               )}
               {routes['/about'] && (
                 <ToggleButton
-                  prefixIcon="person"
                   href={`/${params?.locale}/about`}
                   selected={pathname === '/about'}
                 >
@@ -128,7 +127,6 @@ export const Header = () => {
               )}
               {routes['/work'] && (
                 <ToggleButton
-                  prefixIcon="grid"
                   href={`/${params?.locale}/work`}
                   selected={pathname.startsWith('/work')}
                 >
@@ -139,7 +137,6 @@ export const Header = () => {
               )}
               {routes['/blog'] && (
                 <ToggleButton
-                  prefixIcon="book"
                   href={`/${params?.locale}/blog`}
                   selected={pathname.startsWith('/blog')}
                 >
@@ -150,7 +147,6 @@ export const Header = () => {
               )}
               {routes['/gallery'] && (
                 <ToggleButton
-                  prefixIcon="gallery"
                   href={`/${params?.locale}/gallery`}
                   selected={pathname.startsWith('/gallery')}
                 >

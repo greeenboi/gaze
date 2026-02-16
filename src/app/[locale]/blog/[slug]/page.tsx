@@ -2,13 +2,14 @@ import ScrollToHash from '@/components/ScrollToHash';
 import { notFound } from 'next/navigation';
 import { CustomMDX } from '@/components/mdx';
 import { getPosts } from '@/app/utils/utils';
-import { Avatar, Button, Flex, Heading, SmartImage, Text } from '@/once-ui/components';
+import { Avatar, Button, Heading, HeadingNav, Media, Text, TiltFx } from '@once-ui-system/core';
 
 import { baseURL, renderContent } from '@/app/resources';
 import { setRequestLocale } from 'next-intl/server';
 import { routing } from '@/i18n/routing';
 import { useTranslations } from 'next-intl';
 import { formatDate } from '@/app/utils/formatDate';
+import { Flex, SmartImage } from '@/once-ui/components';
 
 interface BlogParams {
   params: {
@@ -104,63 +105,84 @@ export default function Blog({ params }: BlogParams) {
   const { person } = renderContent(t);
 
   return (
-    <Flex as="section" fillWidth maxWidth="xs" direction="column" gap="m">
-      <script
-        type="application/ld+json"
-        suppressHydrationWarning
-        // biome-ignore lint/security/noDangerouslySetInnerHtml: <explanation>
-        dangerouslySetInnerHTML={{
-          __html: JSON.stringify({
-            '@context': 'https://schema.org',
-            '@type': 'BlogPosting',
-            headline: post.metadata.title,
-            datePublished: post.metadata.publishedAt,
-            dateModified: post.metadata.publishedAt,
-            description: post.metadata.summary,
-            image: post.metadata.image
-              ? `https://${baseURL}${post.metadata.image}`
-              : `https://${baseURL}/og?title=${post.metadata.title}`,
-            url: `https://${baseURL}/${params.locale}/blog/${post.slug}`,
-            author: {
-              '@type': 'Person',
-              name: person.name,
-            },
-          }),
-        }}
-      />
-      <Button
-        href={`/${params.locale}/blog`}
-        variant="tertiary"
-        size="s"
-        prefixIcon="chevronLeft"
-      >
-        Posts
-      </Button>
-      <Heading variant="display-strong-s">{post.metadata.title}</Heading>
-      {post.metadata.image && (
-        <SmartImage
-          priority
-          sizes='640px'
-          style={{
-            cursor: 'pointer',
-            border: '1px solid var(--neutral-alpha-weak)',
-          }}
-          radius="m"
-          src={post.metadata.image}
-          alt={`Thumbnail of ${post.metadata.title}`}
-          aspectRatio="16 / 9"
+    <Flex as="main" fillWidth direction='row' mobileDirection='column' gap="l" alignItems='start'>
+      <Flex as="div" direction='column' gap="m" alignItems='center'>
+        <TiltFx intensity={4}>
+          <Flex direction='column'>
+            <Media
+              enlarge
+              caption="I'm Building something cool!, Know more."
+              maxHeight={10}
+              radius="l"
+              src="/images/carnelia.png"
+              />
+          </Flex>
+        </TiltFx>
+        <HeadingNav
+          width={22}
+          position="sticky"
+          top="64"
+          fitHeight
         />
-        )}
-      <Flex gap="12" alignItems="center">
-        {person.avatar && <Avatar size="s" src={person.avatar} />}
-        <Text variant="body-default-s" onBackground="neutral-weak">
-          {formatDate(post.metadata.publishedAt)}
-        </Text>
       </Flex>
-      <Flex as="article" direction="column" fillWidth>
-        <CustomMDX source={post.content} />
+      <Flex as="section" fillWidth maxWidth="xs" direction="column" gap="m">
+        <script
+          type="application/ld+json"
+          suppressHydrationWarning
+          // biome-ignore lint/security/noDangerouslySetInnerHtml: <explanation>
+          dangerouslySetInnerHTML={{
+            __html: JSON.stringify({
+              '@context': 'https://schema.org',
+              '@type': 'BlogPosting',
+              headline: post.metadata.title,
+              datePublished: post.metadata.publishedAt,
+              dateModified: post.metadata.publishedAt,
+              description: post.metadata.summary,
+              image: post.metadata.image
+                ? `https://${baseURL}${post.metadata.image}`
+                : `https://${baseURL}/og?title=${post.metadata.title}`,
+              url: `https://${baseURL}/${params.locale}/blog/${post.slug}`,
+              author: {
+                '@type': 'Person',
+                name: person.name,
+              },
+            }),
+          }}
+        />
+        <Button
+          href={`/${params.locale}/blog`}
+          variant="tertiary"
+          size="s"
+          prefixIcon="chevronLeft"
+        >
+          Posts
+        </Button>
+        <Heading variant="display-strong-s">{post.metadata.title}</Heading>
+        {post.metadata.image && (
+          <SmartImage
+            priority
+            sizes='640px'
+            style={{
+              cursor: 'pointer',
+              border: '1px solid var(--neutral-alpha-weak)',
+            }}
+            radius="m"
+            src={post.metadata.image}
+            alt={`Thumbnail of ${post.metadata.title}`}
+            aspectRatio="16 / 9"
+          />
+          )}
+        <Flex gap="12" alignItems="center">
+          {person.avatar && <Avatar size="s" src={person.avatar} />}
+          <Text variant="body-default-s" onBackground="neutral-weak">
+            {formatDate(post.metadata.publishedAt)}
+          </Text>
+        </Flex>
+        <Flex as="article" direction="column" fillWidth>
+          <CustomMDX source={post.content} />
+        </Flex>
+        <ScrollToHash />
       </Flex>
-      <ScrollToHash />
     </Flex>
   );
 }

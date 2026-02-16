@@ -1,10 +1,10 @@
 'use client';
 
 import Masonry from 'react-masonry-css';
-import { SmartImage } from '@/once-ui/components';
 import styles from './Gallery.module.scss';
 import { useTranslations } from 'next-intl';
 import { renderContent } from '@/app/resources';
+import { SmartImage } from '@/once-ui/components';
 
 export default function MasonryGrid() {
   const breakpointColumnsObj = {

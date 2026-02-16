@@ -1,8 +1,9 @@
 'use client';
 
 import type React from 'react';
-import { Flex, Text } from '@/once-ui/components';
+import { Text } from '@once-ui-system/core';
 import styles from './about.module.scss';
+import { Flex } from '@/once-ui/components';
 
 interface TableOfContentsProps {
   structure: {
@@ -62,12 +63,11 @@ const TableOfContents: React.FC<TableOfContentsProps> = ({
               alignItems="center"
               onClick={() => scrollTo(section.title, 80)}
             >
-              <Flex height="1" minWidth="16" background="neutral-strong"></Flex>
+              <Flex height="1" minWidth="16" background="neutral-strong" />
               <Text>{section.title}</Text>
             </Flex>
             {about.tableOfContent.subItems && (
-              <>
-                {section.items.map((item, itemIndex) => (
+              section.items.map((item, itemIndex) => (
                   <Flex
                     hide="l"
                     key={itemIndex}
@@ -82,11 +82,10 @@ const TableOfContents: React.FC<TableOfContentsProps> = ({
                       height="1"
                       minWidth="8"
                       background="neutral-strong"
-                    ></Flex>
+                    />
                     <Text>{item}</Text>
                   </Flex>
-                ))}
-              </>
+                ))
             )}
           </Flex>
         ))}

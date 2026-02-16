@@ -1,21 +1,19 @@
 import {
   Avatar,
-  Button,
-  Flex,
+  // Button,
   Heading,
   Icon,
   IconButton,
-  SmartImage,
   Tag,
   Text,
-} from '@/once-ui/components';
-import { Media } from "@once-ui-system/core"
+} from '@once-ui-system/core';
 import { baseURL, renderContent } from '@/app/resources';
 import TableOfContents from '@/components/about/TableOfContents';
 import styles from '@/components/about/about.module.scss';
 import { getTranslations, setRequestLocale } from 'next-intl/server';
 import { useTranslations } from 'next-intl';
 import OnceMedia from '@/components/media';
+import { Button, Flex, SmartImage } from '@/once-ui/components';
 
 export async function generateMetadata({
   params: { locale },
@@ -252,7 +250,9 @@ export default function About({
                   >
                     <Flex
                       fillWidth
+                      
                       justifyContent="space-between"
+                     
                       alignItems="flex-end"
                       marginBottom="4"
                     >

@@ -1,15 +1,14 @@
 'use client';
 
 import {
-  Flex,
   Heading,
-  SmartImage,
   SmartLink,
   Tag,
   Text,
-} from '@/once-ui/components';
+} from '@once-ui-system/core';
 import styles from './Posts.module.scss';
 import { formatDate } from '@/app/utils/formatDate';
+import { Flex, SmartImage } from '@/once-ui/components';
 
 interface PostProps {
   post: any;

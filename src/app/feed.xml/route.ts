@@ -20,7 +20,7 @@ export async function GET() {
     id: siteUrl,
     link: siteUrl,
     language: defaultLocale,
-    image: `${siteUrl}/images/avatar.png`,
+    image: `${siteUrl}/images/avatar.jpeg`,
     favicon: `${siteUrl}/favicon.ico`,
     copyright: `All rights reserved ${new Date().getFullYear()}, Suvan GS`,
     updated: new Date(),

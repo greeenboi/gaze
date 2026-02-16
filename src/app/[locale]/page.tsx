@@ -2,13 +2,11 @@ import React from 'react';
 
 import {
   Heading,
-  Flex,
   Text,
   Button,
   Avatar,
-  RevealFx,
   Arrow,
-} from '@/once-ui/components';
+} from '@once-ui-system/core';
 import { Projects } from '@/components/work/Projects';
 
 import { baseURL, routes, renderContent } from '@/app/resources';
@@ -16,6 +14,7 @@ import { Mailchimp } from '@/components';
 import { Posts } from '@/components/blog/Posts';
 import { getTranslations, setRequestLocale } from 'next-intl/server';
 import { useTranslations } from 'next-intl';
+import { Flex, RevealFx } from '@/once-ui/components';
 
 export async function generateMetadata({
   params: { locale },

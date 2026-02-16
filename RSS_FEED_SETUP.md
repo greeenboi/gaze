@@ -25,7 +25,7 @@ This is the main RSS 2.0 feed endpoint that generates the XML feed. It:
 - Includes post metadata: title, description, URL, publish date, categories, and images
 - Caches the feed for 1 hour for performance
 - Uses proper email format for author fields
-- Includes a valid channel image (avatar.png)
+- Includes a valid channel image (avatar.jpeg)
 - Provides feedLinks to all feed formats
 
 ### 2. `/src/app/feed.json/route.ts` (NEW)
@@ -180,7 +180,7 @@ The `feed` package offers several advantages over the basic `rss` package:
 The RSS feed has been configured to pass W3C validation:
 
 ✅ **Email Format**: Both `managingEditor` and `webMaster` fields use the proper RFC 822 format: `email@domain.com (Name)`  
-✅ **Channel Image**: Uses a valid image format (PNG) at `/images/avatar.png` instead of favicon  
+✅ **Channel Image**: Uses a valid image format (PNG) at `/images/avatar.jpeg` instead of favicon  
 ✅ **Self-Reference URL**: The `feed_url` is properly formatted as an absolute URL with protocol  
 ✅ **RSS 2.0 Compliance**: All required fields are present and properly formatted
 

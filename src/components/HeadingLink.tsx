@@ -2,7 +2,7 @@
 
 import type React from 'react';
 import { useState, useCallback } from 'react';
-import { Heading, Flex, IconButton, Toaster } from '@/once-ui/components';
+import { Heading, Flex, IconButton, Toaster } from '@once-ui-system/core';
 
 import styles from '@/components/HeadingLink.module.scss';
 

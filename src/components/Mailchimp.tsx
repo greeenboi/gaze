@@ -3,14 +3,14 @@
 import { mailchimp } from '@/app/resources';
 import {
   Button,
-  Flex,
   Heading,
   Input,
   Text,
   Background,
-} from '@/once-ui/components';
+} from '@once-ui-system/core';
 import { useState } from 'react';
 import { useTranslations } from 'next-intl';
+import { Flex } from '@/once-ui/components';
 
 function debounce<T extends (...args: any[]) => void>(
   func: T,
@@ -133,7 +133,7 @@ export const Mailchimp = ({ newsletter }: { newsletter: NewsletterProps }) => {
               }
             }}
             onBlur={handleBlur}
-            error={error}
+            error={error!}
           />
           <div style={{ display: 'none' }}>
             <input

@@ -17,6 +17,9 @@ interface AvatarProps {
   };
   style?: React.CSSProperties;
   onClick?: () => void;
+  name?: string;
+  description?: string;
+  role?: string;
   linkedin?: string;
   className?: string;
 }
