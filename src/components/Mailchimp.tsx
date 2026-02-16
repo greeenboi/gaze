@@ -1,10 +1,10 @@
 'use client';
 
 import { mailchimp } from '@/app/resources';
-import { Button, Heading, Input, Text, Background } from '@once-ui-system/core';
+import { Button, Heading, Text, Background } from '@once-ui-system/core';
 import { useState } from 'react';
 import { useTranslations } from 'next-intl';
-import { Flex } from '@/once-ui/components';
+import { Flex, Input } from '@/once-ui/components';
 
 function debounce<T extends (...args: any[]) => void>(
   func: T,
@@ -127,7 +127,7 @@ export const Mailchimp = ({ newsletter }: { newsletter: NewsletterProps }) => {
               }
             }}
             onBlur={handleBlur}
-            error={error!}
+            error={error}
           />
           <div style={{ display: 'none' }}>
             <input
@@ -144,12 +144,12 @@ export const Mailchimp = ({ newsletter }: { newsletter: NewsletterProps }) => {
               className="response"
               id="mce-error-response"
               style={{ display: 'none' }}
-            ></div>
+            />
             <div
               className="response"
               id="mce-success-response"
               style={{ display: 'none' }}
-            ></div>
+            />
           </div>
           <div
             aria-hidden="true"
