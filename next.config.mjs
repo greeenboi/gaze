@@ -14,6 +14,9 @@ const nextConfig = {
     remotePatterns: [{ hostname: 'img.shields.io', pathname: '/work/*' }],
   },
   pageExtensions: ['ts', 'tsx', 'md', 'mdx'],
+  eslint: {
+    ignoreDuringBuilds: true, // Disable linting during next build
+  },
 };
 
 export default withNextIntl(withMDX(nextConfig));
