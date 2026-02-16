@@ -1,8 +1,8 @@
 import { renderContent } from '@/app/resources';
-import { IconButton, SmartLink, Text } from '@once-ui-system/core';
+import { SmartLink, Text } from '@once-ui-system/core';
 import { useTranslations } from 'next-intl';
 import styles from './Footer.module.scss';
-import { Flex } from '@/once-ui/components';
+import { Flex, IconButton } from '@/once-ui/components';
 
 export const Footer = () => {
   const currentYear = new Date().getFullYear();

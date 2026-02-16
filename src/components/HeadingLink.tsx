@@ -2,9 +2,10 @@
 
 import type React from 'react';
 import { useState, useCallback } from 'react';
-import { Heading, Flex, IconButton, Toaster } from '@once-ui-system/core';
+import { Heading, IconButton, Toaster } from '@once-ui-system/core';
 
 import styles from '@/components/HeadingLink.module.scss';
+import { Flex } from '@/once-ui/components';
 
 interface HeadingLinkProps {
   id: string;

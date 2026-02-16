@@ -28,7 +28,7 @@ import { renderContent } from '@/app/resources';
 
 import { SpeedInsights } from '@vercel/speed-insights/next';
 import { Analytics } from '@vercel/analytics/react';
-import { LayoutProvider } from '@once-ui-system/core';
+import { AutoScroll, Fade, LayoutProvider, Text } from '@once-ui-system/core';
 import { Background, Flex } from '@/once-ui/components';
 
 export async function generateMetadata({
@@ -176,6 +176,20 @@ export default async function RootLayout({
               </Flex>
             </Flex>
             <Footer />
+            <Flex maxHeight={3}>
+              <Fade zIndex="1" to="right" fillHeight width="64" position="absolute" left="0" top="0"/>
+              <AutoScroll paddingY="40" speed='slow'>
+                <Text style={{opacity:"0.15"}} variant='label-default-m'>Suvan GS</Text>
+                <Text style={{opacity:"0.15"}} variant='label-default-m'>greeenboi</Text>
+                <Text style={{opacity:"0.15"}} variant='label-default-m'>GreenArcade</Text>
+                <Text style={{opacity:"0.15"}} variant='label-default-m'>Suvan GS</Text>
+                <Text style={{opacity:"0.15"}} variant='label-default-m'>greeenboi</Text>
+                <Text style={{opacity:"0.15"}} variant='label-default-m'>GreenArcade</Text>
+                <Text style={{opacity:"0.15"}} variant='label-default-m'>Suvan GS</Text>
+                <Text style={{opacity:"0.15"}} variant='label-default-m'>greeenboi</Text>
+              </AutoScroll>
+              <Fade zIndex="1" to="left" fillHeight width="64" position="absolute" right="0" top="0"/>
+            </Flex>
           </Flex>
         </Flex>
       </LayoutProvider>

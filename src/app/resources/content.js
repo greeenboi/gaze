@@ -1,4 +1,5 @@
 import { InlineCode } from "@/once-ui/components";
+import { Tag } from "@once-ui-system/core";
 
 
 const person = {
@@ -105,23 +106,27 @@ const about = {
     title: 'Work Experience',
     experiences: [
       {
-        company: 'Ease In AI',
+        company: 'Sarvin AI',
         timeframe: 'SEP 2025 - PRESENT',
-        role: 'Founding Engineer Intern',
+        role: 'Founding Engineer',
         achievements: [
           <>
-            Working with React Native to build a cross-platform mobile app
-            that plans your day.{' '}
+            Engineered the flagship React Native application, developing custom Swift modules to bridge native performance
+gaps. Optimized the interface for iOS 16+ and the Liquid Glass design system, ensuring a high-performance, premium user
+experience that drove user retention and engagement{' '}
+          </>,
+          <>
+            Scaled the agent in Django, livekit, custom agents built with langchain and groq. Used mongodb as the main datastore.{' '}
           </>,
         ],
         images: [
           // // optional: leave the array empty if you don't want to display images
-          // {
-          //   src: '/images/projects/project-01/cover-01.jpg',
-          //   alt: 'Once UI Project',
-          //   width: 16,
-          //   height: 9,
-          // },
+          {
+            src: '/images/work/sweezy.png',
+            alt: 'sweezy.app',
+            width: 16,
+            height: 9,
+          },
         ],
       },
       {
@@ -130,27 +135,35 @@ const about = {
         role: 'Full Stack Developer',
         achievements: [
           <>
-            Worked with Express, Prisma and Postgres. Migrated from Firebase. Developed APIs with Swagger and Zod for docs and validation. Wrote Unit tests with Jest.{' '}
+            Engineered a high-fidelity, browser-based IDE using React, CodeMirror, and Socket.io, enabling candidates to complete realworld technical assessments in a collaborative, real-time environment. <br/> This component served as the primary data source for
+AI-driven skill evaluation.{' '}
           </>,
           <>
-            Worked with React, Storybook, Codemirror and Socket.io to develop a real-time coding interface like CodeSandbox.{' '}
+            Architected and executed a critical data migration from Firebase to PostgreSQL, implementing a structured schema with
+Prisma to support complex relational queries for candidate-to-company matching and AI-driven performance analytics.{' '}
           </>,
           <>
-            Wrote a custom JWT Authentication system with an User-Invite Schema
-            in Postgres.{' '}
+            Spearheaded the end-to-end infrastructure migration from AWS to GCP, utilizing Cloud Run and Artifact Registry to
+optimize operational costs by 13% and improve platform latency. Built custom containers using NixOS and Docker.{' '}
+{' '}
           </>,
           <>
-            Built a reliable s3 file upload and management system with GCP and added scalability with Redis caching.
+            Scaled the backend ecosystem by designing type-safe RESTful APIs with Zod and Swagger, ensuring seamless integration
+between the candidate interface and the AI evaluation engine while maintaining 99%+ code reliability through Jest test suites.{' '}
+          </>,
+          <>
+          Implemented real-time messaging architecture using Firebase Realtime Database, facilitating direct engagement between
+developers and hiring managers to accelerate the interview scheduling loop.{' '}
           </>,
         ],
         images: [
           // // optional: leave the array empty if you don't want to display images
-          // {
-          //   src: '/images/projects/project-01/cover-01.jpg',
-          //   alt: 'Once UI Project',
-          //   width: 16,
-          //   height: 9,
-          // },
+          {
+            src: '/images/work/tryerrgo.png',
+            alt: 'tryerrgo.com',
+            width: 16,
+            height: 9,
+          },
         ],
       },
       {
@@ -159,27 +172,18 @@ const about = {
         role: 'Project Lead & Full Stack Developer',
         achievements: [
           <>
-            Implemented a Distributed, Cached API system integrating a custom
-            Rate Limiter, Cors & CSRF, Logger(Debug) and Middleware using Hono,
-            PG (NeonDB), Drizzle.{' '}
+            Architected a high-concurrency fintech backend using Hono and Bun, optimized for low-latency transaction processing.
+Developed a custom JWT-based authentication and rate-limiting architecture to secure sensitive payment data and prevent
+unauthorized refueling requests, hosting the service on Sevalla via Docker to ensure elastic scaling during peak fleet operational
+hours.{' '}
           </>,
           <>
-            Hosting it as a Bun runtime on Sevalla inside a distributed Docker
-            instance.{' '}
+            Built a Frontend Monorepo with refine + vite framework for quick and reliable dashboards. Implemented Internationalization
+for 5 regional languages, for efficient, real-time data fetching of live fueling transactions{' '}
           </>,
           <>
-            Wrote a custom JWT Authentication system with an User-Invite Schema
-            in Postgres.{' '}
-          </>,
-          <>
-            Built a Frontend Monorepo with refine + vite framework for quick and
-            reliable dashboards. Implemented Internationalization for 5
-            languages, GQL for data fetching from backend.
-          </>,
-          <>
-            Worked with Ola Maps API to create a custom logic for booking fleets
-            of trucks and display optimal routes also facilitated payments
-            between the driver and booking owner with razorpay.
+            Engineered the core logistics and payment engine by integrating Ola Maps API and Razorpay to automate fleet booking and
+fuel disbursements. {' '}
           </>,
         ],
         images: [
