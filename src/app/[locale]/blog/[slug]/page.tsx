@@ -8,6 +8,7 @@ import {
   Heading,
   HeadingNav,
   Media,
+  SmartLink,
   Text,
   TiltFx,
 } from '@once-ui-system/core';
@@ -122,17 +123,19 @@ export default function Blog({ params }: BlogParams) {
       alignItems="start"
     >
       <Flex as="div" direction="column" gap="m" alignItems="center">
-        <TiltFx intensity={4}>
-          <Flex direction="column">
-            <Media
-              enlarge
-              caption="I'm Building something cool!, Know more."
-              maxHeight={10}
-              radius="l"
-              src="/images/carnelia.png"
-            />
-          </Flex>
-        </TiltFx>
+        <SmartLink href="https://docs.carnelia.dev" unstyled>
+          <TiltFx intensity={4}>
+            <Flex direction="column">
+              <Media
+                caption="I'm Building something cool!, Know more."
+                aspectRatio='16/9'
+                maxHeight={10}
+                radius="l"
+                src="/images/carnelia-og.png"
+              />
+            </Flex>
+          </TiltFx>
+        </SmartLink>
         <HeadingNav width={22} position="sticky" top="64" fitHeight />
       </Flex>
       <Flex as="section" fillWidth maxWidth="xs" direction="column" gap="m">

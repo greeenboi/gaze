@@ -35,8 +35,8 @@ export const Footer = () => {
           <Text onBackground="neutral-weak">
             {/* Usage of this template requires attribution. Please don't remove the link to Once UI. */}
             / Check me out on{' '}
-            <SmartLink style={{ marginLeft: '-0.125rem' }} href="#">
-              Marketplace
+            <SmartLink style={{ marginLeft: '-0.125rem' }} href="https://peerlist.io/greeenboi">
+              Peerlist
             </SmartLink>
           </Text>
         </Text>
