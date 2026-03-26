@@ -1,22 +1,19 @@
-import { getPosts } from '@/app/utils/utils';
-import { Flex } from '@once-ui-system/core';
-
+import { getPosts } from '@/utils/utils';
+import { Column } from '@once-ui-system/core';
 import { ProjectCard } from '@/components';
 
 interface ProjectsProps {
   range?: [number, number?];
-  locale: string;
+  exclude?: string[];
 }
 
-export function Projects({ range, locale }: ProjectsProps) {
-  const allProjects = getPosts([
-    'src',
-    'app',
-    '[locale]',
-    'work',
-    'projects',
-    locale,
-  ]);
+export function Projects({ range, exclude }: ProjectsProps) {
+  let allProjects = getPosts(['src', 'app', 'work', 'projects']);
+
+  // Exclude by slug (exact match)
+  if (exclude && exclude.length > 0) {
+    allProjects = allProjects.filter(post => !exclude.includes(post.slug));
+  }
 
   const sortedProjects = allProjects.sort((a, b) => {
     return (
@@ -30,11 +27,12 @@ export function Projects({ range, locale }: ProjectsProps) {
     : sortedProjects;
 
   return (
-    <Flex fillWidth gap="xl" marginBottom="40" paddingX="l" direction="column">
-      {displayedProjects.map(post => (
+    <Column fillWidth gap="xl" marginBottom="40" paddingX="l">
+      {displayedProjects.map((post, index) => (
         <ProjectCard
+          priority={index < 2}
           key={post.slug}
-          href={`work/${post.slug}`}
+          href={`/work/${post.slug}`}
           images={post.metadata.images}
           title={post.metadata.title}
           description={post.metadata.summary}
@@ -48,8 +46,9 @@ export function Projects({ range, locale }: ProjectsProps) {
               linkedin: member.linkedIn,
             })) || []
           }
+          link={post.metadata.link || ''}
         />
       ))}
-    </Flex>
+    </Column>
   );
 }

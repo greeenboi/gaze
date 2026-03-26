@@ -1,11 +1,9 @@
 'use client';
 
-import type React from 'react';
-import { useState, useCallback } from 'react';
-import { Heading, IconButton, Toaster } from '@once-ui-system/core';
+import React, { JSX } from 'react';
+import { Heading, Flex, IconButton, useToast } from '@once-ui-system/core';
 
 import styles from '@/components/HeadingLink.module.scss';
-import { Flex } from '@/once-ui/components';
 
 interface HeadingLinkProps {
   id: string;
@@ -20,48 +18,28 @@ export const HeadingLink: React.FC<HeadingLinkProps> = ({
   children,
   style,
 }) => {
-  const [toasts, setToasts] = useState<
-    {
-      id: string;
-      variant: 'success' | 'danger';
-      message: string;
-      action?: React.ReactNode;
-    }[]
-  >([]);
-
-  const addToast = useCallback(
-    (
-      variant: 'success' | 'danger',
-      message: string,
-      action?: React.ReactNode
-    ) => {
-      const id = `${new Date().getTime()}`;
-      setToasts(prevToasts => [
-        ...prevToasts,
-        { id, variant, message, action },
-      ]);
-    },
-    []
-  );
-
-  const removeToast = useCallback((id: string) => {
-    setToasts(prevToasts => prevToasts.filter(toast => toast.id !== id));
-  }, []);
+  const { addToast } = useToast();
 
   const copyURL = (id: string): void => {
     const url = `${window.location.origin}${window.location.pathname}#${id}`;
     navigator.clipboard.writeText(url).then(
       () => {
-        addToast('success', 'Link copied to clipboard.');
+        addToast({
+          variant: 'success',
+          message: 'Link copied to clipboard.',
+        });
       },
       () => {
-        addToast('danger', 'Failed to copy link.');
+        addToast({
+          variant: 'danger',
+          message: 'Failed to copy link.',
+        });
       }
     );
   };
 
   const variantMap = {
-    1: 'heading-strong-xl',
+    1: 'display-strong-xs',
     2: 'heading-strong-xl',
     3: 'heading-strong-l',
     4: 'heading-strong-m',
@@ -73,27 +51,24 @@ export const HeadingLink: React.FC<HeadingLinkProps> = ({
   const asTag = `h${level}` as keyof JSX.IntrinsicElements;
 
   return (
-    <Flex>
-      <Toaster toasts={toasts} removeToast={removeToast} />
-      <Flex
-        style={style}
-        onClick={() => copyURL(id)}
-        className={styles.control}
-        alignItems="center"
-        gap="4"
-      >
-        <Heading className={styles.text} id={id} variant={variant} as={asTag}>
-          {children}
-        </Heading>
-        <IconButton
-          className={styles.visibility}
-          size="s"
-          icon="openLink"
-          variant="ghost"
-          tooltip="Copy"
-          tooltipPosition="right"
-        />
-      </Flex>
+    <Flex
+      style={style}
+      onClick={() => copyURL(id)}
+      className={styles.control}
+      vertical="center"
+      gap="4"
+    >
+      <Heading className={styles.text} id={id} variant={variant} as={asTag}>
+        {children}
+      </Heading>
+      <IconButton
+        className={styles.visibility}
+        size="s"
+        icon="openLink"
+        variant="ghost"
+        tooltip="Copy"
+        tooltipPosition="right"
+      />
     </Flex>
   );
 };

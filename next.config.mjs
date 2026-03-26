@@ -1,22 +1,28 @@
 import mdx from '@next/mdx';
-import createNextIntlPlugin from 'next-intl/plugin';
 
 const withMDX = mdx({
   extension: /\.mdx?$/,
   options: {},
 });
 
-const withNextIntl = createNextIntlPlugin();
-
 /** @type {import('next').NextConfig} */
 const nextConfig = {
-  images: {
-    remotePatterns: [{ hostname: 'img.shields.io', pathname: '/work/*' }],
-  },
   pageExtensions: ['ts', 'tsx', 'md', 'mdx'],
-  eslint: {
-    ignoreDuringBuilds: true, // Disable linting during next build
+  transpilePackages: ['next-mdx-remote'],
+  images: {
+    remotePatterns: [
+      {
+        protocol: 'https',
+        hostname: 'www.google.com',
+        pathname: '**',
+      },
+    ],
+  },
+  allowedDevOrigins: ['127.0.0.1'],
+  sassOptions: {
+    compiler: 'modern',
+    silenceDeprecations: ['legacy-js-api'],
   },
 };
 
-export default withNextIntl(withMDX(nextConfig));
+export default withMDX(nextConfig);

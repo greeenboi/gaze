@@ -1,54 +1,35 @@
 import { MDXRemote, type MDXRemoteProps } from 'next-mdx-remote/rsc';
 import type React from 'react';
 import type { ReactNode } from 'react';
+import { Children, isValidElement } from 'react';
+import { slugify as transliterate } from 'transliteration';
 
-import { InlineCode, SmartLink, Text } from '@once-ui-system/core';
-import { CodeBlock } from '@/once-ui/modules';
-import { HeadingLink } from '@/components';
-
-import type { TextProps } from '@/once-ui/interfaces';
-import { Checkbox, Media, type SmartLinkProps } from '@once-ui-system/core';
-import { SmartImage } from '@/once-ui/components';
-import type { SmartImageProps } from '@/once-ui/components/SmartImage';
-
-const Mention = ({
-  name,
-  href,
-  ...rest
-}: { name: string; href: string; rest: SmartLinkProps }) => (
-  <SmartLink href={href} prefixIcon="link" suffixIcon="arrowRight" {...rest}>
-    @{name}
-  </SmartLink>
-);
-
-type TableProps = {
-  data: {
-    headers: string[];
-    rows: string[][];
-  };
-};
-
-function Table({ data }: TableProps) {
-  const headers = data.headers.map((header, index) => (
-    <th key={index}>{header}</th>
-  ));
-  const rows = data.rows.map((row, index) => (
-    <tr key={index}>
-      {row.map((cell, cellIndex) => (
-        <td key={cellIndex}>{cell}</td>
-      ))}
-    </tr>
-  ));
-
-  return (
-    <table>
-      <thead>
-        <tr>{headers}</tr>
-      </thead>
-      <tbody>{rows}</tbody>
-    </table>
-  );
-}
+import {
+  Heading,
+  HeadingLink,
+  Text,
+  InlineCode,
+  CodeBlock,
+  type TextProps,
+  type MediaProps,
+  Accordion,
+  AccordionGroup,
+  Table,
+  Feedback,
+  Button,
+  Card,
+  Grid,
+  Row,
+  Column,
+  Icon,
+  Media,
+  SmartLink,
+  List,
+  ListItem,
+  Line,
+  type SmartLinkProps,
+  Checkbox,
+} from '@once-ui-system/core';
 
 type CustomLinkProps = React.AnchorHTMLAttributes<HTMLAnchorElement> & {
   href: string;
@@ -73,28 +54,32 @@ function CustomLink({ href, children, ...props }: CustomLinkProps) {
   }
 
   return (
-    <a href={href} target="_blank" rel="noopener noreferrer" {...props}>
+    <SmartLink
+      href={href}
+      prefixIcon="link"
+      target="_blank"
+      rel="noopener noreferrer"
+      {...props}
+    >
       {children}
-    </a>
+    </SmartLink>
   );
 }
 
-function createImage({
-  alt,
-  src,
-  ...props
-}: SmartImageProps & { src: string }) {
+function createImage({ alt, src, ...props }: MediaProps & { src: string }) {
   if (!src) {
-    console.error("SmartImage requires a valid 'src' property.");
+    console.error("Media requires a valid 'src' property.");
     return null;
   }
 
   return (
-    <SmartImage
-      className="my-20"
+    <Media
+      marginTop="8"
+      marginBottom="16"
       enlarge
       radius="m"
-      aspectRatio="16 / 9"
+      border="neutral-alpha-medium"
+      sizes="(max-width: 960px) 100vw, 960px"
       alt={alt}
       src={src}
       {...props}
@@ -103,26 +88,51 @@ function createImage({
 }
 
 function slugify(str: string): string {
-  return str
-    .toString()
-    .toLowerCase()
-    .trim() // Remove whitespace from both ends of a string
-    .replace(/\s+/g, '-') // Replace spaces with -
-    .replace(/&/g, '-and-') // Replace & with 'and'
-    .replace(/[^\w\-]+/g, '') // Remove all non-word characters except for -
-    .replace(/\-\-+/g, '-'); // Replace multiple - with single -
+  const strWithAnd = str.replace(/&/g, ' and '); // Replace & with 'and'
+  const slug = transliterate(strWithAnd, {
+    lowercase: true,
+    separator: '-', // Replace spaces with -
+  })
+    .replace(/\-\-+/g, '-') // Replace multiple - with single -
+    .replace(/^-+|-+$/g, '');
+
+  return slug || 'section';
 }
 
-function createHeading(level: 1 | 2 | 3 | 4 | 5 | 6) {
-  const CustomHeading = ({ children, ...props }: TextProps) => {
-    const slug = slugify(children as string);
+function extractText(node: ReactNode): string {
+  if (node === null || node === undefined || typeof node === 'boolean') {
+    return '';
+  }
+
+  if (typeof node === 'string' || typeof node === 'number') {
+    return String(node);
+  }
+
+  if (Array.isArray(node)) {
+    return node
+      .map(child => extractText(child))
+      .join(' ')
+      .trim();
+  }
+
+  if (isValidElement<{ children?: ReactNode }>(node)) {
+    return extractText(node.props.children);
+  }
+
+  return '';
+}
+
+function createHeading(as: 'h1' | 'h2' | 'h3' | 'h4' | 'h5' | 'h6') {
+  const CustomHeading = ({
+    children,
+    ...props
+  }: Omit<React.ComponentProps<typeof HeadingLink>, 'as' | 'id'>) => {
+    const slug = slugify(extractText(children));
     return (
       <HeadingLink
-        style={{
-          marginTop: 'var(--static-space-24)',
-          marginBottom: 'var(--static-space-12)',
-        }}
-        level={level}
+        marginTop="24"
+        marginBottom="12"
+        as={as}
         id={slug}
         {...props}
       >
@@ -131,7 +141,7 @@ function createHeading(level: 1 | 2 | 3 | 4 | 5 | 6) {
     );
   };
 
-  CustomHeading.displayName = `Heading${level}`;
+  CustomHeading.displayName = `${as}`;
 
   return CustomHeading;
 }
@@ -139,7 +149,7 @@ function createHeading(level: 1 | 2 | 3 | 4 | 5 | 6) {
 function createParagraph({ children }: TextProps) {
   return (
     <Text
-      style={{ lineHeight: '150%' }}
+      style={{ lineHeight: '175%' }}
       variant="body-default-m"
       onBackground="neutral-medium"
       marginTop="8"
@@ -150,56 +160,109 @@ function createParagraph({ children }: TextProps) {
   );
 }
 
+function createInlineCode({ children }: { children: ReactNode }) {
+  return <InlineCode>{children}</InlineCode>;
+}
+
+function createCodeBlock(props: any) {
+  // For pre tags that contain code blocks
+  if (props.children?.props?.className) {
+    const { className, children } = props.children.props;
+
+    // Extract language from className (format: language-xxx)
+    const language = className.replace('language-', '');
+    const label = language.charAt(0).toUpperCase() + language.slice(1);
+
+    return (
+      <CodeBlock
+        marginTop="8"
+        marginBottom="16"
+        codes={[
+          {
+            code: children,
+            language,
+            label,
+          },
+        ]}
+        copyButton={true}
+      />
+    );
+  }
+
+  // Fallback for other pre tags or empty code blocks
+  return <pre {...props} />;
+}
+
+function createList(as: 'ul' | 'ol') {
+  return ({ children }: { children: ReactNode }) => (
+    <List as={as}>{children}</List>
+  );
+}
+
+function createListItem({ children }: { children: ReactNode }) {
+  return (
+    <ListItem marginTop="4" marginBottom="8" style={{ lineHeight: '175%' }}>
+      {children}
+    </ListItem>
+  );
+}
+
+function createHR() {
+  return (
+    <Row fillWidth horizontal="center">
+      <Line maxWidth="40" />
+    </Row>
+  );
+}
+
+const Mention = ({
+  name,
+  href,
+  ...rest
+}: {
+  name: string;
+  href: string;
+  rest: SmartLinkProps;
+}) => (
+  <SmartLink href={href} prefixIcon="link" suffixIcon="arrowRight" {...rest}>
+    @{name}
+  </SmartLink>
+);
+
 const components = {
   p: createParagraph as any,
-  h1: createHeading(1) as any,
-  h2: createHeading(2) as any,
-  h3: createHeading(3) as any,
-  h4: createHeading(4) as any,
-  h5: createHeading(5) as any,
-  h6: createHeading(6) as any,
+  h1: createHeading('h1') as any,
+  h2: createHeading('h2') as any,
+  h3: createHeading('h3') as any,
+  h4: createHeading('h4') as any,
+  h5: createHeading('h5') as any,
+  h6: createHeading('h6') as any,
   img: createImage as any,
   a: CustomLink as any,
-  blockquote: (({ children }: TextProps) => (
-    <blockquote
-      style={{
-        marginTop: 'var(--static-space-12)',
-        marginBottom: 'var(--static-space-12)',
-        padding: '12px 16px',
-        borderLeft: '4px solid rgba(0,0,0,0.08)',
-        background: 'rgba(0,0,0,0.02)',
-        borderRadius: '6px',
-      }}
-    >
-      <Text
-        variant="body-default-m"
-        onBackground="neutral-medium"
-        style={{ margin: 0, fontStyle: 'italic' }}
-      >
-        {children}
-      </Text>
-    </blockquote>
-  )) as any,
-  hr: ((props: React.HTMLAttributes<HTMLHRElement>) => (
-    <hr
-      style={{
-        marginTop: 'var(--static-space-12)',
-        marginBottom: 'var(--static-space-12)',
-        border: 'none',
-        borderRadius: '2px',
-        height: '2px',
-        width: '100%',
-        background: 'rgb(255,255,255)',
-      }}
-      {...props}
-    />
-  )) as any,
-  Media: Media,
-  Checkbox: Checkbox,
-  Mention: Mention,
-  Table,
+  code: createInlineCode as any,
+  pre: createCodeBlock as any,
+  ol: createList('ol') as any,
+  ul: createList('ul') as any,
+  li: createListItem as any,
+  hr: createHR as any,
+  Heading,
+  Text,
   CodeBlock,
   InlineCode,
+  Accordion,
+  AccordionGroup,
+  Table,
+  Feedback,
+  Button,
+  Card,
+  Grid,
+  Row,
+  Column,
+  Icon,
+  Media,
+  SmartLink,
+  Checkbox,
+  Mention: Mention,
 };
 
 type CustomMDXProps = MDXRemoteProps & {
@@ -208,8 +271,8 @@ type CustomMDXProps = MDXRemoteProps & {
 
 export function CustomMDX(props: CustomMDXProps) {
   return (
-    // @ts-ignore: Suppressing type error for MDXRemote usage
     <MDXRemote
+      options={{ blockJS: false }}
       {...props}
       components={{ ...components, ...(props.components || {}) }}
     />
