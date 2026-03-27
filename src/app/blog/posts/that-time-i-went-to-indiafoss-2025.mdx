@@ -1,0 +1,147 @@
+---
+title: "That Time I Went to IndiaFOSS 2025"
+publishedAt: "2025-09-25"
+image: "/images/blog/indiafoss2025/foss.jpg"
+summary: "A quick two-day report from IndiaFOSS 2025, covering the talks I attended, the people I met, and the moments I captured."
+tag: "Conference"
+---
+
+IndiaFOSS 2025 felt like two packed days of ideas, hallway conversations, and unexpected fun.
+It all started the week before, Me, <Mention name="Vinay Rajan" href="https://x.com/VinayRajanS" /> and <Mention name="Avinash" href="https://github.com/Avinash96-gthb" /> met up on a call to decide which panels to attend to for the upcoming IndiaFOSS. 
+
+We had just procured tickets (they were selling like hotcakes ong..)  credits to the goat <Mention name="Harsh Patel" href="www.linkedin.com/in/harshpatel5940" /> who is a cool guy working as a volunteer there.
+
+Anyways we had alot of conflicting decisions, I wanted to attend the talks on zig and building a software lang, vinay insisted we have to check out the talks given by <Mention name="Ram Iyengar" href="https://www.linkedin.com/in/ram-iyengar/" />, Avinash suggested that we explore the AOSP Talks..
+We compromised on it and planned out on the logistics of meeting up.
+
+
+
+## Day 1
+
+I met up with the bros and we had the best south indian breakfast: idli and chutney, courtesy of south kitchen, the caterers for this event. 
+
+We then headed to the auditorium and started with the opening note.
+
+<Media src="/images/blog/indiafoss2025/opening.jpeg" alt="IndiaFOSS 2025 opening keynote stage" />
+
+We then rushed to the first devroom event we wanted to check out..
+
+### Under the Hood: The Craftsmanship of Creating High-Performance CLIs in Golang
+
+This one was a great deep dive into writing CLIs with go. But i felt it to be a bit dry since the matter was too beginner friendly and did not involve much of a demo / hands on feel.
+
+We took a quick look around and checked out the talk on `FOSDEM - what it is, why we do it, and how`, fun but its too out there..
+
+### Implementing a Custom HAL in AOSP
+
+<Media src="/images/blog/indiafoss2025/aosp_hal.jpeg" alt="Slide from Implementing a Custom HAL in AOSP" />
+
+
+My favorite systems-level session on day 1. 
+
+It made the Android stack feel less abstract and more approachable from an engineering perspective.
+
+It was also very intimate in the way the presenter `Rutvij Trivedi` talked about his journey implementing HAL on a growing scale at his job in silicon signals.
+
+
+### DCOs, CLAs, and other TLAs: Things You Need To Know As An OSS Contributor
+
+This was super useful and very fun and interactive session from Ram Iyengar (as usual doesn't disappoint). 
+His talk consisted of explaining Developer Certificates of Origin (DCOs) and Contributor License Agreements (CLAs) at its core, while also tracing the timeline of Linux controversies to show why these agreements have come about. 
+It really clarified legal/process terms that often confuse first-time contributors (like me).
+
+
+
+We then spent the next hour or so just hanging out and exploring the booths until the lunch break.
+
+> fun fact
+> I chatted up Ram Iyengar who also agreed with me that Ruby is a very beautiful and under utilised language 🗿
+
+---
+
+After the Lunch break we went to see our junior's talk on his game and game development experience
+
+
+### VoltQuest: Open Source Hardware Gaming
+
+It was a fun session by our <Mention name="Giri Prashad" href="https://x.com/Shadow_foss?s=09" /> where he talked about his game [Voltquest](https://github.com/VoltQuest/VoltQuest) and it's uniqueness in building a open source educational platform to learn about electronics and electronic components.
+It is built on C++ (Raylib) and it introduced a custom physics simulation for creating the hardware friendly environment where you can drag and drop basic electronics like an LED or a Resistor and observe their behaviour as they interacted with each other.
+
+
+
+### OSS Health and Sustainability in 2025
+
+
+One of the most reflective panel sessions I attended, taken by Kailash Nadh from Zerodha, Neha Sankhe from Frappe and Chad Whitacre from Sentry with Ansh Arora as the host . 
+They talked about open source sustainability and a couple more topics, unfortunately I wasn't paying attention (food coma hits hard..).
+
+### Librefin: Building a FOSS UPI App
+
+While the guys behind [librefin](https://librefin.in/) gave a shorter talk than the norm, they really rocked the stage with their ground breaking approach to "hacking" a way into reverse engineering the UPI payments logic and their goal towards making this a FOSS initiative. Gone are the days of paying stripe and razorpay for an sdk that takes way too long to use and setup..
+
+
+
+The day ended here for us, We spent more time looking around and catching up with people and networking. 
+
+I had a nice chat with the people behind OpenSourceDB and Aiven and they gave me a couple of merch and coupon codes 🐸. 
+I also met the guys from [Plane](https://plane.so) who were kind enough to give me cool t-shirts and alot of stickers.
+
+---
+
+## Day 2
+
+Day 2 felt more experimental and wide-ranging, with talks spanning notebooks, kernels, language design, infra, and AI transparency. The Day started very similar to the previous one, 
+
+The first talk was about Zasper: High Performance IDE for Jupyter Notebooks,  As someone who regularly works in notebook-heavy environments, this session stood out. 
+The focus on responsiveness and workflow speed was exactly what I wanted, but the platform was not free to use and had left much to be desired at that time.
+
+### You don't have to be a wizard: A beginner's journey into kernel development
+
+This talk by Hridesh was such an engaging and memorable session. He gave a talk on his experiences as a college student diving into linux as a user and how it evolved into contributing to the linux kernel. 
+
+It started as as simple incompatible driver for his laptop in which he had installed linux which then helped him learn about scripting and kernel development and how LFX and LFX mentorship gave him the skills to patch a fix to make that driver work on his laptop. 
+
+I left with a much clearer idea of how beginners can enter kernel development which is what i'm gonna be doing over the summer.
+
+
+### How I Accidentally Built an OpenSource — Algo Trading Platform
+
+Tbh This talk was much of a let down since we joined in on the session expecting to be bombarded with technical statements and algorithms but it turns out that this was the product of vibe coding (shocking) and how it led the speaker to essentially no-code his way into a successful and reliable trading platform.
+
+
+### HUML (Human-oriented Markup Language)
+
+A creative talk by the CTO of Zerodha, Kailash Nadh talked about how his experience with traditional markup languages could be grating in certain cases and how his side project can step in to fix them. tbh its another version of TOON or like a combination of YAML and md.
+
+### Evolving the OCaml programming language
+
+<Media src="/images/blog/indiafoss2025/ocaml.jpeg" alt="Talk on evolving the OCaml programming language" />
+
+It was a wonderful session taken by a very learned IITM Professor and his journey with learning OCaml for fun, using them in production environments and eventually contributing to the OCaml Community. 
+It was both historical and practical in the way he gave his talk, a very straight forward and simple to observe talk. He even gave us a demo on how he likes to use and setup OCaml.
+
+
+---
+
+## People and Moments
+
+The talks were great, but the people were the best part of the event.
+
+<Media src="/images/blog/indiafoss2025/sami.jpeg" alt="Mohammed Sami with a sticky note saying headache to headout" />
+
+I spent time with my bros throughout the two days, and those conversations were easily as valuable as the sessions. We even had the pleasure of meeting the legendary <Mention name="Mohammed Sami" href="https://fossunited.org" /> aka [mdsami]() who was free enough to show up to IndiaFoss at Harsh Patel's beckon.
+We had a good time reconnecting and goofing around.
+
+Also the Necessary Tax to our beloved <Mention name="Limegreenstudios" href="https://limegreen.studio" />
+
+<Media src="/images/blog/indiafoss2025/limegreenstudios.jpeg" alt="Business card of Harsh Patel from Lime Green Studios" />
+
+Also a very funny sticker we found in the washroom..
+
+<Media src="/images/blog/indiafoss2025/foss_meme.jpeg" alt="funny sticker in the washroom" />
+
+
+## Quick Takeaway
+
+IndiaFOSS 2025 gave me exactly what I hoped for: technical depth, practical ideas I can apply immediately, and a reminder that open source really is the best.
+
