@@ -143,7 +143,7 @@ export default function Home() {
           </Row>
         </Column>
       )}
-      <Projects range={[1, 2]} />
+      <Projects range={[2, 3]} />
       <NewsletterSignup />
     </Column>
   );

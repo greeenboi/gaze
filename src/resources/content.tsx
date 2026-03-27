@@ -1,3 +1,4 @@
+import { InlineCode, Line, Row, Text } from '@once-ui-system/core';
 import type {
   About,
   Blog,
@@ -8,7 +9,6 @@ import type {
   Social,
   Work,
 } from '@/types';
-import { InlineCode, Line, Row, Text } from '@once-ui-system/core';
 
 const person: Person = {
   firstName: 'Suvan',
@@ -76,7 +76,7 @@ const social: Social = [
 
 const home: Home = {
   path: '/',
-  image: '/images/og/home.jpg',
+  image: '/images/og/home.png',
   label: 'Home',
   title: `${person.name}'s Portfolio`,
   description: `Portfolio website showcasing my work as a ${person.role}`,
@@ -610,4 +610,4 @@ const gallery: Gallery = {
   ],
 };
 
-export { person, social, newsletter, home, about, blog, work, gallery };
+export { about, blog, gallery, home, newsletter, person, social, work };

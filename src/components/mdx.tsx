@@ -1,35 +1,35 @@
+import {
+  Accordion,
+  AccordionGroup,
+  Button,
+  Card,
+  Carousel,
+  Checkbox,
+  CodeBlock,
+  Column,
+  Feedback,
+  Grid,
+  Heading,
+  HeadingLink,
+  Icon,
+  InlineCode,
+  Line,
+  List,
+  ListItem,
+  Media,
+  type MediaProps,
+  Row,
+  SmartLink,
+  type SmartLinkProps,
+  Table,
+  Text,
+  type TextProps,
+} from '@once-ui-system/core';
 import { MDXRemote, type MDXRemoteProps } from 'next-mdx-remote/rsc';
 import type React from 'react';
 import type { ReactNode } from 'react';
-import { Children, isValidElement } from 'react';
+import { isValidElement } from 'react';
 import { slugify as transliterate } from 'transliteration';
-
-import {
-  Heading,
-  HeadingLink,
-  Text,
-  InlineCode,
-  CodeBlock,
-  type TextProps,
-  type MediaProps,
-  Accordion,
-  AccordionGroup,
-  Table,
-  Feedback,
-  Button,
-  Card,
-  Grid,
-  Row,
-  Column,
-  Icon,
-  Media,
-  SmartLink,
-  List,
-  ListItem,
-  Line,
-  type SmartLinkProps,
-  Checkbox,
-} from '@once-ui-system/core';
 
 type CustomLinkProps = React.AnchorHTMLAttributes<HTMLAnchorElement> & {
   href: string;
@@ -93,7 +93,7 @@ function slugify(str: string): string {
     lowercase: true,
     separator: '-', // Replace spaces with -
   })
-    .replace(/\-\-+/g, '-') // Replace multiple - with single -
+    .replace(/--+/g, '-') // Replace multiple - with single -
     .replace(/^-+|-+$/g, '');
 
   return slug || 'section';
@@ -262,6 +262,7 @@ const components = {
   Media,
   SmartLink,
   Checkbox,
+  Carousel,
   Mention: Mention,
 };
 
