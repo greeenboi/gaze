@@ -1,31 +1,28 @@
 'use client';
 
-import { usePathname } from 'next/navigation';
-import { useEffect, useState } from 'react';
 
 import {
-  Button,
   Dialog,
   Fade,
   Flex,
   IconButton,
   Line,
   Row,
-  StyleOverlay,
   StylePanel,
+  ThemeSwitcher,
   ToggleButton,
 } from '@once-ui-system/core';
+import { usePathname } from 'next/navigation';
+import { useEffect, useState } from 'react';
 
 import {
-  routes,
-  display,
-  person,
   about,
   blog,
+  display,
+  person,
+  routes,
   work,
-  gallery,
 } from '@/resources';
-import { ThemeToggle } from './ThemeToggle';
 import styles from './Header.module.scss';
 
 type TimeDisplayProps = {
@@ -212,11 +209,6 @@ export const Header = () => {
               {display.themeSwitcher && (
                 <>
                   <Line background="neutral-alpha-medium" vert maxHeight="24" />
-                  <IconButton
-                    icon="moon"
-                    variant="secondary"
-                    onClick={() => setIsOpen(true)}
-                  />
                   <Dialog
                     isOpen={isOpen}
                     onClose={() => setIsOpen(false)}
@@ -224,6 +216,16 @@ export const Header = () => {
                   >
                     <StylePanel />
                   </Dialog>
+                  <Row s={{ hide: true }}>
+                    <IconButton
+                      icon="moon"
+                      variant="secondary"
+                      onClick={() => setIsOpen(true)}
+                    />
+                  </Row>
+                  <Row hide s={{ hide: false }} m={{ hide: true }} l={{ hide: true }} xl={{ hide: true }}>
+                    <ThemeSwitcher />
+                  </Row>
                 </>
               )}
             </Row>
