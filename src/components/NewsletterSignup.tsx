@@ -1,6 +1,6 @@
 'use client';
 
-import type tyopacityacSpacingTokenngToken } once-ui-systemfcoree-ui-system/core';
+import type { opacity, SpacingToken } from '@once-ui-system/core';
 import {
   Background,
   Button,
@@ -10,8 +10,8 @@ import {
   Row,
   Text,
 } from '@once-ui-system/core';
-import MeuseMemoStuseStatereact';react
-import { mailjet, newsletterer } from@/resourcesesources';
+import { useMemo, useState } from 'react';
+import { mailjet, newsletter } from '@/resources';
 
 type SubscribeResponse = {
   message?: string;
@@ -34,7 +34,9 @@ export const NewsletterSignup: React.FC<
     return null;
   }
 
-  const parseResponse = async (response: Response): Promise<SubscribeResponse> => {
+  const parseResponse = async (
+    response: Response
+  ): Promise<SubscribeResponse> => {
     try {
       return (await response.json()) as SubscribeResponse;
     } catch {
@@ -188,60 +190,62 @@ export const NewsletterSignup: React.FC<
           justifyContent: 'center',
         }}
       >
-        <Row
-          fillWidth
-          maxWidth={24}
-          s={{ direction: 'column' }}
-          gap="8"
-          align="center"
-        >
-          <Input
-            id="newsletter-name"
-            name="name"
-            type="text"
-            placeholder="Name (optional)"
-            value={name}
-            onChange={event => setName(event.target.value)}
-          />
-          <Input
-            formNoValidate
-            id="newsletter-email"
-            name="email"
-            type="email"
-            placeholder="Email"
-            required
-            value={email}
-            onChange={event => {
-              setEmail(event.target.value);
-              if (error) {
-                setError('');
-              }
-            }}
-            onBlur={() => {
-              if (email && !isEmailValid) {
-                setError('Please enter a valid email address.');
-              }
-            }}
-            errorMessage={error}
-          />
-          {successMessage ? (
-            <Text onBackground="success-strong" variant="label-default-s">
-              {successMessage}
-            </Text>
-          ) : null}
-          <Row height="48" vertical="center" fillWidth>
-            <Button
-              id="newsletter-subscribe"
-              type="submit"
-              size="m"
-              fillWidth
-              loading={isSubmitting}
-              disabled={isSubmitting}
+        <Column maxHeight="xs" horizontal='center' gap="8">
+            <Row
+                fillWidth
+                maxWidth={48}
+                s={{ direction: 'column' }}
+                gap="8"
+                align="center"
             >
-              Subscribe
-            </Button>
-          </Row>
-        </Row>
+            <Input
+                id="newsletter-name"
+                name="name"
+                type="text"
+                placeholder="Name (optional)"
+                value={name}
+                onChange={event => setName(event.target.value)}
+            />
+            <Input
+                formNoValidate
+                id="newsletter-email"
+                name="email"
+                type="email"
+                placeholder="Email"
+                required
+                value={email}
+                onChange={event => {
+                setEmail(event.target.value);
+                if (error) {
+                    setError('');
+                }
+                }}
+                onBlur={() => {
+                if (email && !isEmailValid) {
+                    setError('Please enter a valid email address.');
+                }
+                }}
+                errorMessage={error}
+            />
+            </Row>
+            <Row height="48" vertical="center" fillWidth>
+                <Button
+                    id="newsletter-subscribe"
+                    type="submit"
+                    size="m"
+                    fillWidth
+                    loading={isSubmitting}
+                    disabled={isSubmitting}
+                    >
+                    Subscribe
+                </Button>
+            </Row>
+                {successMessage ? (
+                    <Text onBackground="success-strong" variant="label-default-s">
+                    {successMessage}
+                    </Text>
+                ) : null}
+        </Column>
       </form>
     </Column>
   );

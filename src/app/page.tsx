@@ -1,20 +1,20 @@
 import {
-  Heading,
-  Text,
-  Button,
   Avatar,
-  RevealFx,
-  Column,
   Badge,
+  Button,
+  Column,
+  Heading,
+  Line,
+  Meta,
+  RevealFx,
   Row,
   Schema,
-  Meta,
-  Line,
+  Text,
 } from '@once-ui-system/core';
-import { NewsletterSignupm';components
-import { Postscomponents/blog/Posts/blog/Posts';
+import { NewsletterSignup } from '@/components';
+import { Posts } from '@/components/blog/Posts';
 import { Projects } from '@/components/work/Projects';
-import { about, baseURL, home, person,,routes  baseURL, resources} from '@/resources';
+import { about, baseURL, home, person, routes } from '@/resources';
 
 export async function generateMetadata() {
   return Meta.generate({

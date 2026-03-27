@@ -1,5 +1,5 @@
-import type tyNextRequestuest } from 'next/server';
-import tRNextResponserom 'next/server';
+import type { NextRequest } from 'next/server';
+import { NextResponse } from 'next/server';
 import {
   getMailjetCredentials,
   getMailjetListId,

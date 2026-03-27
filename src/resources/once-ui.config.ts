@@ -37,7 +37,8 @@ const protectedRoutes: ProtectedRoutesConfig = {
 };
 
 // Import and set font for each variant
-import { Geist, Geist_Mono, Geist_Mono } from 'next/f
+import { Geist, Geist_Mono } from 'next/font/google';
+
 const heading = Geist({
   variable: '--font-heading',
   subsets: ['latin'],
@@ -217,15 +218,15 @@ const socialSharing: SocialSharingConfig = {
 
 export {
   baseURL,
-  baseURLle,
   dataStyle,
-  displays,
-  effects
+  display,
+  effects,
   fonts,
-  mailjetctedRoutes,
-  protectedRoutess,
+  mailjet,
+  protectedRoutes,
   routes,
+  sameAs,
   schema,
-  schema,
-  socialSharing
-};style
+  socialSharing,
+  style,
+};

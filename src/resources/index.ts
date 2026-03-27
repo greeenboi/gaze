@@ -1,26 +1,26 @@
 // import a pre-defined template for config and content options
 export {
-  about
-  blog
-  gallery
+  about,
+  blog,
+  gallery,
   home,
-  newsletteretter,
-  personon,
-  socialal,
-  work
+  newsletter,
+  person,
+  social,
+  work,
 } from './content';
 
 export {
   baseURL,
-  dataStylele,
-  displayy,
-  effects
-  fonts
-  mailjetet,
-  protectedRoutesctedRoutes,
+  dataStyle,
+  display,
+  effects,
+  fonts,
+  mailjet,
+  protectedRoutes,
   routes,
   sameAs,
-  schema
-  socialSharingharing,
-  style
+  schema,
+  socialSharing,
+  style,
 } from './once-ui.config';

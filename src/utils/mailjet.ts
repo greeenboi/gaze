@@ -160,8 +160,7 @@ export async function sendConfirmationTemplate({
         ],
         TemplateID: templateId,
         TemplateLanguage: true,
-        Subject: process.env.MAILJET_CONFIRM_SUBJECT ||
-          'Newsletter subscription confirmation',
+        Subject: 'Thanks for subscribing to my newsletter!',
         Variables: {
           firstName: name || 'friend',
           email,

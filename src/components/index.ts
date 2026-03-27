@@ -1,10 +1,10 @@
 export { Footer } from '@/components/Footer';
 export { Header } from '@/components/Header';
-export { HeadingLinkom '@/components/HeadiHeadingLink
-export { CustomMDX from '@/components/mdmdx
-export { NewsletterSignupignup } from '@/componNewsletterSignuptterSignup';
-export { ProjectCardd } from '@/componentsProjectCardrd';
+export { HeadingLink } from '@/components/HeadingLink';
+export { CustomMDX } from '@/components/mdx';
+export { NewsletterSignup } from '@/components/NewsletterSignup';
+export { ProjectCard } from '@/components/ProjectCard';
 export { Providers } from '@/components/Providers';
-export { RouteGuard from '@/components/RoRouteGuard
-export { ScrollToHashh } from '@/componentsScrollToHashsh';
-export { ThemeTogglele } from '@/componentThemeTogglehemeToggle';
+export { RouteGuard } from '@/components/RouteGuard';
+export { ScrollToHash } from '@/components/ScrollToHash';
+export { ThemeToggle } from '@/components/ThemeToggle';
