@@ -74,8 +74,8 @@ const fonts: FontsConfig = {
 const style: StyleConfig = {
   theme: 'dark', // dark | light | system
   neutral: 'slate', // sand | gray | slate | mint | rose | dusk | custom
-  brand: 'indigo', // blue | indigo | violet | magenta | pink | red | orange | yellow | moss | green | emerald | aqua | cyan | custom
-  accent: 'violet', // blue | indigo | violet | magenta | pink | red | orange | yellow | moss | green | emerald | aqua | cyan | custom
+  brand: 'yellow', // blue | indigo | violet | magenta | pink | red | orange | yellow | moss | green | emerald | aqua | cyan | custom
+  accent: 'moss', // blue | indigo | violet | magenta | pink | red | orange | yellow | moss | green | emerald | aqua | cyan | custom
   solid: 'contrast', // color | contrast
   solidStyle: 'plastic', // flat | plastic
   border: 'playful', // rounded | playful | conservative | sharp

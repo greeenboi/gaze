@@ -31,6 +31,7 @@ import {
 export async function generateMetadata(): Promise<Metadata> {
   const siteTitle = `${person.firstName}'s Portfolio`;
   const siteDescription = 'Portfolio website showcasing my projects.';
+  const linkPreviewSiteName = 'Link preview site name';
   const canonicalPath = home.path || '/';
   const absolutePageUrl = `${baseURL}${canonicalPath === '/' ? '' : canonicalPath}`;
   const absoluteImageUrl = `${baseURL}${home.image}`;
@@ -82,7 +83,7 @@ export async function generateMetadata(): Promise<Metadata> {
       title: `${person.firstName}'s Portfolio`,
       description: 'Portfolio website showcasing my projects.',
       url: baseURL,
-      siteName: `${person.firstName}'s Portfolio`,
+      siteName: linkPreviewSiteName,
       locale: 'en_US',
       type: 'website',
       images: [
