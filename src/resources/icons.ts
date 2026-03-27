@@ -1,47 +1,45 @@
 import type { IconType } from 'react-icons';
-
 import {
-  HiArrowUpRight,
-  HiOutlineLink,
-  HiArrowTopRightOnSquare,
-  HiEnvelope,
-  HiCalendarDays,
+  FaChevronRight,
+  FaDiscord,
+  FaFacebook,
+  FaGithub,
+  FaInstagram,
+  FaLinkedin,
+  FaMoon,
+  FaPinterest,
+  FaReddit,
+  FaRss,
+  FaTelegram,
+  FaThreads,
+  FaWhatsapp,
+  FaX,
+  FaXTwitter,
+} from 'react-icons/fa6';
+import {
   HiArrowRight,
+  HiArrowTopRightOnSquare,
+  HiArrowUpRight,
+  HiCalendarDays,
+  HiClipboard,
+  HiEnvelope,
+  HiOutlineDocument,
   HiOutlineEye,
   HiOutlineEyeSlash,
-  HiOutlineDocument,
   HiOutlineGlobeAsiaAustralia,
+  HiOutlineLink,
   HiOutlineRocketLaunch,
-  HiClipboard,
 } from 'react-icons/hi2';
-
 import {
-  PiHouseDuotone,
-  PiUserCircleDuotone,
-  PiGridFourDuotone,
   PiBookBookmarkDuotone,
+  PiGridFourDuotone,
+  PiHouseDuotone,
   PiImageDuotone,
+  PiLinkDuotone,
   PiMoonStarsDuotone,
+  PiUserCircleDuotone,
 } from 'react-icons/pi';
-
-import { SiJavascript, SiNextdotjs, SiFigma, SiSupabase } from 'react-icons/si';
-
-import {
-  FaDiscord,
-  FaGithub,
-  FaLinkedin,
-  FaX,
-  FaThreads,
-  FaInstagram,
-  FaXTwitter,
-  FaFacebook,
-  FaPinterest,
-  FaWhatsapp,
-  FaReddit,
-  FaTelegram,
-  FaRss,
-  FaMoon,
-} from 'react-icons/fa6';
+import { SiFigma, SiJavascript, SiNextdotjs, SiSupabase } from 'react-icons/si';
 import { GgNpm, LogosHuggingFaceIcon, LogosRubygems } from './customIcons';
 
 export const iconLibrary: Record<string, IconType> = {
@@ -51,6 +49,8 @@ export const iconLibrary: Record<string, IconType> = {
   huggingface: LogosHuggingFaceIcon,
   arrowUpRight: HiArrowUpRight,
   arrowRight: HiArrowRight,
+  chevronRight: FaChevronRight,
+  linkOut: PiLinkDuotone,
   email: HiEnvelope,
   globe: HiOutlineGlobeAsiaAustralia,
   person: PiUserCircleDuotone,

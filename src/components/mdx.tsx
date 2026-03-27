@@ -224,7 +224,7 @@ const Mention = ({
   href: string;
   rest: SmartLinkProps;
 }) => (
-  <SmartLink href={href} prefixIcon="link" suffixIcon="arrowRight" {...rest}>
+  <SmartLink href={href} prefixIcon="link" {...rest}>
     @{name}
   </SmartLink>
 );

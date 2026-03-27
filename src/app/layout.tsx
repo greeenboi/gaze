@@ -178,6 +178,7 @@ export default async function RootLayout({
           // biome-ignore lint/security/noDangerouslySetInnerHtml: needed
           dangerouslySetInnerHTML={{
             __html: `
+              data-scroll-behavior="smooth"
               (function() {
                 try {
                   const root = document.documentElement;
