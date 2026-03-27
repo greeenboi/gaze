@@ -1,7 +1,4 @@
-.position {
-    position: sticky;
-    top: 0;
-}
+@use "./breakpoints.scss" as breakpoints;
 
 .mask {
     pointer-events: none;
@@ -11,10 +8,9 @@
     mask-size: 100% 100%;
 }
 
-@media (--s) {
+@media (max-width: breakpoints.$s) {
     .position {
         top: auto;
-        position: fixed;
         bottom: var(--static-space-24);
     }
 

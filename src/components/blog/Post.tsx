@@ -1,74 +1,69 @@
 'use client';
 
-import { Heading, SmartLink, Tag, Text } from '@once-ui-system/core';
-import styles from './Posts.module.scss';
-import { formatDate } from '@/app/utils/formatDate';
-import { Flex, SmartImage } from '@/once-ui/components';
+import { Card, Column, Media, Row, Avatar, Text } from '@once-ui-system/core';
+import { formatDate } from '@/utils/formatDate';
+import { person } from '@/resources';
 
 interface PostProps {
   post: any;
   thumbnail: boolean;
+  direction?: 'row' | 'column';
 }
 
-export default function Post({ post, thumbnail }: PostProps) {
+export default function Post({ post, thumbnail, direction }: PostProps) {
   return (
-    <SmartLink
-      className={styles.hover}
-      style={{
-        textDecoration: 'none',
-        margin: '0',
-        height: 'fit-content',
-      }}
+    <Card
+      fillWidth
       key={post.slug}
       href={`/blog/${post.slug}`}
+      transition="micro-medium"
+      direction={direction}
+      border="transparent"
+      background="transparent"
+      padding="4"
+      radius="l-4"
+      gap={direction === 'column' ? undefined : '24'}
+      s={{ direction: 'column' }}
     >
-      <Flex
-        position="relative"
-        mobileDirection="column"
-        fillWidth
-        paddingY="12"
-        paddingX="16"
-        gap="32"
-      >
-        {post.metadata.image && thumbnail && (
-          <Flex maxWidth={20} fillWidth className={styles.image}>
-            <SmartImage
-              priority
-              sizes="640px"
-              style={{
-                cursor: 'pointer',
-                border: '1px solid var(--neutral-alpha-weak)',
-              }}
-              radius="m"
-              src={post.metadata.image}
-              alt={`Thumbnail of ${post.metadata.title}`}
-              aspectRatio="16 / 9"
-            />
-          </Flex>
-        )}
-        <Flex
-          position="relative"
-          fillWidth
-          gap="8"
-          direction="column"
-          justifyContent="center"
+      {post.metadata.image && thumbnail && (
+        <Media
+          priority
+          sizes="(max-width: 768px) 100vw, 640px"
+          border="neutral-alpha-weak"
+          cursor="interactive"
+          radius="l"
+          src={post.metadata.image}
+          alt={'Thumbnail of ' + post.metadata.title}
+          aspectRatio="16 / 9"
+        />
+      )}
+      <Row fillWidth>
+        <Column
+          maxWidth={28}
+          paddingY="24"
+          paddingX="l"
+          gap="20"
+          vertical="center"
         >
-          <Heading as="h2" variant="heading-strong-l" wrap="balance">
+          <Row gap="24" vertical="center">
+            <Row vertical="center" gap="16">
+              <Avatar src={person.avatar} size="s" />
+              <Text variant="label-default-s">{person.name}</Text>
+            </Row>
+            <Text variant="body-default-xs" onBackground="neutral-weak">
+              {formatDate(post.metadata.publishedAt, false)}
+            </Text>
+          </Row>
+          <Text variant="heading-strong-l" wrap="balance">
             {post.metadata.title}
-          </Heading>
-          <Text variant="label-default-s" onBackground="neutral-weak">
-            {formatDate(post.metadata.publishedAt, false)}
           </Text>
           {post.metadata.tag && (
-            <Tag className="mt-8" label={post.metadata.tag} variant="neutral" />
-          )}
-          {post.metadata.summary && (
-            <Text size="s" variant="label-default-s">
-              {post.metadata.summary}
+            <Text variant="label-strong-s" onBackground="neutral-weak">
+              {post.metadata.tag}
             </Text>
           )}
-        </Flex>
-      </Flex>
-    </SmartLink>
+        </Column>
+      </Row>
+    </Card>
   );
 }

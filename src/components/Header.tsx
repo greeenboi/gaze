@@ -1,19 +1,32 @@
 'use client';
 
-import { useParams } from 'next/navigation';
-import { useEffect, useState, useTransition } from 'react';
+import { usePathname } from 'next/navigation';
+import { useEffect, useState } from 'react';
 
-import { ToggleButton } from '@once-ui-system/core';
-import styles from '@/components/Header.module.scss';
+import {
+  Button,
+  Dialog,
+  Fade,
+  Flex,
+  IconButton,
+  Line,
+  Row,
+  StyleOverlay,
+  StylePanel,
+  ToggleButton,
+} from '@once-ui-system/core';
 
-import { routes, display } from '@/app/resources';
-
-import { routing } from '@/i18n/routing';
-import { type Locale, usePathname, useRouter } from '@/i18n/routing';
-import { renderContent } from '@/app/resources';
-import { useTranslations } from 'next-intl';
-import { i18n } from '@/app/resources/config';
-import { Flex } from '@/once-ui/components';
+import {
+  routes,
+  display,
+  person,
+  about,
+  blog,
+  work,
+  gallery,
+} from '@/resources';
+import { ThemeToggle } from './ThemeToggle';
+import styles from './Header.module.scss';
 
 type TimeDisplayProps = {
   timeZone: string;
@@ -52,152 +65,184 @@ const TimeDisplay: React.FC<TimeDisplayProps> = ({
 export default TimeDisplay;
 
 export const Header = () => {
-  const router = useRouter();
-  const [isPending, startTransition] = useTransition();
   const pathname = usePathname() ?? '';
-  const params = useParams();
-
-  function handleLanguageChange(locale: string) {
-    const nextLocale = locale as Locale;
-    startTransition(() => {
-      router.replace(pathname, { locale: nextLocale });
-    });
-  }
-
-  const t = useTranslations();
-  const { person, home, about, blog, work, gallery } = renderContent(t);
+  const [isOpen, setIsOpen] = useState(false);
 
   return (
     <>
-      <Flex
-        className={styles.mask}
-        position="fixed"
-        zIndex={9}
+      <Fade
+        s={{ hide: true }}
         fillWidth
-        minHeight="80"
-        justifyContent="center"
+        position="fixed"
+        height="80"
+        zIndex={9}
       />
-      <Flex
-        style={{ height: 'fit-content' }}
+      <Fade
+        hide
+        s={{ hide: false }}
+        fillWidth
+        position="fixed"
+        bottom="0"
+        to="top"
+        height="80"
+        zIndex={9}
+      />
+      <Row
+        fitHeight
         className={styles.position}
+        position="sticky"
         as="header"
         zIndex={9}
         fillWidth
         padding="8"
-        justifyContent="center"
+        horizontal="center"
+        data-border="rounded"
+        s={{
+          position: 'fixed',
+        }}
       >
-        <Flex
+        <Row
           paddingLeft="12"
           fillWidth
-          alignItems="center"
+          vertical="center"
           textVariant="body-default-s"
         >
-          {display.location && <Flex hide="s">{person.location}</Flex>}
-        </Flex>
-        <Flex fillWidth justifyContent="center">
-          <Flex
-            background="surface"
-            border="neutral-medium"
-            borderStyle="solid-1"
+          {display.location && <Row s={{ hide: true }}>{person.location}</Row>}
+        </Row>
+        <Row fillWidth horizontal="center">
+          <Row
+            background="page"
+            border="neutral-alpha-weak"
             radius="m-4"
             shadow="l"
             padding="4"
-            justifyContent="center"
+            horizontal="center"
+            zIndex={1}
           >
-            <Flex gap="4" textVariant="body-default-s">
+            <Row
+              gap="4"
+              vertical="center"
+              textVariant="body-default-s"
+              suppressHydrationWarning
+            >
               {routes['/'] && (
                 <ToggleButton
-                  href={`/${params?.locale}`}
+                  prefixIcon="home"
+                  href="/"
                   selected={pathname === '/'}
-                >
-                  <Flex paddingX="2" hide="s">
-                    {home.label}
-                  </Flex>
-                </ToggleButton>
+                />
               )}
+              <Line background="neutral-alpha-medium" vert maxHeight="24" />
               {routes['/about'] && (
-                <ToggleButton
-                  href={`/${params?.locale}/about`}
-                  selected={pathname === '/about'}
-                >
-                  <Flex paddingX="2" hide="s">
-                    {about.label}
-                  </Flex>
-                </ToggleButton>
+                <>
+                  <Row s={{ hide: true }}>
+                    <ToggleButton
+                      prefixIcon="person"
+                      href="/about"
+                      label={about.label}
+                      selected={pathname === '/about'}
+                    />
+                  </Row>
+                  <Row hide s={{ hide: false }}>
+                    <ToggleButton
+                      prefixIcon="person"
+                      href="/about"
+                      selected={pathname === '/about'}
+                    />
+                  </Row>
+                </>
               )}
               {routes['/work'] && (
-                <ToggleButton
-                  href={`/${params?.locale}/work`}
-                  selected={pathname.startsWith('/work')}
-                >
-                  <Flex paddingX="2" hide="s">
-                    {work.label}
-                  </Flex>
-                </ToggleButton>
+                <>
+                  <Row s={{ hide: true }}>
+                    <ToggleButton
+                      prefixIcon="grid"
+                      href="/work"
+                      label={work.label}
+                      selected={pathname.startsWith('/work')}
+                    />
+                  </Row>
+                  <Row hide s={{ hide: false }}>
+                    <ToggleButton
+                      prefixIcon="grid"
+                      href="/work"
+                      selected={pathname.startsWith('/work')}
+                    />
+                  </Row>
+                </>
               )}
               {routes['/blog'] && (
-                <ToggleButton
-                  href={`/${params?.locale}/blog`}
-                  selected={pathname.startsWith('/blog')}
-                >
-                  <Flex paddingX="2" hide="s">
-                    {blog.label}
-                  </Flex>
-                </ToggleButton>
+                <>
+                  <Row s={{ hide: true }}>
+                    <ToggleButton
+                      prefixIcon="book"
+                      href="/blog"
+                      label={blog.label}
+                      selected={pathname.startsWith('/blog')}
+                    />
+                  </Row>
+                  <Row hide s={{ hide: false }}>
+                    <ToggleButton
+                      prefixIcon="book"
+                      href="/blog"
+                      selected={pathname.startsWith('/blog')}
+                    />
+                  </Row>
+                </>
               )}
-              {/* {routes['/gallery'] && (
-                <ToggleButton
-                  href={`/${params?.locale}/gallery`}
-                  selected={pathname.startsWith('/gallery')}
-                >
-                  <Flex paddingX="2" hide="s">
-                    {gallery.label}
-                  </Flex>
-                </ToggleButton>
+              {/* {routes["/gallery"] && (
+                <>
+                  <Row s={{ hide: true }}>
+                    <ToggleButton
+                      prefixIcon="gallery"
+                      href="/gallery"
+                      label={gallery.label}
+                      selected={pathname.startsWith("/gallery")}
+                    />
+                  </Row>
+                  <Row hide s={{ hide: false }}>
+                    <ToggleButton
+                      prefixIcon="gallery"
+                      href="/gallery"
+                      selected={pathname.startsWith("/gallery")}
+                    />
+                  </Row>
+                </>
               )} */}
-            </Flex>
-          </Flex>
-        </Flex>
-        <Flex fillWidth justifyContent="flex-end" alignItems="center">
+              {display.themeSwitcher && (
+                <>
+                  <Line background="neutral-alpha-medium" vert maxHeight="24" />
+                  <IconButton
+                    icon="moon"
+                    variant="secondary"
+                    onClick={() => setIsOpen(true)}
+                  />
+                  <Dialog
+                    isOpen={isOpen}
+                    onClose={() => setIsOpen(false)}
+                    title="Have Fun!!"
+                  >
+                    <StylePanel />
+                  </Dialog>
+                </>
+              )}
+            </Row>
+          </Row>
+        </Row>
+        <Flex fillWidth horizontal="end" vertical="center">
           <Flex
             paddingRight="12"
-            justifyContent="flex-end"
-            alignItems="center"
+            horizontal="end"
+            vertical="center"
             textVariant="body-default-s"
             gap="20"
           >
-            {routing.locales.length > 1 && (
-              <Flex
-                background="surface"
-                border="neutral-medium"
-                borderStyle="solid-1"
-                radius="m-4"
-                shadow="l"
-                padding="4"
-                gap="2"
-                justifyContent="center"
-              >
-                {i18n &&
-                  routing.locales.map((locale, index) => (
-                    <ToggleButton
-                      key={index}
-                      selected={params?.locale === locale}
-                      onClick={() => handleLanguageChange(locale)}
-                      className={
-                        (isPending && 'pointer-events-none opacity-60') || ''
-                      }
-                    >
-                      {locale.toUpperCase()}
-                    </ToggleButton>
-                  ))}
-              </Flex>
-            )}
-            <Flex hide="s">
+            <Flex s={{ hide: true }}>
               {display.time && <TimeDisplay timeZone={person.location} />}
             </Flex>
           </Flex>
         </Flex>
-      </Flex>
+      </Row>
     </>
   );
 };

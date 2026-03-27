@@ -1,28 +1,28 @@
-import { getPosts } from '@/app/utils/utils';
+import { getPosts } from '@/utils/utils';
+import { Grid } from '@once-ui-system/core';
 import Post from './Post';
-import { Grid } from '@/once-ui/components';
 
 interface PostsProps {
   range?: [number] | [number, number];
   columns?: '1' | '2' | '3';
-  locale: string;
   thumbnail?: boolean;
+  direction?: 'row' | 'column';
+  exclude?: string[];
 }
 
 export function Posts({
   range,
   columns = '1',
-  locale = 'en',
   thumbnail = false,
+  exclude = [],
+  direction,
 }: PostsProps) {
-  const allBlogs = getPosts([
-    'src',
-    'app',
-    '[locale]',
-    'blog',
-    'posts',
-    locale,
-  ]);
+  let allBlogs = getPosts(['src', 'app', 'blog', 'posts']);
+
+  // Exclude by slug (exact match)
+  if (exclude.length) {
+    allBlogs = allBlogs.filter(post => !exclude.includes(post.slug));
+  }
 
   const sortedBlogs = allBlogs.sort((a, b) => {
     return (
@@ -42,14 +42,19 @@ export function Posts({
     <>
       {displayedBlogs.length > 0 && (
         <Grid
-          columns={`repeat(${columns}, 1fr)`}
-          mobileColumns="1col"
+          columns={columns}
+          s={{ columns: 1 }}
           fillWidth
           marginBottom="40"
-          gap="m"
+          gap="16"
         >
           {displayedBlogs.map(post => (
-            <Post key={post.slug} post={post} thumbnail={thumbnail} />
+            <Post
+              key={post.slug}
+              post={post}
+              thumbnail={thumbnail}
+              direction={direction}
+            />
           ))}
         </Grid>
       )}

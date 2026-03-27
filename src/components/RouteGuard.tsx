@@ -1,10 +1,17 @@
 'use client';
 
 import { useEffect, useState } from 'react';
-import { usePathname } from '@/i18n/routing';
-import { routes, protectedRoutes } from '@/app/resources';
-import { Spinner, Button, Heading } from '@once-ui-system/core';
-import { Flex, Input } from '@/once-ui/components';
+import { usePathname } from 'next/navigation';
+import { routes, protectedRoutes } from '@/resources';
+import {
+  Flex,
+  Spinner,
+  Button,
+  Heading,
+  Column,
+  PasswordInput,
+} from '@once-ui-system/core';
+import NotFound from '@/app/not-found';
 
 interface RouteGuardProps {
   children: React.ReactNode;
@@ -78,49 +85,33 @@ const RouteGuard: React.FC<RouteGuardProps> = ({ children }) => {
 
   if (loading) {
     return (
-      <Flex fillWidth paddingY="128" justifyContent="center">
+      <Flex fillWidth paddingY="128" horizontal="center">
         <Spinner />
       </Flex>
     );
   }
 
   if (!isRouteEnabled) {
-    return (
-      <Flex fillWidth paddingY="128" justifyContent="center">
-        <Spinner />
-      </Flex>
-    );
+    return <NotFound />;
   }
 
   if (isPasswordRequired && !isAuthenticated) {
     return (
-      <Flex
-        fillWidth
-        paddingY="128"
-        maxWidth={24}
-        gap="24"
-        justifyContent="center"
-        direction="column"
-        alignItems="center"
-      >
+      <Column paddingY="128" maxWidth={24} gap="24" center>
         <Heading align="center" wrap="balance">
           This page is password protected
         </Heading>
-        <Input
-          id="password"
-          type="password"
-          label="Enter password"
-          value={password}
-          onChange={e => {
-            setPassword(e.target.value);
-            setError(undefined);
-          }}
-          error={error}
-        />
-        <Button onClick={handlePasswordSubmit} size="l">
-          Submit
-        </Button>
-      </Flex>
+        <Column fillWidth gap="8" horizontal="center">
+          <PasswordInput
+            id="password"
+            label="Password"
+            value={password}
+            onChange={e => setPassword(e.target.value)}
+            errorMessage={error}
+          />
+          <Button onClick={handlePasswordSubmit}>Submit</Button>
+        </Column>
+      </Column>
     );
   }
 

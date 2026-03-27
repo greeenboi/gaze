@@ -1,13 +1,8 @@
 import { Feed } from 'feed';
-import { getPosts } from '@/app/utils/utils';
-import { baseURL } from '@/app/resources';
-import { routing } from '@/i18n/routing';
+import { baseURL } from '@/resources';
+import { getPosts } from '@/utils/utils';
 
 export async function GET() {
-  const locales = routing.locales;
-  const includeLocalePrefix = locales.length > 1;
-  const defaultLocale = routing.defaultLocale;
-
   // Ensure baseURL has the proper format
   const siteUrl = baseURL?.startsWith('http') ? baseURL : `https://${baseURL}`;
 
@@ -17,7 +12,7 @@ export async function GET() {
     description: 'Writing about Tech, Games and Novels',
     id: siteUrl,
     link: siteUrl,
-    language: defaultLocale,
+    language: 'en',
     image: `${siteUrl}/images/avatar.jpeg`,
     favicon: `${siteUrl}/favicon.ico`,
     copyright: `All rights reserved ${new Date().getFullYear()}, Suvan GS`,
@@ -35,14 +30,7 @@ export async function GET() {
     },
   });
 
-  // Get all blog posts from all locales
-  const allPosts = locales.flatMap(locale => {
-    const posts = getPosts(['src', 'app', '[locale]', 'blog', 'posts', locale]);
-    return posts.map(post => ({ ...post, locale }));
-  });
-
-  // Sort posts by date (newest first)
-  const sortedPosts = allPosts.sort((a, b) => {
+  const posts = getPosts(['src', 'app', 'blog', 'posts']).sort((a, b) => {
     return (
       new Date(b.metadata.publishedAt).getTime() -
       new Date(a.metadata.publishedAt).getTime()
@@ -50,8 +38,8 @@ export async function GET() {
   });
 
   // Add each post to the feed
-  for (const post of sortedPosts) {
-    const postUrl = `${siteUrl}${includeLocalePrefix ? `/${post.locale}` : ''}/blog/${post.slug}`;
+  for (const post of posts) {
+    const postUrl = `${siteUrl}/blog/${post.slug}`;
 
     feed.addItem({
       title: post.metadata.title,

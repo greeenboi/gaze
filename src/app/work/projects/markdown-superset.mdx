@@ -1,0 +1,127 @@
+---
+title: "Building a Compiler for Markdown"
+publishedAt: "2025-02-12"
+summary: "Compiler build on ruby to compile gh-flavor and more markdown to html for the web to render"
+images:
+  - "/images/projects/markdown-superset/markleft1.png"
+team:
+  - name: "Suvan GS"
+    description: "I'm Suvan, a Student at SRMIST, Where I create noteworthy Applications . After hours, I build my own Projects that push the limits of speed and size."
+    role: "Student Developer"
+    avatar: "/images/avatar.jpeg"
+    linkedIn: "https://www.linkedin.com/in/suvangs"
+---
+
+## Overview
+
+MarkLeft is a powerful and flexible tool designed to extend the capabilities of traditional Markdown-to-HTML compilers. It introduces additional syntax and features to enhance the expressiveness and functionality of Markdown documents.
+
+> MarkLeft is a work in progress and is currently under development. Please check back for updates and new features.
+> You are still free to use it and contribute to it.
+
+
+## Features
+
+- **Superfast**: MarkLeft is designed to be fast and efficient, processing Markdown files quickly and generating HTML output in an instant.
+- **Extensible**: MarkLeft is highly extensible, allowing users to define custom syntax and features to suit their needs.
+- **Customizable**: MarkLeft provides a range of options and settings to customize the output, including themes, styles, and more.(coming soon)
+
+## Prerequisites
+
+- <InlineCode>Ruby >~ 3.2.4</InlineCode>
+- <InlineCode>Bundler =2.6.3</InlineCode>
+
+## Installation
+
+To install MarkLeft, clone the repository and navigate to the project directory:
+
+#### Gem
+
+<CodeBlock
+  className="my-24"
+  compact
+  codes={[
+    {
+      code: `gem install markleft`,
+      label: 'Download the gem',
+      language: 'bash'
+    }
+  ]}
+  copyButton
+/>
+
+#### Repository
+
+<CodeBlock
+  className="my-24"
+  compact
+  codes={[
+    {
+      code: `git clone git@github.com:greeenboi/markdown-superset-compiler.git`,
+      label: 'Clone the Repo',
+      language: 'bash'
+    }
+  ]}
+  copyButton
+/>
+
+## Running the Converter
+
+#### Using Gem
+
+<CodeBlock
+  className="my-24"
+  codes={[
+    {
+      code: `markleft`,
+      label: 'Use the Tui',
+      language: 'bash'
+    },
+    {
+      code: `markleft --file <filename>`,
+      label: 'Use Non Verbose Cli',
+      language: 'bash'
+    }
+  ]}
+  copyButton
+/>
+
+#### Using `markleft-main.rb`
+
+The `markleft-main.rb` file is a simple script that reads a Markdown file, tokenizes it, parses it, and generates HTML output.
+
+1. Run the Script
+   <CodeBlock
+      className="my-24"
+      compact
+      codes={[
+        {
+          code: `ruby lib/markleft.rb`,
+          label: 'Run the Script',
+          language: 'bash'
+        }
+      ]}
+      copyButton
+    />
+   
+   
+2. Follow the prompts to select a Markdown file and process it.
+
+## Example
+
+Given a sample Markdown file <InlineCode>sample.md</InlineCode>:
+
+<CodeBlock
+  className="my-24"
+  compact
+  codes={[
+    {
+      code: `
+      This is a sample *Markdown* file
+**bold** yippee!`,
+      label: 'Run the Script',
+      language: 'markdown'
+    }
+  ]}
+  copyButton
+/>
