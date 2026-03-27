@@ -1,0 +1,138 @@
+---
+title: "That Time I Made My Database Blazing Fast (v0.1.3)"
+publishedAt: "2026-03-27"
+image: "/images/blog/carnelia/carnelia-opt.png"
+summary: "An inside look into my approach to optimizing Carnelia: profiling CRDT hot-paths, fixing memory models, and achieving thread-safety."
+tag: "Technical"
+---
+## The Need for Speed
+
+When I first built Carnelia, the priority was getting the math right. Strong Eventual Consistency (SEC) is notoriously tricky to implement, and I was thrilled just to see my CRDTs correctly converging across partitions. But as the system matured and the payloads grew, **"correct" wasn't enough anymore. It needed to be fast.**
+
+With the release of Carnelia `v0.1.3`, I took a step back from feature building to focus entirely on performance optimization. This wasn't about guessing what was slow; it was about taking a rigorous, data-driven approach to profiling, identifying bottlenecks, and eliminating them.
+
+<Feedback
+  icon
+  variant="info"
+  title="The v0.1.3 Core Mission"
+  description="Make Carnelia noticeably faster and significantly more resilient in production by optimizing CRDT hot-paths, reinforcing thread-safety, and tuning memory allocation."
+/>
+
+---
+
+## My Approach to Optimization
+
+I’ve always believed that you can’t improve what you don’t measure. My optimization strategy involved three key steps:
+
+1. **Expanding the Benchmark Suite**: I wrote new benchmarks targeting our highest-friction elements (CRDT joins, RGA applies, and Merkle cache routines). I designed scenarios ranging from simple appends (no conflicts) to complex multi-user syncs (many conflicts).
+2. **Profiling for Hotspots**: Using flamegraphs, I identified exactly where the CPU was spinning its wheels.
+3. **Targeted Refactoring**: I surgically rewrote the identified bottlenecks, ensuring every change was strictly behavior-preserving. Nobody wants a fast database that corrupts data!
+
+Here are the major wins from that process.
+
+---
+
+## 1. Turbocharging CRDT Merges
+
+When profiling the sync process for large volumes of data, the flamegraphs revealed that our CRDT merge paths were suffering from "death by a thousand cuts"—specifically, excessive memory allocations and data cloning.
+
+<AccordionGroup>
+  <Accordion title="Evicting Clones">
+    I went through the core modules (`gset`, `pncounter`, `mvreg`, `orset`, `map`) and ruthlessly evicted clone-heavy operations from the most active join and merge paths.
+  </Accordion>
+  <Accordion title="Bypassing Temporary Allocations">
+    I re-architected the merge logic to work in place wherever possible, completely bypassing temporary memory allocations that were trashing the allocator and causing massive slowdowns.
+  </Accordion>
+</AccordionGroup>
+
+---
+
+## 2. Bulletproofing RGA Lists
+
+One of the scariest things I found during testing was a potential Out-of-Memory (OOM) Denial of Service vector in the RGA (Replicated Growable Array) delta application.
+
+Previously, the system blindly relied on the incoming payload's `delta.inserts.len()` to reserve memory space. If a malicious or malformed payload reported a massive length, the database would happily try to allocate gigs of memory and crash.
+
+**The Fix:** We stopped trusting the payload blindly. Instead, the engine now aggressively pre-scans incoming payloads to count the *truly unprecedented* nodes and keys. It only reserves memory for what's actually new. This not only stopped the DoS vector dead in its tracks but massively cut down memory pressure during normal syncs.
+
+---
+
+## 3. Smarter Caching & Bulletproof Thread Safety
+
+Concurrency in Rust is amazing, but it requires discipline. I realized that some of our internal caching mechanisms were limiting our ability to expose a truly safe, highly concurrent public API.
+
+<Card padding="4" border="neutral-alpha-medium">
+    <Heading as="h3">Topological Caching</Heading>
+    <Text>I introduced topological-order caching inside the DAG store. This brought the cost of repeat reads practically down to zero.</Text>
+</Card>
+<Card padding="4" border="neutral-alpha-medium">
+    <Heading as="h3">RefCell to RwLock</Heading>
+    <Text>I swapped out a problematic `RefCell<Option<Vec<Hash>>>` cache for a safe, concurrent `RwLock`. This nipped potential public thread-safety issues in the bud.</Text>
+</Card>
+
+To lock these guarantees in place, I added strictly typed compile-time assertions to ensure our `MemoryDAGStore` definitively remains `Send + Sync`. If I ever write synchronous code that breaks this guarantee, the build fails immediately.
+
+---
+
+## The Results: How Well Did It Work?
+
+The difference after the `v0.1.3` optimizations was night and day. I set up specific testing scenarios from simple non-conflicting appends to massive multi-user concurrent graphs.
+
+Comparing the `v0.1.2` flamegraphs to `v0.1.3` showed a massive reduction in wasted CPU cycles. The memory footprint stayed flat even under heavy load, and synchronization speeds spiked dramatically. But the numbers tell an even more interesting story: the honest breakdown of where Carnelia shines, and where it still falls short.
+
+---
+
+## 🟢 Where MDCS Genuinely Wins
+
+To evaluate true real-world viability, I pitted Carnelia's MDCS directly against mature CRDTs like Yjs. The results in a few categories were exactly what I was hoping for. 
+
+### 1. Per-Update Network Payload Size
+The most striking advantage we found was per-update size. For sequential character insertions, **MDCS sends just `1` byte per update, compared to Yjs's `27–29` bytes.** That's a `27–29x` smaller network payload! Even for word and number operations, it remains `4–8x` smaller. This makes Carnelia ridiculously competitive for bandwidth-constrained, sync-heavy applications.
+
+<Grid columns="2" gap="4" marginTop="16" marginBottom="24">
+  <Column horizontal="center">
+    <RadialGauge width={240} height={240} value={1} unit="byte" hue="success"/>
+    <Row fill vertical="end" horizontal="center" padding="20">
+        <Text variant="heading-strong-xl">MDCS</Text>
+    </Row>
+    <Text variant="body-default-s" onBackground="neutral-medium" marginTop="8">MDCS Avg. Update</Text>
+  </Column>
+  <Column horizontal="center">
+    <RadialGauge width={240} height={240} value={28} unit="bytes" hue="danger"/>
+    <Row fill vertical="end" horizontal="center" padding="20">
+        <Text variant="heading-strong-xl">Yjs</Text>
+    </Row>
+    <Text variant="body-default-s" onBackground="neutral-medium" marginTop="8">Yjs Avg. Update</Text>
+  </Column>
+</Grid>
+
+### 2. Parse Time (Cold Starts)
+When it comes to loading a saved document (parse time), Carnelia text operations complete in **`4–14` microseconds** vs Yjs's `22–53` milliseconds. That results in a staggering **`3,500–11,000x` faster load time**. For local-first apps that need to render instantly right off the disk, this is a massive win.
+
+### 3. Concurrent Conflict Handling
+In concurrent conflict benchmarks (`B2` series), MDCS actually beat Yjs on `B2.2` (`2.1x` faster) and `B2.4` (`1.75x` faster). Passing an industry standard benchmark on complex concurrency behavior for a `v0.1.3` library feels like a major victory.
+
+---
+
+## 🔴 Where MDCS Still Loses (The Write Gap)
+
+Transparency in open source means airing out the bad alongside the good. The biggest remaining weakness we have is **Write Throughput**. 
+
+On the `B1.1` benchmark (appending N characters individually), MDCS takes **`13,919ms`** while Yjs clocks in at just **`141ms`**—making MDCS roughly `99x` slower. The worst case is `B1.5` (Insert N words at random): `44,097ms` to `149ms` (nearly `300x` slower). Across the board on sequential-write tests, MDCS is `14x–5,500x` slower. Similarly, on the `B3` concurrent map test, MDCS ran about `8–37x` slower than Yjs.
+
+*(Caveat: The benchmarks weren't strictly an apples-to-apples hardware comparison—MDCS ran on a Ryzen 7 5800HS under WSL, while the Yjs/Automerge tests were on an M1 Mac. The M1 is undoubtedly faster, but the gap is too large to ignore.)*
+
+<Feedback
+  icon
+  variant="danger"
+  title="The Bottom Line"
+  description="At v0.1.3, Carnelia (MDCS) is an incredibly network-efficient, ultra-fast-loading data store that currently trades write throughput for dramatically smaller updates and near-instant parsing. It dominates in read-heavy and bandwidth-constrained systems, but tightening that write speed gap is our absolute #1 priority going forward."
+/>
+
+---
+
+Building a database is hard. Making it fast while keeping its guarantees intact is even harder. But seeing those clean flamegraphs and snappy benchmarks makes all the late-night debugging sessions exactly what I built it for.
+
+If you want to dive deeper into the raw numbers and the architectural changes we made in `v0.1.3`, check out the resources below:
+- **[Full Benchmark Results](https://github.com/Agate-DB/Carnelia/blob/main/benchmarks/RESULTS_v0.1.3.md)**
+- **[v0.1.3 Performance Optimization Report](https://docs.carnelia.dev/release-notes/performance-optimization-report)**

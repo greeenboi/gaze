@@ -92,7 +92,7 @@ const home: Home = {
         </Text>
       </Row>
     ),
-    href: '/work/building-once-ui-a-customizable-design-system',
+    href: '/blog/that-time-i-tried-to-build-my-own-database',
   },
   subline: (
     <>

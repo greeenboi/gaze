@@ -1,0 +1,118 @@
+---
+title: "That Time I Tried to Make my own Database From Scratch"
+publishedAt: "2025-12-25"
+image: "/images/blog/carnelia/carnelia-og.png"
+summary: "A intro on a system-level architecture for conflict-free replicated databases combining delta-state CRDTs, Merkle-Clock synchronization, and causal-stability-driven compaction."
+tag: "Technical"
+---
+## Why I Wanted to Build My Own Database
+
+It all started when I was trying to build collaborative, local-first applications. I wanted my apps to respond instantly, work offline, and resolve conflicts automatically when devices reconnected. The core problem was building a system that supports **optimistic local writes** — no locks, no central leader — while guaranteeing deterministic convergence of replicas under partitions, message loss, and device churn. 
+
+This property is formally known as **Strong Eventual Consistency (SEC)**.
+
+<Feedback
+  icon
+  variant="info"
+  title="The CRDT Promise"
+  description="Conflict-free Replicated Data Types (CRDTs) provide the mathematical foundation for this convergence, but taking theory into production exposes gaps: transport assumptions, unbounded metadata growth, and reactivity issues."
+/>
+
+---
+
+## The Open Problems I Faced
+
+Beyond the basic question of "does it converge?", I realized a practical CRDT database had to handle real-world challenges:
+
+<AccordionGroup>
+  <Accordion title="Transport Assumptions vs. Reality">
+    Operation-based CRDTs usually require exactly-once reliable causal broadcast. I found this hard to maintain, especially when membership management gets fragile under network churn.
+  </Accordion>
+  <Accordion title="Metadata Growth">
+    CRDTs accumulate tombstones, causal contexts, and operation logs. Safely removing this metadata requires knowing when operations are causally stable.
+  </Accordion>
+  <Accordion title="Reactivity Degradation">
+    Causal broadcast middleware buffers messages that arrive out of order. This delays operations that aren't even semantically dependent, ruining the instant UX I was aiming for.
+  </Accordion>
+</AccordionGroup>
+
+---
+
+## Exploring the Solutions
+
+I spent a lot of time reading papers and evaluating different CRDT approaches. Here's a quick taxonomy of what I explored:
+
+<Table data={{
+  headers: [
+    { content: "Approach" },
+    { content: "Core Idea" },
+    { content: "Trade-off" }
+  ],
+  rows: [
+    ["CvRDTs (state-based)", "Join-semilattice merge", "Full-state shipping is expensive"],
+    ["CmRDTs (operation-based)", "Commutative concurrent operations", "Requires stronger dissemination guarantees"],
+    ["δ-CRDTs (delta-state)", "Delta-mutators return minimal state", "Bandwidth-efficient, preserves causal consistency"],
+    ["Merkle-CRDTs", "Merkle-DAG clocks", "Decoupled from membership size, requires DAG management"]
+  ]
+}} />
+
+---
+
+## How I Architected Carnelia
+
+After evaluating the pros and cons, I designed the **Merkle-Delta CRDT Store (MDCS)**. I structured it into four tightly integrated layers:
+
+<Grid columns="2" gap="4">
+  <Column>
+    <Card padding="4" border="neutral-alpha-medium">
+      <Heading as="h3">1. δ-CRDT Core</Heading>
+      <Text>Efficient incremental dissemination using a document-oriented composition of maps, sets, and registers.</Text>
+    </Card>
+  </Column>
+  <Column>
+    <Card padding="4" border="neutral-alpha-medium">
+      <Heading as="h3">2. Merkle-Clock Sync</Heading>
+      <Text>Open membership and recovery via content-addressed DAG synchronization.</Text>
+    </Card>
+  </Column>
+  <Column>
+    <Card padding="4" border="neutral-alpha-medium">
+      <Heading as="h3">3. Stability-Guided Compaction</Heading>
+      <Text>Bounded metadata growth through principled pruning when intervals are acknowledged.</Text>
+    </Card>
+  </Column>
+  <Column>
+    <Card padding="4" border="neutral-alpha-medium">
+      <Heading as="h3">4. Reactivity Guardrails</Heading>
+      <Text>Exposing buffered operations to avoid waiting on unrelated updates.</Text>
+    </Card>
+  </Column>
+</Grid>
+
+---
+
+## The Two-Layer Sync Model
+
+One of the most interesting parts of the build was the synchronization architecture. It operates purely on two complementary layers:
+
+1. **Layer A (Delta-interval anti-entropy)**: Uses delta-state anti-entropy with acknowledgements for causal merging and garbage collection.
+2. **Layer B (Merkle-Clock summaries)**: Uses Merkle-Clock roots as compact frontier identifiers for discovery and gap repair. 
+
+<Feedback
+  icon
+  variant="success"
+  title="Key Design Decision"
+  description="The Merkle-DAG handles discovery and gap repair, while delta-interval acknowledgements provide causal merging discipline and garbage collection eligibility. This hybrid approach gave me the best of both worlds."
+/>
+
+---
+
+## Looking Back: Merits and Trade-offs
+
+Building Carnelia was a massive learning experience. 
+
+On the plus side, my approach avoids strict dissemination assumptions. Deltas act as idempotent joins, handling duplication gracefully. The open membership model works well for dynamic sets, and the metadata compaction is principled.
+
+However, the trade-offs are real. Multiple layers mean careful integration and deep testing. The Merkle history can grow without snapshots, and building explicit structures over a primarily non-serializable base demands careful invariant design. 
+
+In the end, while it isn't perfect, it's a solid foundation for the resilient, local-first apps I set out to build!
