@@ -18,7 +18,10 @@ export async function POST(request: NextRequest) {
   try {
     body = (await request.json()) as SubscribeBody;
   } catch {
-    return NextResponse.json({ message: 'Invalid request body' }, { status: 400 });
+    return NextResponse.json(
+      { message: 'Invalid request body' },
+      { status: 400 }
+    );
   }
 
   const email = body.email?.trim().toLowerCase();

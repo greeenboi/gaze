@@ -20,7 +20,10 @@ export async function POST(request: NextRequest) {
   try {
     body = (await request.json()) as ConfirmBody;
   } catch {
-    return NextResponse.json({ message: 'Invalid request body' }, { status: 400 });
+    return NextResponse.json(
+      { message: 'Invalid request body' },
+      { status: 400 }
+    );
   }
 
   const email = body.email?.trim().toLowerCase();
@@ -56,7 +59,11 @@ export async function POST(request: NextRequest) {
     });
 
     if (!result.ok) {
-      console.error('Mailjet confirmation send failed', result.status, result.data);
+      console.error(
+        'Mailjet confirmation send failed',
+        result.status,
+        result.data
+      );
       return NextResponse.json(
         { message: 'Unable to send confirmation email' },
         { status: 502 }

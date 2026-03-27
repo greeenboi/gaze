@@ -16,6 +16,10 @@ const nextConfig = {
         hostname: 'www.google.com',
         pathname: '**',
       },
+      {
+        hostname: 'img.shields.io', 
+        pathname: '/work/*'
+      }
     ],
   },
   allowedDevOrigins: ['127.0.0.1'],

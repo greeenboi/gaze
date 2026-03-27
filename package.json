@@ -1,6 +1,6 @@
 {
-  "name": "@once-ui-system/magic-portfolio",
-  "version": "2.3.0",
+  "name": "suvangs-portfolio",
+  "version": "2.0.0",
   "scripts": {
     "dev": "next dev",
     "export": "next export",

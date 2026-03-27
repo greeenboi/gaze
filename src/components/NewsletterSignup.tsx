@@ -71,7 +71,9 @@ export const NewsletterSignup: React.FC<
       const subscribeBody = await parseResponse(subscribeResponse);
 
       if (!subscribeResponse.ok) {
-        throw new Error(subscribeBody.message || 'Unable to subscribe right now.');
+        throw new Error(
+          subscribeBody.message || 'Unable to subscribe right now.'
+        );
       }
 
       const confirmResponse = await fetch(mailjet.confirmEndpoint, {
@@ -190,61 +192,61 @@ export const NewsletterSignup: React.FC<
           justifyContent: 'center',
         }}
       >
-        <Column maxHeight="xs" horizontal='center' gap="8">
-            <Row
-                fillWidth
-                maxWidth={48}
-                s={{ direction: 'column' }}
-                gap="8"
-                align="center"
-            >
+        <Column maxHeight="xs" horizontal="center" gap="8">
+          <Row
+            fillWidth
+            maxWidth={48}
+            s={{ direction: 'column' }}
+            gap="8"
+            align="center"
+          >
             <Input
-                id="newsletter-name"
-                name="name"
-                type="text"
-                placeholder="Name (optional)"
-                value={name}
-                onChange={event => setName(event.target.value)}
+              id="newsletter-name"
+              name="name"
+              type="text"
+              placeholder="Name"
+              value={name}
+              onChange={event => setName(event.target.value)}
             />
             <Input
-                formNoValidate
-                id="newsletter-email"
-                name="email"
-                type="email"
-                placeholder="Email"
-                required
-                value={email}
-                onChange={event => {
+              formNoValidate
+              id="newsletter-email"
+              name="email"
+              type="email"
+              placeholder="Email"
+              required
+              value={email}
+              onChange={event => {
                 setEmail(event.target.value);
                 if (error) {
-                    setError('');
+                  setError('');
                 }
-                }}
-                onBlur={() => {
+              }}
+              onBlur={() => {
                 if (email && !isEmailValid) {
-                    setError('Please enter a valid email address.');
+                  setError('Please enter a valid email address.');
                 }
-                }}
-                errorMessage={error}
+              }}
+              errorMessage={error}
             />
-            </Row>
-            <Row height="48" vertical="center" fillWidth>
-                <Button
-                    id="newsletter-subscribe"
-                    type="submit"
-                    size="m"
-                    fillWidth
-                    loading={isSubmitting}
-                    disabled={isSubmitting}
-                    >
-                    Subscribe
-                </Button>
-            </Row>
-                {successMessage ? (
-                    <Text onBackground="success-strong" variant="label-default-s">
-                    {successMessage}
-                    </Text>
-                ) : null}
+          </Row>
+          <Row height="48" vertical="center" fillWidth>
+            <Button
+              id="newsletter-subscribe"
+              type="submit"
+              size="m"
+              fillWidth
+              loading={isSubmitting}
+              disabled={isSubmitting}
+            >
+              Subscribe
+            </Button>
+          </Row>
+          {successMessage ? (
+            <Text onBackground="success-strong" variant="label-default-s">
+              {successMessage}
+            </Text>
+          ) : null}
         </Column>
       </form>
     </Column>
