@@ -17,7 +17,7 @@ import { Analytics } from '@vercel/analytics/react';
 import { SpeedInsights } from '@vercel/speed-insights/next';
 import classNames from 'classnames';
 import type { Metadata } from 'next';
-import { Footer, Header, Providers, RouteGuard } from '@/components';
+import { Footer, Header, Providers } from '@/components';
 import {
   baseURL,
   dataStyle,
@@ -301,7 +301,8 @@ export default async function RootLayout({
             <Fade
               zIndex="1"
               to="right"
-              width="64"
+              paddingX={12}
+              fillWidth
               position="absolute"
               left="0"
               top="0"
