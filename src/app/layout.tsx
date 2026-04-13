@@ -49,10 +49,16 @@ export async function generateMetadata(): Promise<Metadata> {
     keywords: [
       person.name,
       person.role,
+      person.firstName,
       'portfolio',
       'software engineer',
       'projects',
       'blog',
+      'suvan',
+      'agate',
+      'carnelia',
+      'Suvan',
+      'Founders Club',      
     ],
     authors: [
       {
@@ -63,9 +69,11 @@ export async function generateMetadata(): Promise<Metadata> {
     creator: person.name,
     publisher: person.name,
     formatDetection: {
-      email: false,
-      address: false,
-      telephone: false,
+      email: true,
+      address: true,
+      telephone: true,
+      date:false,
+      url: true
     },
     manifest: '/manifest.json',
     alternates: {
@@ -303,6 +311,7 @@ export default async function RootLayout({
               to="right"
               paddingX={12}
               fillWidth
+              maxWidth={"90%"}
               position="absolute"
               left="0"
               top="0"
