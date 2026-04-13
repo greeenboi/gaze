@@ -193,54 +193,6 @@ export default async function RootLayout({
       )}
     >
       <head>
-        <style>{`
-          :root {
-            --theme-brand: ${themeConfig.brand};
-            --theme-accent: ${themeConfig.accent};
-            --theme-neutral: ${themeConfig.neutral};
-            --theme-solid: ${themeConfig.solid};
-            --theme-solid-style: ${themeConfig['solid-style']};
-            --theme-border: ${themeConfig.border};
-            --theme-surface: ${themeConfig.surface};
-            --theme-transition: ${themeConfig.transition};
-            --theme-scaling: ${themeConfig.scaling};
-            --theme-viz-style: ${themeConfig['viz-style']};
-
-            --scrollbar-track: var(--scheme-${themeConfig.neutral}-200);
-            --scrollbar-thumb: var(--scheme-${themeConfig.brand}-500);
-            --scrollbar-thumb-hover: var(--scheme-${themeConfig.brand}-600);
-          }
-
-          html {
-            scroll-behavior: smooth;
-            scrollbar-color: var(--scrollbar-thumb) var(--scrollbar-track);
-            overflow-y: auto;
-            overflow-x: hidden;
-          }
-
-          body {
-            overflow: hidden;
-          }
-
-          html::-webkit-scrollbar {
-            width: 10px;
-            height: 10px;
-          }
-
-          html::-webkit-scrollbar-track {
-            background: var(--scrollbar-track);
-          }
-
-          html::-webkit-scrollbar-thumb {
-            background-color: var(--scrollbar-thumb);
-            border: 2px solid var(--scrollbar-track);
-            border-radius: 999px;
-          }
-
-          html::-webkit-scrollbar-thumb:hover {
-            background-color: var(--scrollbar-thumb-hover);
-          }
-        `}</style>
         <script
           id="theme-init"
           // biome-ignore lint/security/noDangerouslySetInnerHtml: needed
