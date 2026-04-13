@@ -29,6 +29,7 @@ export default function Blog() {
           image: `${baseURL}${person.avatar}`,
         }}
       />
+      <Heading as='h1' style={{display: "none"}}>Suvan's blog</Heading>
       <Heading marginBottom="l" variant="heading-strong-xl" marginLeft="24">
         {blog.title}
       </Heading>

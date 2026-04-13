@@ -42,6 +42,7 @@ export default function Home() {
           image: `${baseURL}${person.avatar}`,
         }}
       />
+      <Heading as='h1' style={{display: "none"}}>Homepage for Suvan's Portfolio</Heading>
       <Column fillWidth horizontal="center" gap="m">
         <Column maxWidth="s" horizontal="center" align="center">
           {home.featured.display && (

@@ -1,6 +1,6 @@
 import { Column, Heading, Meta, Schema } from '@once-ui-system/core';
-import { baseURL, about, person, work } from '@/resources';
 import { Projects } from '@/components/work/Projects';
+import { about, baseURL, person, work } from '@/resources';
 
 export async function generateMetadata() {
   return Meta.generate({
@@ -28,6 +28,7 @@ export default function Work() {
           image: `${baseURL}${person.avatar}`,
         }}
       />
+    <Heading as='h1' style={{display: "none"}}>Suvan's Work portfolio and proof of excellence</Heading>
       <Heading marginBottom="l" variant="heading-strong-xl" align="center">
         {work.title}
       </Heading>

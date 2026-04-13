@@ -65,6 +65,7 @@ export default function About() {
           image: `${baseURL}${person.avatar}`,
         }}
       />
+      <Heading as='h1' style={{display: "none"}}>About Suvan the best developer</Heading>
       {about.tableOfContent.display && (
         <Column
           left="0"
