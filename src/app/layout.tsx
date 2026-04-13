@@ -209,31 +209,35 @@ export default async function RootLayout({
             --scrollbar-track: var(--scheme-${themeConfig.neutral}-200);
             --scrollbar-thumb: var(--scheme-${themeConfig.brand}-500);
             --scrollbar-thumb-hover: var(--scheme-${themeConfig.brand}-600);
-            scroll-behavior: smooth;
-            scrollbar-color: var(--scrollbar-thumb) var(--scrollbar-track);
           }
 
-          html,
-          body {
+          html {
+            scroll-behavior: smooth;
+            scrollbar-color: var(--scrollbar-thumb) var(--scrollbar-track);
+            overflow-y: auto;
             overflow-x: hidden;
           }
 
-          *::-webkit-scrollbar {
+          body {
+            overflow: hidden;
+          }
+
+          html::-webkit-scrollbar {
             width: 10px;
             height: 10px;
           }
 
-          *::-webkit-scrollbar-track {
+          html::-webkit-scrollbar-track {
             background: var(--scrollbar-track);
           }
 
-          *::-webkit-scrollbar-thumb {
+          html::-webkit-scrollbar-thumb {
             background-color: var(--scrollbar-thumb);
             border: 2px solid var(--scrollbar-track);
             border-radius: 999px;
           }
 
-          *::-webkit-scrollbar-thumb:hover {
+          html::-webkit-scrollbar-thumb:hover {
             background-color: var(--scrollbar-thumb-hover);
           }
         `}</style>
@@ -242,7 +246,6 @@ export default async function RootLayout({
           // biome-ignore lint/security/noDangerouslySetInnerHtml: needed
           dangerouslySetInnerHTML={{
             __html: `
-              data-scroll-behavior="smooth"
               (function() {
                 try {
                   const root = document.documentElement;
@@ -276,6 +279,13 @@ export default async function RootLayout({
                       root.setAttribute('data-' + key, value);
                     }
                   });
+
+                  // Keep scrollbar colors in sync with effective brand/neutral values.
+                  const effectiveBrand = localStorage.getItem('data-brand') || config.brand;
+                  const effectiveNeutral = localStorage.getItem('data-neutral') || config.neutral;
+                  root.style.setProperty('--scrollbar-track', 'var(--scheme-' + effectiveNeutral + '-200)');
+                  root.style.setProperty('--scrollbar-thumb', 'var(--scheme-' + effectiveBrand + '-500)');
+                  root.style.setProperty('--scrollbar-thumb-hover', 'var(--scheme-' + effectiveBrand + '-600)');
                 } catch (e) {
                   console.error('Failed to initialize theme:', e);
                   document.documentElement.setAttribute('data-theme', 'dark');
