@@ -1,7 +1,6 @@
 'use client';
 
 import {
-  AvatarGroup,
   Carousel,
   Column,
   Flex,
@@ -56,7 +55,7 @@ export const ProjectCard: React.FC<ProjectCardProps> = ({
         speed="fast"
       >
         <Carousel
-          indicator="thumbnail"
+          indicator="line"
           sizes="(max-width: 960px) 100vw, 960px, (max-height: 540)"
           items={images.map(image => ({
             slide: image,
