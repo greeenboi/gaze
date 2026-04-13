@@ -1,6 +1,5 @@
 import '@once-ui-system/core/css/styles.css';
 import '@once-ui-system/core/css/tokens.css';
-import '@/resources/custom.css';
 
 import {
   AutoScroll,
@@ -167,6 +166,19 @@ export default async function RootLayout({
 }: Readonly<{
   children: React.ReactNode;
 }>) {
+  const themeConfig = {
+    brand: style.brand,
+    accent: style.accent,
+    neutral: style.neutral,
+    solid: style.solid,
+    'solid-style': style.solidStyle,
+    border: style.border,
+    surface: style.surface,
+    transition: style.transition,
+    scaling: style.scaling,
+    'viz-style': dataStyle.variant,
+  };
+
   return (
     <Flex
       suppressHydrationWarning
@@ -181,6 +193,36 @@ export default async function RootLayout({
       )}
     >
       <head>
+        <style>{`
+          :root {
+            scroll-behavior: smooth;
+            scrollbar-color: var(--scheme-brand-500) var(--scheme-neutral-200);
+          }
+
+          html,
+          body {
+            overflow-x: hidden;
+          }
+
+          *::-webkit-scrollbar {
+            width: 10px;
+            height: 10px;
+          }
+
+          *::-webkit-scrollbar-track {
+            background: var(--scheme-neutral-200);
+          }
+
+          *::-webkit-scrollbar-thumb {
+            background-color: var(--scheme-brand-500);
+            border: 2px solid var(--scheme-neutral-200);
+            border-radius: 999px;
+          }
+
+          *::-webkit-scrollbar-thumb:hover {
+            background-color: var(--scheme-brand-600);
+          }
+        `}</style>
         <script
           id="theme-init"
           // biome-ignore lint/security/noDangerouslySetInnerHtml: needed
@@ -190,21 +232,9 @@ export default async function RootLayout({
               (function() {
                 try {
                   const root = document.documentElement;
-                  const defaultTheme = 'system';
                   
                   // Set defaults from config
-                  const config = ${JSON.stringify({
-                    brand: style.brand,
-                    accent: style.accent,
-                    neutral: style.neutral,
-                    solid: style.solid,
-                    'solid-style': style.solidStyle,
-                    border: style.border,
-                    surface: style.surface,
-                    transition: style.transition,
-                    scaling: style.scaling,
-                    'viz-style': dataStyle.variant,
-                  })};
+                  const config = ${JSON.stringify(themeConfig)};
                   
                   // Apply default values
                   Object.entries(config).forEach(([key, value]) => {
@@ -251,7 +281,7 @@ export default async function RootLayout({
           padding="0"
           horizontal="center"
         >
-          <RevealFx fill position="absolute">
+          <RevealFx fill fillWidth position="absolute">
             <Background
               mask={{
                 x: effects.mask.x,
