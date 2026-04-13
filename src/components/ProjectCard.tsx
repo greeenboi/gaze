@@ -9,7 +9,6 @@ import {
   SmartLink,
   Text,
 } from '@once-ui-system/core';
-import { useEffect, useState } from 'react';
 import { AvatarGroupHover } from './work/AvatarGroupHover';
 
 interface ProjectCardProps {
@@ -31,6 +30,7 @@ interface ProjectCardProps {
 
 export const ProjectCard: React.FC<ProjectCardProps> = ({
   href,
+  priority = false,
   images = [],
   title,
   content,
@@ -38,25 +38,19 @@ export const ProjectCard: React.FC<ProjectCardProps> = ({
   avatars,
   link,
 }) => {
-  const [isTransitioning, setIsTransitioning] = useState(false);
-  useEffect(() => {
-    const timer = setTimeout(() => {
-      setIsTransitioning(true);
-    }, 1000);
-
-    return () => clearTimeout(timer);
-  }, []);
   return (
     <Column fillWidth gap="m">
       <RevealFx
         style={{ width: '100%' }}
         delay={0.4}
-        trigger={isTransitioning}
+        trigger
         speed="fast"
       >
         <Carousel
           indicator="line"
-          sizes="(max-width: 960px) 100vw, 960px, (max-height: 540)"
+          priority={priority}
+          aspectRatio="16 / 9"
+          sizes="(max-width: 768px) 100vw, 960px"
           items={images.map(image => ({
             slide: image,
             alt: title,
