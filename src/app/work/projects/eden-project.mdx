@@ -12,10 +12,87 @@ team:
     linkedIn: "https://www.linkedin.com/in/suvangs"
 ---
 
-## Overview
-I spent 4 months overengineering a platform to forcibly extract songs and use them through my own application to hear music. All without ads. Completely self-hostable, for free.
+## The Motivation: Why I Built Eden
 
-## Architecture
+I got tired of paying for streaming subscriptions just to listen to my favorite songs without ads. And worse, I hated that I didn't actually *own* any of the music I was listening to. What if music wasn't so inaccessible? What if there was a self-hosted, open alternative to Spotify that gave you complete control over your library?
+
+So, I spent 6 months completely overengineering a platform to forcibly extract songs from the web, store them on my own server, and stream them through my own custom mobile application. All without ads. Completely self-hostable, entirely for free using Cloudflare's free tier.
+
+## What Exactly is Eden?
+
+Eden isn't just a simple music player—it's a fully self-hosted, modular music ecosystem. It lets you migrate your favorite songs from YouTube, Spotify, or SoundCloud into your own server, and then listen to them on any Eden client. The entire ecosystem is split into several interconnected pieces:
+
+- **Eden (Mobile App):** A React Native (Expo) app for Android and iOS. This is my primary listening experience, featuring offline-readiness, personalized history, and AI-powered suggestions.
+- **Eden Garden (Chrome Extension):** Built with the Plasmo framework, this is the ingestion pipeline. Whenever I'm listening to a track on YouTube, Spotify, or SoundCloud, Garden lets me rip it, fetch rich metadata (like cover art and artist info), edit it manually, and push it directly to my server with one click.
+- **Eden Server:** The authoritative API backend built on Cloudflare Workers and Hono. It handles user auth, library management, and streaming. 
+- **The Worker Layer:** Three purpose-built Cloudflare Workers (Gateway, yt-metadata, and yt-downloader) to handle the heavy lifting, orchestrate downloads via `yt-dlp`, and keep the whole system horizontally scalable.
+
+## The Architecture Behind the Magic
+
+To make this all work on a completely free tier without blowing up, I had to be smart about how data flows through the system. I built an orchestration layer using Cloudflare Workers that queues and processes song extraction asynchronously.
+
+Here's a 30,000-foot view of how the pieces link together:
+
+<CodeBlock
+  copyButton={false}
+  codes={[
+    {
+      label: 'Eden Architecture',
+      language: 'markdown',
+      code: `┌─────────────────────────────────────────────────────────┐
+│                     Eden Clients                        │
+│         Eden (Mobile)    |    Eden Desktop (WIP)        │
+└────────────────────┬────────────────────────────────────┘
+                     │ REST / Streaming
+                     ▼
+┌────────────────────────────────────────────────────────┐
+│                   Eden Server                          │
+│         Auth · Playback · Library · Upload             │
+└──────────────┬─────────────────────────────────────────┘
+               │ Worker Calls
+               ▼
+┌──────────────────────────────────────────────────────┐
+│                  Eden Gateway                        │
+│          API Gateway · Queue · Registry              │
+└────────┬────────────────────────┬────────────────────┘
+         │                        │
+         ▼                        ▼
+┌─────────────────┐    ┌──────────────────────┐
+│  yt-metadata    │    │    yt-downloader     │
+│ Fetch metadata  │    │  yt-dlp · Download   │
+│ from Spotify /  │    │  audio from YouTube  │
+│ SoundCloud / YT │    │  when queued         │
+└─────────────────┘    └──────────────────────┘
+         ▲
+         │ Extension picks up metadata
+┌────────────────┐
+│  Eden Garden   │
+│ Chrome Ext.    │
+│ YT/Spotify/SC  │
+└────────────────┘`
+    }
+  ]}
+/>
+
+### How Data Moves Through the System
+
+<AccordionGroup>
+  <Accordion id="step-1" title="1. Extraction with Eden Garden (Chrome Extension)">
+    The ingestion starts right at your browser. Whether you are on YouTube, SoundCloud, or Spotify, **Eden Garden** watches what you're listening to and allows you to "rip" the song context. The extension talks directly to the \`yt-metadata\` Worker to fetch high-res artwork, reliable artist information, and precise track lengths before handing off the download queue to Eden.
+  </Accordion>
+  <Accordion id="step-2" title="2. The Brains: Eden Gateway">
+    Instead of hitting the downloader layer directly, all requests run through the **Eden Gateway**. This gateway prevents rate-limit abuse from YouTube by queuing download jobs synchronously and acting as a registry to track which worker instance is free or active.
+  </Accordion>
+  <Accordion id="step-3" title="3. Downloader and Storage (yt-downloader)">
+    The **yt-downloader** is a microservice running a serverless wrapper around \`yt-dlp\`. When the gateway says “go,” it buffers the audio stream, rips the highest possible bitrate snippet, and pushes it up into Cloudflare R2 storage—which we mask behind **Eden Server**.
+  </Accordion>
+  <Accordion id="step-4" title="4. Consumption Server (Eden Server)">
+    **Eden Server** is the authoritative REST API where authentication, library states, viewing history, and playlists live. It orchestrates everything between database logic and serving raw audio streams so zero heavy-lifting falls onto the frontend.
+  </Accordion>
+  <Accordion id="step-5" title="5. Playback on Clients">
+    Finally, **Eden Mobile** (and soon **Eden Desktop**) authenticates your profile over the API, retrieves your customized SQL library manifest, and uses Expo's React Native audio engines to play directly from the Cloudflare R2 CDN streams. 
+  </Accordion>
+</AccordionGroup>
 
 <Media
   enlarge
@@ -43,5 +120,15 @@ I spent 4 months overengineering a platform to forcibly extract songs and use th
   radius="xl"
   border="neutral-alpha-medium"
 />
----
+
+## How to use it
+
+Everything is open-source and ready to be deployed. Since the backend relies purely on Cloudflare Workers, you don't have to pay a single cent to host your own Eden cluster. 
+
+To set it up:
+1. **Deploy the APIs:** Clone the repo, install dependencies with Bun, and use `wrangler deploy` to spin up the Eden Server and the three microservice Workers (Gateway, Metadata, and Downloader) on your Cloudflare account.
+2. **Setup the Chrome Extension (Eden Garden):** Build the extension and load it unpacked in Chrome's Developer Mode. Point it to your newly deployed Eden Server URL.
+3. **Run the Mobile App:** Power up the Expo app, point it to your server URL, and build a native binary with `eas build` or run it via Expo Go.
+
+Once it's up, just browse the web, click the extension to rip your songs, and they instantly show up in your mobile app ready to hit play.
 > Full breakdown Coming Soon
