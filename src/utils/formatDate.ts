@@ -1,4 +1,8 @@
-export function formatDate(date: string, includeRelative = false) {
+export function formatDate(date?: string | null, includeRelative = false) {
+  if (!date) {
+    return '';
+  }
+
   const currentDate = new Date();
 
   if (!date.includes('T')) {
@@ -6,11 +10,14 @@ export function formatDate(date: string, includeRelative = false) {
   }
 
   const targetDate = new Date(date);
+  if (Number.isNaN(targetDate.getTime())) {
+    return '';
+  }
+
   const timeDifference = currentDate.getTime() - targetDate.getTime();
   const daysAgo = Math.floor(timeDifference / (1000 * 60 * 60 * 24));
   const hoursAgo = Math.floor(timeDifference / (1000 * 60 * 60));
   const minutesAgo = Math.floor(timeDifference / (1000 * 60));
-  const secondsAgo = Math.floor(timeDifference / 1000);
 
   let formattedDate = '';
 
