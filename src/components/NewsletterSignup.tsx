@@ -1,6 +1,6 @@
 'use client';
 
-import type { opacity, SpacingToken } from '@once-ui-system/core';
+import type { Opacity, SpacingToken } from '@once-ui-system/core';
 import {
   Background,
   Button,
@@ -138,7 +138,7 @@ export const NewsletterSignup: React.FC<
         }}
         gradient={{
           display: mailjet.effects.gradient.display,
-          opacity: mailjet.effects.gradient.opacity as opacity,
+          opacity: mailjet.effects.gradient.opacity as Opacity,
           x: mailjet.effects.gradient.x,
           y: mailjet.effects.gradient.y,
           width: mailjet.effects.gradient.width,
@@ -149,20 +149,20 @@ export const NewsletterSignup: React.FC<
         }}
         dots={{
           display: mailjet.effects.dots.display,
-          opacity: mailjet.effects.dots.opacity as opacity,
+          opacity: mailjet.effects.dots.opacity as Opacity,
           size: mailjet.effects.dots.size as SpacingToken,
           color: mailjet.effects.dots.color,
         }}
         grid={{
           display: mailjet.effects.grid.display,
-          opacity: mailjet.effects.grid.opacity as opacity,
+          opacity: mailjet.effects.grid.opacity as Opacity  ,
           color: mailjet.effects.grid.color,
           width: mailjet.effects.grid.width,
           height: mailjet.effects.grid.height,
         }}
         lines={{
           display: mailjet.effects.lines.display,
-          opacity: mailjet.effects.lines.opacity as opacity,
+          opacity: mailjet.effects.lines.opacity as Opacity,
           size: mailjet.effects.lines.size as SpacingToken,
           thickness: mailjet.effects.lines.thickness,
           angle: mailjet.effects.lines.angle,
