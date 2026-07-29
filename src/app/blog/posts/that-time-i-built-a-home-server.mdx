@@ -51,33 +51,41 @@ Vinay suggested we go forward with Proxmox VE as the base hypervisor since it of
 It never happened.
 
 Anyways, once that was ready, all I had to do next was deploy an Ubuntu Server VM we could use as a testbench. We called it `Lady Midnight` after a book we found on Avinash’s desk. It was such an easy process that I can’t help but praise the design behind Proxmox. I attached a trusted repository, found a template for Ubuntu Server, and watched it unbox itself. 
-<p>
-    Once that was done, I experimented with services like Tailscale as a
-    private VPN that would let me access the server from anywhere. But the
-    problem was that it had limited seats, and that would not allow my
-    friends or any other guests to join.
-</p>
+<Grid columns="2" gap="6">
+	<Media
+		src="/images/blog/homelab/access-challenge.png"
+		alt="Picture of Cloudflare access challenge screen"
+	/>
+	<div>
+		<p>
+			Once that was done, I experimented with services like Tailscale as a
+			private VPN that would let me access the server from anywhere. But the
+			problem was that it had limited seats, and that would not allow my
+			friends or any other guests to join.
+		</p>
+		<br/>
+		<p>
+			So I went with a readymade reverse proxy like cloudflared. It allowed me
+			to install a daemon onto the system and use the Cloudflare Zero Trust
+			dashboard to configure gateways, access points, and policies in a very
+			simple manner.
+		</p>
+		<br/>
+		<p>
+			The best part was that I could assign it my own domain, which let me
+			expose my services to anyone I chose as a simple website.
+		</p>
+	</div>
+</Grid>
 
-<p>
-    So I went with a readymade reverse proxy like cloudflared. It allowed me
-    to install a daemon onto the system and use the Cloudflare Zero Trust
-    dashboard to configure gateways, access points, and policies in a very
-    simple manner.
-</p>
 
-<p>
-    The best part was that I could assign it my own domain, which let me
-    expose my services to anyone I chose as a simple website.
-</p>
-
-<br/>
-
+That was the first time the lab felt genuinely useful instead of just experimental.
 <Media
     src="/images/blog/homelab/cldflr-access.png"
     alt="Cloudflare Access Page"
 />
 
-That was the first time the lab felt genuinely useful instead of just experimental.
+
 
 
 ## Current Setup
@@ -108,4 +116,41 @@ And now that my homelab looks something like this, I can talk a bit more about w
 <Media src="/images/blog/homelab/homelab-map.webp" alt="Homelab Map" enlarge />
 
 
-coming soon..
+## Jellyfin
+
+[Jellyfin](https://jellyfin.org/) is a free software media system, It allows you to stream your media to any device, ie. you can get the netflix experience for free. So what I did was configure my server to provide about 180GB and a good setup to work as my jellyfin instance.
+I finally was able to put to use all my DVD and Blu Rays that were just sitting around in storage, I spent some time to rip them and transfer them to my server and I can now play my movies and TV shows for free from anywhere in the world without any ads!
+
+<Media
+    src="/images/blog/homelab/media-page.png"
+    alt="Jellyfin Web client"
+/>
+
+The cool thing about Jellyfin is that it does not just support Movies and TV shows, it supports music and books too (planning on adding that later on). It also has a very passionate community and vast ecosystem of plugins and clients outside of the main jellyfin products. My Favorite (after experimenting with everything) is Fladder which just looks so good!
+
+<Media
+    src="/images/blog/homelab/fladder.png"
+    alt="Fladder Client"
+/>
+
+It has so many useful and noteworthy features and tweaks, It allows me to add plugins to automatically download subtitles, allows me to use hardware acceleration to make my streams as clean as possible, It also automatically populates the metadata for the files by connecting to IMDB or TVDB.
+The web client has a slightly iffy feature called `SyncPlay` that allows you to create a watch party and watch stuff with friends! Speaking of friends, I can create many accounts and give them to my broz so that they can watch movies and tv shows as needed.
+
+Now We come to the additional things which makes the ecosystem stand out as the `ARR` Stack. 
+
+First up is obvious, We need a way to invite our friends and families without having to manually create their accounts as an admin. Wizarr acts as a invite manager such that you can create personalized invites and show the user a sign up page. It even allows you to customize the invite page/messages such that you can inform them of the process ahead of time.
+
+
+Once you are invited, you can access the web page and stream movies, but it would be a hindrance if you want to watch it on your tv or your phone. Here clients likd `Fladder` would help out and allow you to get a native feel to watching your shows.
+Then the next things people would say is that they want to watch a particular movie or a show, and its not listed here yet, We have Seer (used to be called Jellyseer), It shows us a large directory of movies and tv shows by directly connecting to IMDB and the users can simply pick a movie and click on request and I can approve and add it to the server for them to watch!
+
+<Media
+    src="/images/blog/homelab/seer.png"
+    alt="Seer Client"
+/>
+
+There are a lot more services I have that are part of the ARR stack but these are the most useful.
+
+## Gitea
+
+coming soon
