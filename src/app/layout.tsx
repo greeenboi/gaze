@@ -191,6 +191,7 @@ export default async function RootLayout({
         fonts.label.variable,
         fonts.code.variable
       )}
+      data-scroll-behavior="smooth"
     >
       <head>
         <script
