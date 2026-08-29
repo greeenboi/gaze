@@ -80,7 +80,7 @@ const home: Home = {
   label: 'Home',
   title: `${person.name}'s Portfolio`,
   description: `Portfolio website showcasing my work as a ${person.role}`,
-  headline: <>Student and Software Engineer</>,
+  headline: <>Software Engineer</>,
   featured: {
     display: true,
     title: (
@@ -96,7 +96,7 @@ const home: Home = {
   },
   subline: (
     <>
-      I'm Suvan, a Student at <InlineCode>SRMIST</InlineCode>, Where I create
+      I'm Suvan, an engineer at <InlineCode>Siemens AG</InlineCode>, Where I create
       noteworthy <br /> Applications . After hours, I build my own Projects that
       push the limits of speed and size.
     </>
@@ -124,9 +124,9 @@ const about: About = {
     title: 'Introduction',
     description: (
       <>
-        I am a Bangalore-based Student Developer with a passion for implementing
+        I am a Bangalore-based Developer with a passion for implementing
         complex challenges just for the fun of it. My work spans across
-        Applications, Games, and the convergence of design and technology.
+        Applications, Games, and more.
       </>
     ),
   },
@@ -135,8 +135,21 @@ const about: About = {
     title: 'Work Experience',
     experiences: [
       {
+        company: 'Siemens',
+        timeframe: 'AUG 2025 - PRESENT',
+        role: 'Graduade Trainee Engineer',
+        achievements: [
+          <>
+            Working in DPS Vertical, Designing and Developing enterprise internal solutions for Asia Pacific.{' '}
+          </>,
+        ],
+        images: [
+          // // optional: leave the array empty if you don't want to display images
+        ],
+      },
+      {
         company: 'Sarvin AI',
-        timeframe: 'SEP 2025 - PRESENT',
+        timeframe: 'SEP 2025 - JUN 2025',
         role: 'Founding Engineer',
         achievements: [
           <>
@@ -303,7 +316,7 @@ const about: About = {
     institutions: [
       {
         name: 'SRM Institute of Science and Technology',
-        description: <>Studying Computer Science and Engineering</>,
+        description: <>2022-2026 Computer Science and Engineering</>,
       },
     ],
   },
