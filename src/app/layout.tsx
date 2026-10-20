@@ -57,7 +57,7 @@ export async function generateMetadata(): Promise<Metadata> {
       'agate',
       'carnelia',
       'Suvan',
-      'Founders Club',      
+      'Founders Club',
     ],
     authors: [
       {
@@ -71,8 +71,8 @@ export async function generateMetadata(): Promise<Metadata> {
       email: true,
       address: true,
       telephone: true,
-      date:false,
-      url: true
+      date: false,
+      url: true,
     },
     manifest: '/manifest.json',
     alternates: {
@@ -305,9 +305,9 @@ export default async function RootLayout({
           <Flex zIndex={0} fillWidth padding="l" horizontal="center" flex={1}>
             <Flex horizontal="center" fillWidth minHeight="0">
               {/* <RouteGuard> */}
-                {children}
-                <Analytics />
-                <SpeedInsights />
+              {children}
+              <Analytics />
+              <SpeedInsights />
               {/* </RouteGuard> */}
             </Flex>
           </Flex>
@@ -318,7 +318,7 @@ export default async function RootLayout({
               to="right"
               paddingX={12}
               fillWidth
-              maxWidth={"90%"}
+              maxWidth={'90%'}
               position="absolute"
               left="0"
               top="0"

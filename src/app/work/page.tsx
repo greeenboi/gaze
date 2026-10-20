@@ -28,7 +28,9 @@ export default function Work() {
           image: `${baseURL}${person.avatar}`,
         }}
       />
-    <Heading as='h1' style={{display: "none"}}>Suvan's Work portfolio and proof of excellence</Heading>
+      <Heading as="h1" style={{ display: 'none' }}>
+        Suvan's Work portfolio and proof of excellence
+      </Heading>
       <Heading marginBottom="l" variant="heading-strong-xl" align="center">
         {work.title}
       </Heading>

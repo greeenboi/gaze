@@ -1,6 +1,5 @@
 'use client';
 
-
 import {
   Dialog,
   Fade,
@@ -15,14 +14,7 @@ import {
 import { usePathname } from 'next/navigation';
 import { useEffect, useState } from 'react';
 
-import {
-  about,
-  blog,
-  display,
-  person,
-  routes,
-  work,
-} from '@/resources';
+import { about, blog, display, person, routes, work } from '@/resources';
 import styles from './Header.module.scss';
 
 type TimeDisplayProps = {
@@ -223,7 +215,13 @@ export const Header = () => {
                       onClick={() => setIsOpen(true)}
                     />
                   </Row>
-                  <Row hide s={{ hide: false }} m={{ hide: true }} l={{ hide: true }} xl={{ hide: true }}>
+                  <Row
+                    hide
+                    s={{ hide: false }}
+                    m={{ hide: true }}
+                    l={{ hide: true }}
+                    xl={{ hide: true }}
+                  >
                     <ThemeSwitcher />
                   </Row>
                 </>

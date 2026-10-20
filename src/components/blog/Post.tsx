@@ -1,8 +1,8 @@
 'use client';
 
-import { Card, Column, Media, Row, Avatar, Text } from '@once-ui-system/core';
-import { formatDate } from '@/utils/formatDate';
+import { Avatar, Card, Column, Media, Row, Text } from '@once-ui-system/core';
 import { person } from '@/resources';
+import { formatDate } from '@/utils/formatDate';
 
 interface PostProps {
   post: any;

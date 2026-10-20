@@ -155,7 +155,7 @@ export const NewsletterSignup: React.FC<
         }}
         grid={{
           display: mailjet.effects.grid.display,
-          opacity: mailjet.effects.grid.opacity as Opacity  ,
+          opacity: mailjet.effects.grid.opacity as Opacity,
           color: mailjet.effects.grid.color,
           width: mailjet.effects.grid.width,
           height: mailjet.effects.grid.height,

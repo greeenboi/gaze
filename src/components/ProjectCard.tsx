@@ -40,12 +40,7 @@ export const ProjectCard: React.FC<ProjectCardProps> = ({
 }) => {
   return (
     <Column fillWidth gap="m">
-      <RevealFx
-        style={{ width: '100%' }}
-        delay={0.4}
-        trigger
-        speed="fast"
-      >
+      <RevealFx style={{ width: '100%' }} delay={0.4} trigger speed="fast">
         <Carousel
           indicator="line"
           priority={priority}

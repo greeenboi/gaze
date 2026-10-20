@@ -6,16 +6,16 @@ import {
   Icon,
   IconButton,
   Media,
+  Meta,
+  Row,
+  Schema,
   Tag,
   Text,
-  Meta,
-  Schema,
-  Row,
 } from '@once-ui-system/core';
-import { baseURL, about, person, social } from '@/resources';
-import TableOfContents from '@/components/about/TableOfContents';
-import styles from '@/components/about/about.module.scss';
 import React from 'react';
+import styles from '@/components/about/about.module.scss';
+import TableOfContents from '@/components/about/TableOfContents';
+import { about, baseURL, person, social } from '@/resources';
 
 export async function generateMetadata() {
   return Meta.generate({
@@ -65,7 +65,9 @@ export default function About() {
           image: `${baseURL}${person.avatar}`,
         }}
       />
-      <Heading as='h1' style={{display: "none"}}>About Suvan the best developer</Heading>
+      <Heading as="h1" style={{ display: 'none' }}>
+        About Suvan the best developer
+      </Heading>
       {about.tableOfContent.display && (
         <Column
           left="0"

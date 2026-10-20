@@ -1,9 +1,5 @@
 'use client';
 
-import type React from 'react';
-import { forwardRef } from 'react';
-
-import styles from './AvatarGroup.module.scss';
 import {
   Avatar,
   Column,
@@ -15,6 +11,9 @@ import {
   Tag,
   Text,
 } from '@once-ui-system/core';
+import type React from 'react';
+import { forwardRef } from 'react';
+import styles from './AvatarGroup.module.scss';
 
 interface AvatarProps {
   size?: 'xs' | 's' | 'm' | 'l' | 'xl';
@@ -149,5 +148,5 @@ const AvatarGroupHover = forwardRef<HTMLDivElement, AvatarGroupProps>(
 
 AvatarGroupHover.displayName = 'AvatarGroup';
 
-export { AvatarGroupHover };
 export type { AvatarGroupProps };
+export { AvatarGroupHover };

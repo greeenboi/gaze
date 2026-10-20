@@ -96,9 +96,9 @@ const home: Home = {
   },
   subline: (
     <>
-      I'm Suvan, an engineer at <InlineCode>Siemens AG</InlineCode>, Where I create
-      noteworthy <br /> Applications . After hours, I build my own Projects that
-      push the limits of speed and size.
+      I'm Suvan, an engineer at <InlineCode>Siemens AG</InlineCode>, Where I
+      create noteworthy <br /> Applications . After hours, I build my own
+      Projects that push the limits of speed and size.
     </>
   ),
 };
@@ -124,9 +124,9 @@ const about: About = {
     title: 'Introduction',
     description: (
       <>
-        I am a Bangalore-based Developer with a passion for implementing
-        complex challenges just for the fun of it. My work spans across
-        Applications, Games, and more.
+        I am a Bangalore-based Developer with a passion for implementing complex
+        challenges just for the fun of it. My work spans across Applications,
+        Games, and more.
       </>
     ),
   },
@@ -140,7 +140,8 @@ const about: About = {
         role: 'Graduade Trainee Engineer',
         achievements: [
           <>
-            Working in DPS Vertical, Designing and Developing enterprise internal solutions for Asia Pacific.{' '}
+            Working in DPS Vertical, Designing and Developing enterprise
+            internal solutions for Asia Pacific.{' '}
           </>,
         ],
         images: [

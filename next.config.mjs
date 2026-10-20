@@ -17,9 +17,9 @@ const nextConfig = {
         pathname: '**',
       },
       {
-        hostname: 'img.shields.io', 
-        pathname: '/work/*'
-      }
+        hostname: 'img.shields.io',
+        pathname: '/work/*',
+      },
     ],
   },
   allowedDevOrigins: ['127.0.0.1'],
