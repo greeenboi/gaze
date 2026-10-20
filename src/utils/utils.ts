@@ -1,14 +1,8 @@
 import fs from 'node:fs';
 import path from 'node:path';
 import matter from 'gray-matter';
-
-type Team = {
-  name: string;
-  description: string;
-  role: string;
-  avatar: string;
-  linkedIn: string;
-};
+import { teamMembers } from '@/resources/content';
+import type { TeamMember } from '@/types';
 
 type Metadata = {
   title: string;
@@ -18,7 +12,9 @@ type Metadata = {
   image?: string;
   images: string[];
   tag?: string;
-  team: Team[];
+  tags: string[];
+  readingTime: number;
+  team: TeamMember[];
   link?: string;
 };
 
@@ -30,6 +26,28 @@ function getMDXFiles(dir: string) {
   }
 
   return fs.readdirSync(dir).filter(file => path.extname(file) === '.mdx');
+}
+
+const WORDS_PER_MINUTE = 200;
+
+function getReadingTime(content: string) {
+  const words = content
+    .replace(/<[^>]+>/g, ' ')
+    .split(/\s+/)
+    .filter(Boolean).length;
+  return Math.max(1, Math.ceil(words / WORDS_PER_MINUTE));
+}
+
+// Frontmatter `team` entries are either a key into `teamMembers` (config) or an inline member.
+function resolveTeam(team: unknown): TeamMember[] {
+  if (!Array.isArray(team)) return [];
+  return team.flatMap(entry => {
+    if (typeof entry === 'string') {
+      const member = teamMembers[entry];
+      return member ? [member] : [];
+    }
+    return entry ? [entry as TeamMember] : [];
+  });
 }
 
 function readMDXFile(filePath: string) {
@@ -48,7 +66,9 @@ function readMDXFile(filePath: string) {
     image: data.image || '',
     images: data.images || [],
     tag: data.tag || [],
-    team: data.team || [],
+    tags: Array.isArray(data.tags) ? data.tags.map(String) : [],
+    readingTime: getReadingTime(content),
+    team: resolveTeam(data.team),
     link: data.link || '',
   };
 

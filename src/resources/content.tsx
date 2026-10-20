@@ -7,6 +7,7 @@ import type {
   Newsletter,
   Person,
   Social,
+  TeamMember,
   Work,
 } from '@/types';
 
@@ -74,6 +75,52 @@ const social: Social = [
     essential: true,
   },
 ];
+
+/**
+ * Reusable collaborators. Reference one from a project's frontmatter by its key:
+ *   team:
+ *     - "suvan"
+ * Entries in `team` can also still be inline objects for one-off collaborators.
+ */
+const teamMembers: Record<string, TeamMember> = {
+  suvan: {
+    name: 'Suvan GS',
+    description:
+      "I'm Suvan, a Student at SRMIST, Where I create noteworthy Applications . After hours, I build my own Projects that push the limits of speed and size.",
+    role: 'Student Developer',
+    avatar: person.avatar,
+    linkedIn: social.find(s => s.name === 'LinkedIn')?.link ?? '',
+  },
+  saransh: {
+    name: 'Saransh Bangar',
+    description:
+      "I'm Saransh, an Analyst at Morgan Stanley. I have a passion for building efficient and user-friendly applications. I enjoy working on projects that challenge my skills and allow me to learn new technologies.",
+    role: 'Analyst @ Morgan Stanley',
+    avatar: '/images/saransh.png',
+    linkedIn: 'https://www.linkedin.com/in/saransh-bangar',
+  },
+  vijay: {
+    name: 'Vijay Makkad',
+    description: 'Thinking and Coding are my two favourite things. ',
+    role: 'SWE @ Cloudera',
+    avatar: '/images/vijay.png',
+  },
+  vinay: {
+    name: 'Vinay Rajan',
+    description: 'Engineer \u2022 Musician',
+    role: 'Analyst @ Morgan Stanley',
+    avatar: '/images/vinay.png',
+    linkedIn: 'https://www.linkedin.com/in/vinay-rajan-s-b63248250',
+  },
+  devkaran: {
+    name: 'Dev Karan Singh',
+    description:
+      "I'm Dev Karan Singh, a Flutter Developer Intern at Trucxo. I have a passion for building mobile applications and exploring new technologies. ",
+    role: 'Flutter Developer Intern @ Trucxo',
+    avatar: '/images/dksingh.png',
+    linkedIn: 'https://www.linkedin.com/in/dev-karan-singh',
+  },
+};
 
 const home: Home = {
   path: '/',
@@ -625,4 +672,14 @@ const gallery: Gallery = {
   ],
 };
 
-export { about, blog, gallery, home, newsletter, person, social, work };
+export {
+  about,
+  blog,
+  gallery,
+  home,
+  newsletter,
+  person,
+  social,
+  teamMembers,
+  work,
+};

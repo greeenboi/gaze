@@ -7,6 +7,7 @@ export {
   newsletter,
   person,
   social,
+  teamMembers,
   work,
 } from './content';
 

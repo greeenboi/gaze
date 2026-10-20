@@ -35,6 +35,17 @@ export type Person = {
  * Newsletter Section
  * @description The below information will be displayed on the Home page in Newsletter block
  */
+/**
+ * A collaborator shown in the avatar hover card on project cards and pages.
+ */
+export type TeamMember = {
+  name: string;
+  description: string;
+  role: string;
+  avatar: string;
+  linkedIn?: string;
+};
+
 export type Newsletter = {
   /** Whether to display the newsletter section */
   display: boolean;
