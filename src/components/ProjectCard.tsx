@@ -2,10 +2,12 @@
 
 import {
   Carousel,
+  Chip,
   Column,
   Flex,
   Heading,
   RevealFx,
+  Row,
   SmartLink,
   Text,
 } from '@once-ui-system/core';
@@ -26,7 +28,17 @@ interface ProjectCardProps {
     linkedin: string;
   }[];
   link: string;
+  tags?: string[];
+  readingTime?: number;
+  publishedAt?: string;
+  onTagClick?: (tag: string) => void;
 }
+
+const formatDate = (date: string) =>
+  new Date(date).toLocaleDateString('en-US', {
+    year: 'numeric',
+    month: 'short',
+  });
 
 export const ProjectCard: React.FC<ProjectCardProps> = ({
   href,
@@ -37,6 +49,10 @@ export const ProjectCard: React.FC<ProjectCardProps> = ({
   description,
   avatars,
   link,
+  tags = [],
+  readingTime,
+  publishedAt,
+  onTagClick,
 }) => {
   return (
     <Column fillWidth gap="m">
@@ -61,47 +77,77 @@ export const ProjectCard: React.FC<ProjectCardProps> = ({
         gap="l"
       >
         {title && (
-          <Flex flex={5}>
+          <Column flex={5} gap="8">
             <Heading as="h2" wrap="balance" variant="heading-strong-xl">
               {title}
             </Heading>
-          </Flex>
+            <Flex gap="8" vertical="center" wrap>
+              {tags.map(tag => (
+                <Chip
+                  key={tag}
+                  label={tag}
+                  onClick={onTagClick ? () => onTagClick(tag) : undefined}
+                  style={onTagClick ? { cursor: 'pointer' } : undefined}
+                />
+              ))}
+            </Flex>
+          </Column>
         )}
-        {(avatars?.length > 0 || description?.trim() || content?.trim()) && (
-          <Column flex={7} gap="16">
+        {(avatars?.length > 0 ||
+          description?.trim() ||
+          content?.trim() ||
+          tags.length > 0) && (
+          <Row flex={7} gap="16">
             {avatars?.length > 0 && (
               <AvatarGroupHover avatars={avatars} size="m" />
             )}
-            {description?.trim() && (
-              <Text
-                wrap="balance"
-                variant="body-default-s"
-                onBackground="neutral-weak"
-              >
-                {description}
-              </Text>
-            )}
-            <Flex gap="24" wrap>
-              {content?.trim() && (
-                <SmartLink
-                  suffixIcon="arrowRight"
-                  style={{ margin: '0', width: 'fit-content' }}
-                  href={href}
-                >
-                  <Text variant="body-default-s">Read case study</Text>
-                </SmartLink>
+            <Column flex={7} gap="16">
+              {(publishedAt || readingTime || tags.length > 0) && (
+                <Flex gap="8" vertical="center" wrap>
+                  {(publishedAt || readingTime) && (
+                    <Text variant="label-default-s" onBackground="neutral-weak">
+                      {[
+                        publishedAt && formatDate(publishedAt),
+                        readingTime && `${readingTime} min read`,
+                      ]
+                        .filter(Boolean)
+                        .join(' · ')}
+                    </Text>
+                  )}
+                  
+                </Flex>
               )}
-              {link && (
-                <SmartLink
-                  suffixIcon="arrowUpRightFromSquare"
-                  style={{ margin: '0', width: 'fit-content' }}
-                  href={link}
+              {description?.trim() && (
+                <Text
+                  wrap="balance"
+                  variant="body-default-s"
+                  onBackground="neutral-weak"
                 >
-                  <Text variant="body-default-s">View project</Text>
-                </SmartLink>
+                  {description}
+                </Text>
               )}
-            </Flex>
-          </Column>
+              <Flex gap="24" wrap>
+                {content?.trim() && (
+                  <SmartLink
+                    suffixIcon="arrowRight"
+                    style={{ margin: '0', width: 'fit-content' }}
+                    href={href}
+                  >
+                    <Text variant="body-default-s">Read case study</Text>
+                  </SmartLink>
+                )}
+                {link && (
+                  <SmartLink
+                    suffixIcon="arrowUpRightFromSquare"
+                    style={{ margin: '0', width: 'fit-content' }}
+                    href={link}
+                  >
+                    <Text variant="body-default-s">View project</Text>
+                  </SmartLink>
+                )}
+              </Flex>
+            </Column>
+          </Row>
         )}
       </Flex>
     </Column>
