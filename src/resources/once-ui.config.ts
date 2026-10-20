@@ -14,7 +14,7 @@ import type {
 import { home } from './index';
 
 // IMPORTANT: Replace with your own domain address - it's used for SEO in meta tags and schema
-const baseURL: string = 'https://www.suvangs.tech';
+const baseURL: string = 'https://www.suvan.page';
 
 const routes: RoutesConfig = {
   '/': true,

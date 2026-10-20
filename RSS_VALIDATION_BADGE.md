@@ -10,7 +10,7 @@ The badge is displayed on the blog page (`/[locale]/blog`) next to the "RSS Feed
 
 ### Badge Details
 - **Image**: `/public/images/rss.png` (88x31 pixels)
-- **Link**: `https://validator.w3.org/feed/check.cgi?url=https://www.suvangs.tech/feed.xml`
+- **Link**: `https://validator.w3.org/feed/check.cgi?url=https://www.suvan.page/feed.xml`
 - **Alt Text**: "Valid RSS"
 - **Title**: "Validate my RSS feed"
 
