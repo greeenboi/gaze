@@ -19,6 +19,8 @@ export type Person = {
   name: string;
   /** Role or job title */
   role: string;
+  /** company name */
+  company: string;
   /** Path to avatar image */
   avatar: string;
   /** Email address */

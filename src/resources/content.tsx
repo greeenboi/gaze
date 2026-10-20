@@ -14,7 +14,8 @@ const person: Person = {
   firstName: 'Suvan',
   lastName: 'GS',
   name: 'Suvan Gowri Shanker',
-  role: 'Software Engineer',
+  role: 'DevSecOps Engineer',
+  company: 'Siemens',
   avatar: '/images/avatar.jpeg',
   email: 'suvan.gowrishanker.204@gmail.com',
   location: 'Asia/Kolkata', // Expecting the IANA time zone identifier, e.g., 'Europe/Vienna'
@@ -137,7 +138,7 @@ const about: About = {
       {
         company: 'Siemens',
         timeframe: 'AUG 2025 - PRESENT',
-        role: 'Graduade Trainee Engineer',
+        role: 'DevSecOps Engineer @ GBS ASP H2R DPS',
         achievements: [
           <>
             Working in DPS Vertical, Designing and Developing enterprise

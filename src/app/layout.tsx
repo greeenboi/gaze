@@ -29,7 +29,7 @@ import {
 
 export async function generateMetadata(): Promise<Metadata> {
   const siteTitle = `${person.firstName}'s Portfolio`;
-  const siteDescription = 'Portfolio website showcasing my projects.';
+  const siteDescription = `${person.role} at ${person.company}`;
   const linkPreviewSiteName = 'Link preview site name';
   const canonicalPath = home.path || '/';
   const absolutePageUrl = `${baseURL}${canonicalPath === '/' ? '' : canonicalPath}`;
@@ -51,6 +51,10 @@ export async function generateMetadata(): Promise<Metadata> {
       person.firstName,
       'portfolio',
       'software engineer',
+      'devops',
+      'devsecops',
+      'system design',
+      'siemens',
       'projects',
       'blog',
       'suvan',
@@ -88,7 +92,7 @@ export async function generateMetadata(): Promise<Metadata> {
     },
     openGraph: {
       title: `${person.firstName}'s Portfolio`,
-      description: 'Portfolio website showcasing my projects.',
+      description: `${person.role} at ${person.company}`,
       url: baseURL,
       siteName: linkPreviewSiteName,
       locale: 'en_US',
