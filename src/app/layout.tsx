@@ -316,7 +316,7 @@ export default async function RootLayout({
             </Flex>
           </Flex>
           <Footer />
-          <Flex maxHeight={1}>
+          <Flex maxHeight={1} aria-hidden>
             <Fade
               zIndex="1"
               to="right"
