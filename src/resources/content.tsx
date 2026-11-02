@@ -184,7 +184,7 @@ const about: About = {
     experiences: [
       {
         company: 'Siemens',
-        timeframe: 'AUG 2025 - PRESENT',
+        timeframe: 'AUG 2026 - PRESENT',
         role: 'DevSecOps Engineer @ GBS ASP H2R DPS',
         achievements: [
           <>
@@ -198,7 +198,7 @@ const about: About = {
       },
       {
         company: 'Sarvin AI',
-        timeframe: 'SEP 2025 - JUN 2025',
+        timeframe: 'SEP 2025 - JUN 2026',
         role: 'Founding Engineer',
         achievements: [
           <>
