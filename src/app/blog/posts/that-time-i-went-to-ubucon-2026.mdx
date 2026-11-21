@@ -1,0 +1,133 @@
+---
+title: "That Time I Went to Ubucon 2026"
+publishedAt: "2026-11-14"
+image: "/images/blog/ubucon2026/selfie.png"
+summary: "A quick recap of Ubucon 2026, my first impressions and my takeaways." 
+tag: "Conference"
+---
+
+Here we are, At another conference this year, with the goat <Mention name="Avinash" href="https://github.com/Avinash96-gthb" />. Tbf I only got to know about this event thanks to <Mention name="Saransh" href="https://www.bangarji.com/" />. I had quite a few expectations hearing "Ubuntu" and "India", expecting it to be a competitor event to IndiaFoss at the very least, More on that soon.
+<br/>
+Anyways as usual before any conference we sat together to plan out a couple of interesting talks that we might like to see. Unlike IndiaFoss, This event has only Talks or workshops. 
+<br/>
+
+## Day 1
+
+Coming to the actual date of the event, We met up outside the metro stn, had breakfast and took an auto to the venue (BMS College @ Bull temple rd). The first thing we encountered was that we had no clue as to where the event is happening inside the college, The actual organisation of the event can be seen falling apart at the seams at such instances.
+<br/>
+We asked the guard for directions and somehow we got to the right spot. From there we were welcomed by a big banner and standees for the event itself. Inside the venue were about 2 booths for the sponsors of the event, no others.. We were a bit intrigued by the Ubuntu Touch, but the other booth for qualcomm wasn't so interesting. We got our lanyards for the supporter pass and headed into the hall. At this point it was getting clear to us that the expectation we came in with were a bit too high. (maybe it could be that IndiaFoss is just that good of an event.)
+<br/>
+<Media src="/images/blog/ubucon2026/stage.jpeg" alt="Event Stage" />
+
+The day opened about 30mins late with a lamp lighting that included all the faculty of the college. By that time we were a bit skeptical as to how the rest of the event would be since it felt way too close to a college / campus event. 
+<br/>
+Anyways, Coming to the first talk, ["Demystifying Ubuntu SRU: A Journey from Bug to Stable"](https://events.canonical.com/event/157/contributions/1073/) Its a very large title, chock-full of terms that may confuse you. In essence Sudip talked about how he is a Coredev for Ubuntu and how Canonical and its community ensure that all bug fixes raised in launchpad get sent to the Stable release update.
+The whole talk, was oriented more towards beginners rather than an example of his experience or something interesting or unique about this.
+<br/>
+After that the second talk was a bit more interesting for me, ["Practical Infrastructure Observability Using Open Source Zabbix"](https://events.canonical.com/event/157/contributions/1072/). Here the talk was a bit more focused towards homelab enthusiasts / sys admins and the like.
+Zabbix is an open source alternative to the lgtm stack. It offers "agents" that act as an active exporter for data or passive "agentless" query system for other use cases. What I felt was interesting was that he was able to export voltage / usage data from his UPS and other analog interfaces like his switch / router (AP).
+I had a couple of questions as to how he achieved this. Overall I liked that there are options to using a unified platform instead of something headless like grafana. I might switch over to using zabbix in my homelab once I expand it.
+<br/>
+At this point we went out for a breather since the next few talks were a bit dry and we were essentially sleeping away the weeks' troubles at that point..
+We had a nice chat with the team at the Ubuntu Touch booth. A lot of cool facts and experiences about alternative Operating systems for mobile phones, their compatibility and support.. shoutout to SreeHari who gave us a wonderful pitch and engaged with us during this chat.
+<br/>
+We came back to the audi for the talk by Bruno, ["Dockerizing CLI Tools: Lessons From Bruno"](https://events.canonical.com/event/157/contributions/1076/) tbh it was a very mid talk by itself. We got a devrel explaining why containerizing a cli tool made it safer. tbh idk where this talk was going since it seemed a bit counter-intuitive.
+<br/>
+Then we had a bit more interesting talk (alteast it seemed at the start) ["Is My Ubuntu Box WebGPU-Ready? A Practical Setup Guide"](https://events.canonical.com/event/157/contributions/1077/), This talk was presented by senior engineers at adobe. They spoke about how web had evolved from embedding flash player for animations all the way to threejs via webgl for rendering 3D natively on the browser.
+This part was fine. but then they spoke about how for some reason the browser can fail to make calls to webgpu (they wanted to talk about running models natively on the browser) due to it being so abstracted that it fails to send the appropriate error respone. This is quite literally a developer issue, the talk was presented so badly that instead of talking about the actual library they spent so much time debugging a browser on ubuntu that ran inside of qemu. 
+The funniest thing is that they had a workshop on how to use said models on the browser. (the tutorials on liteRTlm are free. so are the rest.). Anyways it was a very mixed-feelings talk.
+<br/>
+We decided to just run out and explore for a bit before we went for lunch. Lunch was fine, no comment. Just that, again for a fully paid event. I wasn't seeing exactly where this budget is being spent on since the venue was free and the food was just hostel mess food.
+<br/>
+<br/>
+On the way to lunch we actually met <Mention name="Shree Kumar" href="https://fossunited.org/u/shreekumar3d" /> of IndiaFoss. We had a nice chat about Rupeefund and their current efforts towards the next IndiaFoss. He was accompanying  <Mention name="Ansh Arora" href="https://fossunited.org/u/ansh" /> for their next talk.
+["Learnings from a $1M FOSS discovery and funding experiment"](https://events.canonical.com/event/157/contributions/1104/) . Call me biased, but it was the only talk that day that actually was interesting. He talked about his journey with the Floss fund and how it has helped many open source ecosystems and preventing them from entirely dying out. A very noble task if i do say so myself. 
+Check it out for yourself here [Floss fund](https://floss.fund/) and [Rupee Fund](https://rupeefund.org/).
+<br/>
+The next talk was actually about apparmour. ["Intent In, AppArmor Out"](https://events.canonical.com/event/157/contributions/1081/), Basically its a "easy to use" way to secure your applications by configuring in a text file which application can do what and can not do what.
+<Media src="/images/blog/ubucon2026/apparmour.jpeg" alt="Apparmour." />
+The interesting part was when he combined the usage of apparmour along with Kubearmour to enforce security into a k8s node. It was a useful concept for me since I am into devops and the like.
+<br/>
+Lastly after a short tea break, We decided to go and see a workshop for a change of pace. It was a very good idea since we attended a workshop ["Hardware-Aware Runtime Security for Ubuntu Systems"](https://events.canonical.com/event/157/contributions/1103/) by Professor Sheel Sindhu Manohar. He is a very interesting individual, he started giving out a very interactive discussion not unlike a college lecture on his work using perf to monitor how ransomware attacks can affect the lowest levels of software by monitoring the system bus, the counter data, cache misses etc. I found it to be a very interesting topic so I approached him after the workshop to discuss further and share contact details so I could help out in some way.
+<br/>
+And so that was the end of Day1, we decided later that we can simply end the conference early for the next day so that atleast we don't feel like we had to sit through it.
+
+## Day 2
+
+This day was a lot more fun now that I recall.. We started a bit later so that we could catch up on a few more Zs. We arrived after the first talk was almost concluded, but it was fine since it was the Ubuntu touch team giving out their talk anyways.
+We started out with the next talk "eBPF Beyond Linux: Building a Runtime-Programmable Kernel for Robots". Genuinely disappointed since the whole product being showcased was vibecoded. And the worst part was the speaker was not very good at talking about the project he built.
+<br/>
+The disappointment was completely redeemed on the next talk ["Accessible-Coconut: A Decade of Building an Accessible Ubuntu-Based Operating System for Visually Impaired Users"](https://events.canonical.com/event/157/contributions/1075/). I was very impressed by both the talk and the speakers since accessibility was a not very popular topic in general, forget about niche open source ecosystems.
+<Media src="/images/blog/ubucon2026/zendalona.jpeg" alt="Zendalona" />
+<br/>
+<br/>
+The talk was given by Nalin, Son of Sathyaseelan who was blind. The talk was a mix of the love a son has for his father and the tenacity to live a normal life regardless of his visual impairment and the challenges associated with that.
+<Grid columns="2" gap="8">
+	<Media
+		src="/images/blog/ubucon2026/speaker.jpeg"
+		alt="Sathyaseelan"
+	/>
+	<div>
+		<p>
+			They came to the talk representing _Zendalona_ a non profit they started to build Accessible Coconut, a fork of Ubuntu focused on building and maintaining free and open source accessibility tools within.
+		</p>
+		<br/>
+        <p> 
+            It was a very moving talk, Nalin spoke about how he built the entire community driven ecosystem by just building out cool little tools and games that would be accessible to the blind. followed by partnering with GSOC to make key changes and contributions to popular accesibility tools.
+        </p>
+        <br/>
+        <p>
+            He then opened up the Non-profit to hire and even open sourced his use cases via GSOC to congregate a community to help build out the rest of his tools and update/upgrade Accessible coconut. A couple of cool projects for an accesible map, math games and logic games and many more.
+        </p>
+        <br/>
+	</div>
+</Grid>
+<br/>
+
+Then they spoke about how a Uk Ngo is using their OS to ship it to africa to provide many such services and accessibility in low to no internet areas.
+
+<br/> 
+<Carousel
+  items={[
+    { slide: "/images/blog/ubucon2026/africa-init.jpeg", alt: "Zendalona" },
+    { slide: "/images/blog/ubucon2026/howtohelp.jpeg", alt: "Zendalona"},
+  ]}
+/>
+
+<br/>
+
+Lastly they gave out an open statement listing that they require our help as a community to fix, maintain or develop software inside their accessible ecosystem.
+
+We later had a nice talk over tea with Nalin dicussing life in general and also how we can help out since we have alot of free time in our hands at the moment..
+
+<br/>
+<br/>
+<Media src="/images/blog/ubucon2026/zig.jpeg" alt="Building Ghostty cli with zig inside Ubuntu" />
+
+The next talk that we found interesting was ["Debian packaging of Zig applications"](https://events.canonical.com/event/157/contributions/1105/) it was a much more technical talk about how the current ecosystem of zig is being maintained and supported from within canonical.
+The speaker spoke about how zig came to be supported from within the canonical team and how they brought about native support for compiling (all hail llvm) across all kinds of toolchains. He closed the talk after his personal experience working with Ghostty and using / compiling it on ubuntu before approving releases from within launchpad.
+
+<br/>
+
+The last talk we attended hit close to my passion, ["Beyond the Breadboard: Scaling Raspberry Pi Projects to the Edge with Ubuntu Core"](https://events.canonical.com/event/157/contributions/1079/). It was a question I've always had but never been able to try out since my only raspberry pi I had was broken :) .
+
+<Carousel
+  items={[
+    { slide: "/images/blog/ubucon2026/choose.jpeg", alt: "Why ubuntu core is better." },
+    { slide: "/images/blog/ubucon2026/tips.jpeg", alt: "steps beyond the breadboard" },
+    { slide: "/images/blog/ubucon2026/demo.jpeg", alt: "computer vision demo" },
+  ]}
+/>
+
+The talk was centered around how edge iot can be scaled and how we can approach it from a hobbyist / solo developer mindset. The pictures do most of the work of explanation.
+<br/>
+
+Lastly we decided to finish the day and went out for lunch.
+
+---
+
+### Final thoughts.
+
+I felt that we didn't really have much time to network. The crowd was mostly just students from within the college our outside, very few working professionals. Most of the talks were catered towards beginners or the unintiated. I would probably not go next year if the event is still to be associated with the college since it felt very drab and boring.
+Overall this event had a couple of good speakers and talks but the audience was very green and the management was all over the place. 
+
