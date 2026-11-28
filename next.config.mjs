@@ -9,16 +9,6 @@ const withMDX = mdx({
 const nextConfig = {
   pageExtensions: ['ts', 'tsx', 'md', 'mdx'],
   trailingSlash: false,
-  async redirects() {
-    return [
-      {
-        source: '/:path*',
-        has: [{ type: 'host', value: 'www.suvan.page' }],
-        destination: 'https://suvan.page/:path*',
-        permanent: true,
-      },
-    ];
-  },
   transpilePackages: ['next-mdx-remote'],
   images: {
     remotePatterns: [
