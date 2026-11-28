@@ -4,13 +4,16 @@ import { baseURL, gallery, person } from '@/resources';
 import { withCanonical } from '@/utils/seo';
 
 export async function generateMetadata() {
-  return withCanonical(Meta.generate({
-    title: gallery.title,
-    description: gallery.description,
-    baseURL: baseURL,
-    image: `/api/og/generate?title=${encodeURIComponent(gallery.title)}`,
-    path: gallery.path,
-  }), gallery.path);
+  return withCanonical(
+    Meta.generate({
+      title: gallery.title,
+      description: gallery.description,
+      baseURL: baseURL,
+      image: `/api/og/generate?title=${encodeURIComponent(gallery.title)}`,
+      path: gallery.path,
+    }),
+    gallery.path
+  );
 }
 
 export default function Gallery() {

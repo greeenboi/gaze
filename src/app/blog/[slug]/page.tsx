@@ -119,7 +119,9 @@ export default async function Blog({
               {post.metadata.publishedAt &&
                 formatDate(post.metadata.publishedAt)}
             </Text>
-            <Heading as="h1" variant="display-strong-m">{post.metadata.title}</Heading>
+            <Heading as="h1" variant="display-strong-m">
+              {post.metadata.title}
+            </Heading>
             {post.metadata.subtitle && (
               <Text
                 variant="body-default-l"

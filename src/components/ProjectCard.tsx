@@ -116,7 +116,6 @@ export const ProjectCard: React.FC<ProjectCardProps> = ({
                         .join(' · ')}
                     </Text>
                   )}
-                  
                 </Flex>
               )}
               {description?.trim() && (

@@ -106,7 +106,9 @@ export default async function Project({
         >
           {post.metadata.publishedAt && formatDate(post.metadata.publishedAt)}
         </Text>
-        <Heading as="h1" variant="display-strong-m">{post.metadata.title}</Heading>
+        <Heading as="h1" variant="display-strong-m">
+          {post.metadata.title}
+        </Heading>
       </Column>
       <Row marginBottom="32" horizontal="center">
         <Row gap="16" vertical="center">
