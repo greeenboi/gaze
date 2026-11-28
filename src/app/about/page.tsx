@@ -16,15 +16,16 @@ import React from 'react';
 import styles from '@/components/about/about.module.scss';
 import TableOfContents from '@/components/about/TableOfContents';
 import { about, baseURL, person, social } from '@/resources';
+import { withCanonical } from '@/utils/seo';
 
 export async function generateMetadata() {
-  return Meta.generate({
+  return withCanonical(Meta.generate({
     title: about.title,
     description: about.description,
     baseURL: baseURL,
     image: `/api/og/generate?title=${encodeURIComponent(about.title)}`,
     path: about.path,
-  });
+  }), about.path);
 }
 
 export default function About() {

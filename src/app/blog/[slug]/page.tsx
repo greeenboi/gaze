@@ -8,7 +8,6 @@ import {
   Media,
   Meta,
   Row,
-  Schema,
   SmartLink,
   Text,
   TiltFx,
@@ -18,8 +17,11 @@ import { notFound } from 'next/navigation';
 import { CustomMDX, ScrollToHash } from '@/components';
 import { Posts } from '@/components/blog/Posts';
 import { ShareSection } from '@/components/blog/ShareSection';
+import { JsonLd } from '@/components/JsonLd';
 import { about, baseURL, blog, person } from '@/resources';
 import { formatDate } from '@/utils/formatDate';
+import { withCanonical } from '@/utils/seo';
+import { getBlogPostSchema } from '@/utils/schema';
 import { getPosts } from '@/utils/utils';
 
 export async function generateStaticParams(): Promise<{ slug: string }[]> {
@@ -44,14 +46,22 @@ export async function generateMetadata({
 
   if (!post) return {};
 
-  return Meta.generate({
-    title: post.metadata.title,
-    description: post.metadata.summary,
-    baseURL: baseURL,
-    image:
-      post.metadata.image || `/api/og/generate?title=${post.metadata.title}`,
-    path: `${blog.path}/${post.slug}`,
-  });
+  const pathname = `${blog.path}/${post.slug}`;
+  return withCanonical(
+    Meta.generate({
+      title: post.metadata.title,
+      description: post.metadata.summary,
+      baseURL,
+      image:
+        post.metadata.image ||
+        `/api/og/generate?title=${encodeURIComponent(post.metadata.title)}`,
+      path: pathname,
+      type: 'article',
+      publishedTime: post.metadata.publishedAt,
+      author: { name: person.name, url: `${baseURL}${about.path}` },
+    }),
+    pathname
+  );
 }
 
 export default async function Blog({
@@ -83,23 +93,17 @@ export default async function Blog({
           gap="l"
           paddingTop="24"
         >
-          <Schema
-            as="blogPosting"
-            baseURL={baseURL}
-            path={`${blog.path}/${post.slug}`}
-            title={post.metadata.title}
-            description={post.metadata.summary}
-            datePublished={post.metadata.publishedAt}
-            dateModified={post.metadata.publishedAt}
-            image={
-              post.metadata.image ||
-              `/api/og/generate?title=${encodeURIComponent(post.metadata.title)}`
-            }
-            author={{
-              name: person.name,
-              url: `${baseURL}${about.path}`,
-              image: `${baseURL}${person.avatar}`,
-            }}
+          <JsonLd
+            data={getBlogPostSchema({
+              title: post.metadata.title,
+              description: post.metadata.summary,
+              pathname: `${blog.path}/${post.slug}`,
+              datePublished: post.metadata.publishedAt,
+              image:
+                post.metadata.image ||
+                `/api/og/generate?title=${encodeURIComponent(post.metadata.title)}`,
+              tags: post.metadata.tags,
+            })}
           />
           <Column maxWidth="s" gap="16" horizontal="center" align="center">
             <SmartLink href="/blog">

@@ -8,13 +8,14 @@ import {
   Meta,
   RevealFx,
   Row,
-  Schema,
   Text,
 } from '@once-ui-system/core';
 import { NewsletterSignup } from '@/components';
+import { JsonLd } from '@/components/JsonLd';
 import { Posts } from '@/components/blog/Posts';
 import { Projects } from '@/components/work/Projects';
 import { about, baseURL, home, person, routes } from '@/resources';
+import { getProfileSchema } from '@/utils/schema';
 
 export async function generateMetadata() {
   return Meta.generate({
@@ -29,19 +30,7 @@ export async function generateMetadata() {
 export default function Home() {
   return (
     <Column maxWidth="m" gap="xl" paddingY="12" horizontal="center">
-      <Schema
-        as="webPage"
-        baseURL={baseURL}
-        path={home.path}
-        title={home.title}
-        description={home.description}
-        image={`/api/og/generate?title=${encodeURIComponent(home.title)}`}
-        author={{
-          name: person.name,
-          url: `${baseURL}${about.path}`,
-          image: `${baseURL}${person.avatar}`,
-        }}
-      />
+      <JsonLd data={getProfileSchema()} />
       <Heading as="h1" style={{ display: 'none' }}>
         Homepage for Suvan's Portfolio
       </Heading>

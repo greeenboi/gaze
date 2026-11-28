@@ -126,8 +126,8 @@ const home: Home = {
   path: '/',
   image: '/images/og/home.png',
   label: 'Home',
-  title: `${person.name}'s Portfolio`,
-  description: `Portfolio website showcasing my work as a ${person.role}`,
+  title: `${person.name} — DevSecOps & Software Engineer`,
+  description: `Portfolio, engineering blog, and open-source projects by ${person.name} (greeenboi), a ${person.role} based in Bangalore, India.`,
   headline: <>Software Engineer</>,
   featured: {
     display: true,
@@ -601,8 +601,8 @@ const about: About = {
 const blog: Blog = {
   path: '/blog',
   label: 'Blog',
-  title: 'Writing about Tech, Games and Novels...',
-  description: `Read what ${person.name} has been up to recently`,
+  title: 'Engineering Blog — DevSecOps, Homelab, Linux & Web Development',
+  description: `Engineering articles and personal write-ups by ${person.name} on homelabs, Linux, software development, open source, and technology events.`,
   // Create new blog posts by adding a new .mdx file to app/blog/posts
   // All posts will be listed on the /blog route
 };
@@ -610,8 +610,8 @@ const blog: Blog = {
 const work: Work = {
   path: '/work',
   label: 'Work',
-  title: `Projects – ${person.name}`,
-  description: `Noteworthy projects by ${person.name}`,
+  title: `Open-Source Projects & Software — ${person.name}`,
+  description: `Explore software, games, and open-source projects built by ${person.name}, including desktop applications, developer tools, and web projects.`,
   // Create new project pages by adding a new .mdx file to app/blog/posts
   // All projects will be listed on the /home and /work routes
 };

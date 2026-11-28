@@ -1,15 +1,16 @@
 import { Column, Heading, Meta, Schema } from '@once-ui-system/core';
+import { withCanonical } from '@/utils/seo';
 import { Projects } from '@/components/work/Projects';
 import { about, baseURL, person, work } from '@/resources';
 
 export async function generateMetadata() {
-  return Meta.generate({
+  return withCanonical(Meta.generate({
     title: work.title,
     description: work.description,
     baseURL: baseURL,
     image: `/api/og/generate?title=${encodeURIComponent(work.title)}`,
     path: work.path,
-  });
+  }), work.path);
 }
 
 export default function Work() {

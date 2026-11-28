@@ -6,7 +6,6 @@ import {
   Media,
   Meta,
   Row,
-  Schema,
   SmartLink,
   Text,
 } from '@once-ui-system/core';
@@ -14,8 +13,11 @@ import type { Metadata } from 'next';
 import { notFound } from 'next/navigation';
 import { CustomMDX, ScrollToHash } from '@/components';
 import { Projects } from '@/components/work/Projects';
+import { JsonLd } from '@/components/JsonLd';
 import { about, baseURL, person, work } from '@/resources';
 import { formatDate } from '@/utils/formatDate';
+import { withCanonical } from '@/utils/seo';
+import { getProjectSchema } from '@/utils/schema';
 import { getPosts } from '@/utils/utils';
 
 export async function generateStaticParams(): Promise<{ slug: string }[]> {
@@ -40,14 +42,20 @@ export async function generateMetadata({
 
   if (!post) return {};
 
-  return Meta.generate({
-    title: post.metadata.title,
-    description: post.metadata.summary,
-    baseURL: baseURL,
-    image:
-      post.metadata.image || `/api/og/generate?title=${post.metadata.title}`,
-    path: `${work.path}/${post.slug}`,
-  });
+  const pathname = `${work.path}/${post.slug}`;
+  return withCanonical(
+    Meta.generate({
+      title: post.metadata.title,
+      description: post.metadata.summary,
+      baseURL,
+      image:
+        post.metadata.images[0] ||
+        `/api/og/generate?title=${encodeURIComponent(post.metadata.title)}`,
+      path: pathname,
+      author: { name: person.name, url: `${baseURL}${about.path}` },
+    }),
+    pathname
+  );
 }
 
 export default async function Project({
@@ -75,23 +83,16 @@ export default async function Project({
 
   return (
     <Column as="section" maxWidth="m" horizontal="center" gap="l">
-      <Schema
-        as="blogPosting"
-        baseURL={baseURL}
-        path={`${work.path}/${post.slug}`}
-        title={post.metadata.title}
-        description={post.metadata.summary}
-        datePublished={post.metadata.publishedAt}
-        dateModified={post.metadata.publishedAt}
-        image={
-          post.metadata.image ||
-          `/api/og/generate?title=${encodeURIComponent(post.metadata.title)}`
-        }
-        author={{
-          name: person.name,
-          url: `${baseURL}${about.path}`,
-          image: `${baseURL}${person.avatar}`,
-        }}
+      <JsonLd
+        data={getProjectSchema({
+          name: post.metadata.title,
+          description: post.metadata.summary,
+          pathname: `${work.path}/${post.slug}`,
+          image: post.metadata.images[0],
+          repoUrl: post.metadata.link,
+          tags: post.metadata.tags,
+          datePublished: post.metadata.publishedAt,
+        })}
       />
       <Column maxWidth="s" gap="16" horizontal="center" align="center">
         <SmartLink href="/work">

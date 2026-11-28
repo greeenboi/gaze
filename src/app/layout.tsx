@@ -28,9 +28,9 @@ import {
 } from '@/resources';
 
 export async function generateMetadata(): Promise<Metadata> {
-  const siteTitle = `${person.firstName}'s Portfolio`;
-  const siteDescription = `${person.role} at ${person.company}`;
-  const linkPreviewSiteName = 'Link preview site name';
+  const siteTitle = `${person.name} — Portfolio`;
+  const siteDescription = home.description;
+  const linkPreviewSiteName = `${person.name}`;
   const canonicalPath = home.path || '/';
   const absolutePageUrl = `${baseURL}${canonicalPath === '/' ? '' : canonicalPath}`;
   const absoluteImageUrl = `${baseURL}${home.image}`;
@@ -91,8 +91,8 @@ export async function generateMetadata(): Promise<Metadata> {
       },
     },
     openGraph: {
-      title: `${person.firstName}'s Portfolio`,
-      description: `${person.role} at ${person.company}`,
+      title: home.title,
+      description: home.description,
       url: baseURL,
       siteName: linkPreviewSiteName,
       locale: 'en_US',
