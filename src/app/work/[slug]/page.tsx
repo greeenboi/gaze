@@ -12,12 +12,12 @@ import {
 import type { Metadata } from 'next';
 import { notFound } from 'next/navigation';
 import { CustomMDX, ScrollToHash } from '@/components';
-import { Projects } from '@/components/work/Projects';
 import { JsonLd } from '@/components/JsonLd';
+import { Projects } from '@/components/work/Projects';
 import { about, baseURL, person, work } from '@/resources';
 import { formatDate } from '@/utils/formatDate';
-import { withCanonical } from '@/utils/seo';
 import { getProjectSchema } from '@/utils/schema';
+import { withCanonical } from '@/utils/seo';
 import { getPosts } from '@/utils/utils';
 
 export async function generateStaticParams(): Promise<{ slug: string }[]> {
@@ -54,7 +54,8 @@ export async function generateMetadata({
       path: pathname,
       author: { name: person.name, url: `${baseURL}${about.path}` },
     }),
-    pathname
+    pathname,
+    post.metadata.tags
   );
 }
 
@@ -105,7 +106,7 @@ export default async function Project({
         >
           {post.metadata.publishedAt && formatDate(post.metadata.publishedAt)}
         </Text>
-        <Heading variant="display-strong-m">{post.metadata.title}</Heading>
+        <Heading as="h1" variant="display-strong-m">{post.metadata.title}</Heading>
       </Column>
       <Row marginBottom="32" horizontal="center">
         <Row gap="16" vertical="center">
@@ -120,7 +121,11 @@ export default async function Project({
                     ,{' '}
                   </Text>
                 )}
-                <SmartLink href={member.linkedIn}>{member.name}</SmartLink>
+                {member.linkedIn ? (
+                  <SmartLink href={member.linkedIn}>{member.name}</SmartLink>
+                ) : (
+                  <Text as="span">{member.name}</Text>
+                )}
               </span>
             ))}
           </Text>
@@ -131,7 +136,7 @@ export default async function Project({
           priority
           aspectRatio="16 / 9"
           radius="m"
-          alt="image"
+          alt={post.metadata.title}
           src={post.metadata.images[0]}
         />
       )}

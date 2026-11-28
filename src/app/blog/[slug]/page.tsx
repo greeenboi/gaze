@@ -20,8 +20,8 @@ import { ShareSection } from '@/components/blog/ShareSection';
 import { JsonLd } from '@/components/JsonLd';
 import { about, baseURL, blog, person } from '@/resources';
 import { formatDate } from '@/utils/formatDate';
-import { withCanonical } from '@/utils/seo';
 import { getBlogPostSchema } from '@/utils/schema';
+import { withCanonical } from '@/utils/seo';
 import { getPosts } from '@/utils/utils';
 
 export async function generateStaticParams(): Promise<{ slug: string }[]> {
@@ -60,7 +60,8 @@ export async function generateMetadata({
       publishedTime: post.metadata.publishedAt,
       author: { name: person.name, url: `${baseURL}${about.path}` },
     }),
-    pathname
+    pathname,
+    post.metadata.tags
   );
 }
 
@@ -103,6 +104,7 @@ export default async function Blog({
                 post.metadata.image ||
                 `/api/og/generate?title=${encodeURIComponent(post.metadata.title)}`,
               tags: post.metadata.tags,
+              readingTime: post.metadata.readingTime,
             })}
           />
           <Column maxWidth="s" gap="16" horizontal="center" align="center">
@@ -117,7 +119,7 @@ export default async function Blog({
               {post.metadata.publishedAt &&
                 formatDate(post.metadata.publishedAt)}
             </Text>
-            <Heading variant="display-strong-m">{post.metadata.title}</Heading>
+            <Heading as="h1" variant="display-strong-m">{post.metadata.title}</Heading>
             {post.metadata.subtitle && (
               <Text
                 variant="body-default-l"

@@ -108,20 +108,22 @@ const AvatarGroupHover = forwardRef<HTMLDivElement, AvatarGroupProps>(
               <Text variant="body-default-s" onBackground="neutral-weak">
                 {avatarProps.description}
               </Text>
-              <SmartLink href={avatarProps.linkedin} fillWidth unstyled>
-                <Row
-                  fillWidth
-                  background="surface"
-                  border="surface"
-                  radius="l"
-                  padding="16"
-                  horizontal="between"
-                  vertical="center"
-                >
-                  <Text>Check me out on Linkedin</Text>
-                  <Icon name="link" />
-                </Row>
-              </SmartLink>
+              {avatarProps.linkedin && (
+                <SmartLink href={avatarProps.linkedin} fillWidth unstyled>
+                  <Row
+                    fillWidth
+                    background="surface"
+                    border="surface"
+                    radius="l"
+                    padding="16"
+                    horizontal="between"
+                    vertical="center"
+                  >
+                    <Text>Check me out on LinkedIn</Text>
+                    <Icon name="link" />
+                  </Row>
+                </SmartLink>
+              )}
               <Row gap="8" wrap>
                 <Tag>Sofware Engineer</Tag>
                 <Tag>Student</Tag>

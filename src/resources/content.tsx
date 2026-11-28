@@ -154,7 +154,7 @@ const home: Home = {
 const about: About = {
   path: '/about',
   label: 'About',
-  title: `About - ${person.name}`,
+  title: 'About & Experience',
   description: `I am ${person.name}, ${person.role} from Bangalore, India.`,
   tableOfContent: {
     display: true,
@@ -610,7 +610,7 @@ const blog: Blog = {
 const work: Work = {
   path: '/work',
   label: 'Work',
-  title: `Open-Source Projects & Software — ${person.name}`,
+  title: 'Open-Source Projects & Software Case Studies',
   description: `Explore software, games, and open-source projects built by ${person.name}, including desktop applications, developer tools, and web projects.`,
   // Create new project pages by adding a new .mdx file to app/blog/posts
   // All projects will be listed on the /home and /work routes
@@ -619,7 +619,7 @@ const work: Work = {
 const gallery: Gallery = {
   path: '/gallery',
   label: 'Gallery',
-  title: `Photo gallery - ${person.name}`,
+  title: 'Photo Gallery',
   description: `A photo collection of ${person.name} Generated using Flux`,
   // Images by https://lorant.one
   // These are placeholder images, replace with your own

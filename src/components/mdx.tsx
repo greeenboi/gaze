@@ -38,18 +38,32 @@ type CustomLinkProps = React.AnchorHTMLAttributes<HTMLAnchorElement> & {
   children: ReactNode;
 };
 
+function normalizeHref(href?: string): string {
+  if (!href) return '';
+  const trimmed = href.trim();
+  if (!trimmed || trimmed.startsWith('file:')) return '';
+  if (trimmed.startsWith('www.')) return `https://${trimmed}`;
+  return trimmed;
+}
+
 function CustomLink({ href, children, ...props }: CustomLinkProps) {
-  if (href.startsWith('/')) {
+  const safeHref = normalizeHref(href);
+
+  if (!safeHref) {
+    return <span {...props}>{children}</span>;
+  }
+
+  if (safeHref.startsWith('/')) {
     return (
-      <SmartLink href={href} {...props}>
+      <SmartLink href={safeHref} {...props}>
         {children}
       </SmartLink>
     );
   }
 
-  if (href.startsWith('#')) {
+  if (safeHref.startsWith('#')) {
     return (
-      <a href={href} {...props}>
+      <a href={safeHref} {...props}>
         {children}
       </a>
     );
@@ -57,7 +71,7 @@ function CustomLink({ href, children, ...props }: CustomLinkProps) {
 
   return (
     <SmartLink
-      href={href}
+      href={safeHref}
       prefixIcon="link"
       target="_blank"
       rel="noopener noreferrer"
@@ -225,11 +239,17 @@ const Mention = ({
   name: string;
   href: string;
   rest: SmartLinkProps;
-}) => (
-  <SmartLink href={href} prefixIcon="link" {...rest}>
-    @{name}
-  </SmartLink>
-);
+}) => {
+  const safeHref = normalizeHref(href);
+  if (!safeHref) {
+    return <Text as="span">@{name}</Text>;
+  }
+  return (
+    <SmartLink href={safeHref} prefixIcon="link" {...rest}>
+      @{name}
+    </SmartLink>
+  );
+};
 
 const components = {
   p: createParagraph as any,

@@ -1,15 +1,25 @@
 ---
-title: "Building a Media Conversion Tool"
+title: "Videx — Client-Side Media Conversion Platform"
 publishedAt: "2024-01-16"
 tags:
   - "Web"
   - "Media"
   - "Tools"
-summary: "A Platform to quickly and easily convert media files without the server overhead. "
+summary: "A fast, privacy-first browser media conversion platform built with Next.js and WebAssembly to transcode audio, video, and images without server overhead."
 images:
-    - "/images/projects/videx/videx.png"
-    - "/images/projects/videx/videx2.png"
-    - "/images/projects/videx/videx3.png"
+  - "/images/projects/videx/videx.png"
+  - "/images/projects/videx/videx2.png"
+  - "/images/projects/videx/videx3.png"
 team:
   - "suvan"
 ---
+
+## Overview
+
+**Videx** is a zero-server-overhead media conversion platform that runs entirely in the user's browser. By leveraging WebAssembly-powered transcoding pipelines inside a Next.js web application, users can convert video, audio, and image formats locally without uploading large files to a remote server.
+
+## Key Highlights
+
+- **100% Client-Side Processing**: Files never leave the user's device, ensuring complete privacy and zero bandwidth bottlenecks.
+- **Batch Format Conversion**: Supports transcoding across popular video, audio, and image containers with drag-and-drop simplicity.
+- **Zero Cloud Compute Cost**: Offloads encoding workloads to local browser threads rather than expensive cloud media workers.

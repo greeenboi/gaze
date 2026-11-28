@@ -1,10 +1,11 @@
 import fs from 'node:fs';
 import path from 'node:path';
 import matter from 'gray-matter';
+import { notFound } from 'next/navigation';
 import { teamMembers } from '@/resources/content';
 import type { TeamMember } from '@/types';
 
-type Metadata = {
+export type PostMetadata = {
   title: string;
   subtitle?: string;
   publishedAt: string;
@@ -18,7 +19,21 @@ type Metadata = {
   link?: string;
 };
 
-import { notFound } from 'next/navigation';
+export type PostItem = {
+  metadata: PostMetadata;
+  slug: string;
+  content: string;
+};
+
+// Static directory constants prevent Turbopack from tracing the entire project filesystem
+const BLOG_POSTS_DIR = path.join(process.cwd(), 'src', 'app', 'blog', 'posts');
+const WORK_PROJECTS_DIR = path.join(
+  process.cwd(),
+  'src',
+  'app',
+  'work',
+  'projects'
+);
 
 function getMDXFiles(dir: string) {
   if (!fs.existsSync(dir)) {
@@ -58,15 +73,19 @@ function readMDXFile(filePath: string) {
   const rawContent = fs.readFileSync(filePath, 'utf-8');
   const { data, content } = matter(rawContent);
 
-  const metadata: Metadata = {
+  const metadata: PostMetadata = {
     title: data.title || '',
     subtitle: data.subtitle || '',
     publishedAt: data.publishedAt,
     summary: data.summary || '',
     image: data.image || '',
-    images: data.images || [],
-    tag: data.tag || [],
-    tags: Array.isArray(data.tags) ? data.tags.map(String) : [],
+    images: Array.isArray(data.images) ? data.images : [],
+    tag: typeof data.tag === 'string' ? data.tag : '',
+    tags: Array.isArray(data.tags)
+      ? data.tags.map(String)
+      : typeof data.tag === 'string' && data.tag
+        ? [data.tag]
+        : [],
     readingTime: getReadingTime(content),
     team: resolveTeam(data.team),
     link: data.link || '',
@@ -75,7 +94,7 @@ function readMDXFile(filePath: string) {
   return { metadata, content };
 }
 
-function getMDXData(dir: string) {
+function getMDXData(dir: string): PostItem[] {
   const mdxFiles = getMDXFiles(dir);
   return mdxFiles.map(file => {
     const { metadata, content } = readMDXFile(path.join(dir, file));
@@ -89,7 +108,26 @@ function getMDXData(dir: string) {
   });
 }
 
-export function getPosts(customPath = ['', '', '', '']) {
-  const postsDir = path.join(process.cwd(), ...customPath);
-  return getMDXData(postsDir);
+export function getBlogPosts(): PostItem[] {
+  return getMDXData(BLOG_POSTS_DIR);
+}
+
+export function getWorkProjects(): PostItem[] {
+  return getMDXData(WORK_PROJECTS_DIR);
+}
+
+export function getPosts(
+  customPath: 'blog' | 'work' | string[] = 'blog'
+): PostItem[] {
+  if (customPath === 'work') {
+    return getMDXData(WORK_PROJECTS_DIR);
+  }
+  if (customPath === 'blog') {
+    return getMDXData(BLOG_POSTS_DIR);
+  }
+  const joined = customPath.join('/');
+  if (joined.includes('work/projects')) {
+    return getMDXData(WORK_PROJECTS_DIR);
+  }
+  return getMDXData(BLOG_POSTS_DIR);
 }

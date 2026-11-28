@@ -43,24 +43,28 @@ const heading = Geist({
   variable: '--font-heading',
   subsets: ['latin'],
   display: 'swap',
+  preload: true,
 });
 
 const body = Geist({
   variable: '--font-body',
   subsets: ['latin'],
   display: 'swap',
+  preload: false,
 });
 
 const label = Geist({
   variable: '--font-label',
   subsets: ['latin'],
   display: 'swap',
+  preload: false,
 });
 
 const code = Geist_Mono({
   variable: '--font-code',
   subsets: ['latin'],
   display: 'swap',
+  preload: false,
 });
 
 const fonts: FontsConfig = {
@@ -195,9 +199,9 @@ const schema: SchemaConfig = {
 
 // social links
 const sameAs: SameAsConfig = {
-  threads: 'https://www.threads.com/@once_ui',
+  threads: 'https://github.com/greeenboi',
   linkedin: 'https://www.linkedin.com/in/suvangs',
-  discord: 'https://discord.com/invite/5EyAQ4eNdS',
+  discord: 'https://huggingface.co/greenarcade',
 };
 
 // social sharing configuration for blog posts

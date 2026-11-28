@@ -79,7 +79,9 @@ export const ProjectCard: React.FC<ProjectCardProps> = ({
         {title && (
           <Column flex={5} gap="8">
             <Heading as="h2" wrap="balance" variant="heading-strong-xl">
-              {title}
+              <SmartLink href={href} unstyled>
+                {title}
+              </SmartLink>
             </Heading>
             <Flex gap="8" vertical="center" wrap>
               {tags.map(tag => (
@@ -127,7 +129,7 @@ export const ProjectCard: React.FC<ProjectCardProps> = ({
                 </Text>
               )}
               <Flex gap="24" wrap>
-                {content?.trim() && (
+                {href && (
                   <SmartLink
                     suffixIcon="arrowRight"
                     style={{ margin: '0', width: 'fit-content' }}

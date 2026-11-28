@@ -15,7 +15,9 @@ import {
 import React from 'react';
 import styles from '@/components/about/about.module.scss';
 import TableOfContents from '@/components/about/TableOfContents';
+import { JsonLd } from '@/components/JsonLd';
 import { about, baseURL, person, social } from '@/resources';
+import { getAboutPageSchema } from '@/utils/schema';
 import { withCanonical } from '@/utils/seo';
 
 export async function generateMetadata() {
@@ -53,22 +55,7 @@ export default function About() {
   ];
   return (
     <Column maxWidth="m">
-      <Schema
-        as="webPage"
-        baseURL={baseURL}
-        title={about.title}
-        description={about.description}
-        path={about.path}
-        image={`/api/og/generate?title=${encodeURIComponent(about.title)}`}
-        author={{
-          name: person.name,
-          url: `${baseURL}${about.path}`,
-          image: `${baseURL}${person.avatar}`,
-        }}
-      />
-      <Heading as="h1" style={{ display: 'none' }}>
-        About Suvan the best developer
-      </Heading>
+      <JsonLd data={getAboutPageSchema()} />
       {about.tableOfContent.display && (
         <Column
           left="0"
@@ -150,7 +137,11 @@ export default function About() {
                 />
               </Row>
             )}
-            <Heading className={styles.textAlign} variant="display-strong-xl">
+            <Heading
+              as="h1"
+              className={styles.textAlign}
+              variant="display-strong-xl"
+            >
               {person.name}
             </Heading>
             <Text

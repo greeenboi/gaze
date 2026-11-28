@@ -11,29 +11,33 @@ import {
   Text,
 } from '@once-ui-system/core';
 import { NewsletterSignup } from '@/components';
-import { JsonLd } from '@/components/JsonLd';
 import { Posts } from '@/components/blog/Posts';
+import { JsonLd } from '@/components/JsonLd';
 import { Projects } from '@/components/work/Projects';
 import { about, baseURL, home, person, routes } from '@/resources';
 import { getProfileSchema } from '@/utils/schema';
+import { withCanonical } from '@/utils/seo';
 
 export async function generateMetadata() {
-  return Meta.generate({
+  const generated = Meta.generate({
     title: home.title,
     description: home.description,
     baseURL: baseURL,
     path: home.path,
     image: home.image,
   });
+  return {
+    ...withCanonical(generated, home.path),
+    title: {
+      absolute: home.title,
+    },
+  };
 }
 
 export default function Home() {
   return (
     <Column maxWidth="m" gap="xl" paddingY="12" horizontal="center">
       <JsonLd data={getProfileSchema()} />
-      <Heading as="h1" style={{ display: 'none' }}>
-        Homepage for Suvan's Portfolio
-      </Heading>
       <Column fillWidth horizontal="center" gap="m">
         <Column maxWidth="s" horizontal="center" align="center">
           {home.featured.display && (
@@ -63,7 +67,7 @@ export default function Home() {
             horizontal="center"
             paddingBottom="16"
           >
-            <Heading wrap="balance" variant="display-strong-l">
+            <Heading as="h1" wrap="balance" variant="display-strong-l">
               {home.headline}
             </Heading>
           </RevealFx>

@@ -1,6 +1,6 @@
 ---
-title: "Building a Low Level System Monitor with an User Friendly UI"
-summary: "A low level system monitor with an user friendly UI built entirely using rust with procedure calls on multiple threads to powershell counter cmdlet. Works on Windows & Mac systems only. designed to be installed on a server and tunneled into a web interface."
+title: "Building a Low Level System Monitor with a User-Friendly UI"
+summary: "A low-level cross-platform system resource monitor built in Rust with multi-threaded metric collection and a real-time web dashboard."
 publishedAt: "2024-10-13"
 tags:
   - "Rust"
@@ -16,3 +16,13 @@ team:
   - "saransh"
   - "vijay"
 ---
+
+## Overview
+
+A low-level system monitor with a real-time web interface built in **Rust**. It collects CPU, memory, disk, and process telemetry across multi-threaded worker pools—interfacing with native OS performance counters on Windows (PowerShell Counter cmdlets) and macOS—and streams live metrics to a clean browser dashboard.
+
+## Key Features
+
+- **Multi-Threaded Telemetry Engine**: Asynchronous Rust worker threads sample system counters with minimal CPU and memory overhead.
+- **Remote Server Tunneling**: Designed to run headless on a server or workstation and expose a lightweight web interface over a secure tunnel.
+- **Real-Time Utilization Charts**: Live visualization of per-core CPU load, memory pressure, network throughput, and active processes.

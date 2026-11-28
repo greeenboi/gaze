@@ -1,39 +1,42 @@
-import { Column, Heading, Meta, Schema } from '@once-ui-system/core';
-import { withCanonical } from '@/utils/seo';
+import { Column, Heading, Meta } from '@once-ui-system/core';
 import { NewsletterSignup } from '@/components';
 import { Posts } from '@/components/blog/Posts';
-import { baseURL, blog, person } from '@/resources';
+import { JsonLd } from '@/components/JsonLd';
+import { baseURL, blog } from '@/resources';
+import { getBlogCollectionSchema } from '@/utils/schema';
+import { withCanonical } from '@/utils/seo';
+import { getPosts } from '@/utils/utils';
 
 export async function generateMetadata() {
-  return withCanonical(Meta.generate({
-    title: blog.title,
-    description: blog.description,
-    baseURL: baseURL,
-    image: `/api/og/generate?title=${encodeURIComponent(blog.title)}`,
-    path: blog.path,
-  }), blog.path);
+  return withCanonical(
+    Meta.generate({
+      title: blog.title,
+      description: blog.description,
+      baseURL: baseURL,
+      image: `/api/og/generate?title=${encodeURIComponent(blog.title)}`,
+      path: blog.path,
+    }),
+    blog.path,
+    ['Engineering Blog', 'DevSecOps', 'Homelab', 'Linux', 'CRDT', 'Carnelia']
+  );
 }
 
 export default function Blog() {
+  const posts = getPosts(['src', 'app', 'blog', 'posts']).sort(
+    (a, b) =>
+      new Date(b.metadata.publishedAt).getTime() -
+      new Date(a.metadata.publishedAt).getTime()
+  );
+
   return (
     <Column maxWidth="m" paddingTop="24">
-      <Schema
-        as="blogPosting"
-        baseURL={baseURL}
-        title={blog.title}
-        description={blog.description}
-        path={blog.path}
-        image={`/api/og/generate?title=${encodeURIComponent(blog.title)}`}
-        author={{
-          name: person.name,
-          url: `${baseURL}/blog`,
-          image: `${baseURL}${person.avatar}`,
-        }}
-      />
-      <Heading as="h1" style={{ display: 'none' }}>
-        Suvan's blog
-      </Heading>
-      <Heading marginBottom="l" variant="heading-strong-xl" marginLeft="24">
+      <JsonLd data={getBlogCollectionSchema(posts)} />
+      <Heading
+        as="h1"
+        marginBottom="l"
+        variant="heading-strong-xl"
+        marginLeft="24"
+      >
         {blog.title}
       </Heading>
       <Column fillWidth flex={1} gap="40">

@@ -29,7 +29,7 @@ const nextConfig = {
       },
       {
         hostname: 'img.shields.io',
-        pathname: '/work/*',
+        pathname: '/**',
       },
     ],
   },

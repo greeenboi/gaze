@@ -1,0 +1,21 @@
+{
+  "name": "Suvan Gowri Shanker — DevSecOps & Software Engineer",
+  "short_name": "Suvan GS",
+  "description": "Portfolio, engineering blog, and open-source projects by Suvan Gowri Shanker (greeenboi).",
+  "start_url": "/",
+  "display": "standalone",
+  "background_color": "#0b0d12",
+  "theme_color": "#0b0d12",
+  "icons": [
+    {
+      "src": "/favicon.ico",
+      "sizes": "any",
+      "type": "image/x-icon"
+    },
+    {
+      "src": "/images/avatar.png",
+      "sizes": "512x512",
+      "type": "image/png"
+    }
+  ]
+}
